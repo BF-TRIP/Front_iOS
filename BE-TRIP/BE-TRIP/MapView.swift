@@ -7,9 +7,19 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct MapView: View {
+    
+    @StateObject var viewModel: MapViewModel = MapViewModel()
+    
     var body: some View {
-        Map()
+        VStack {
+            Map(coordinateRegion: $viewModel.region)
+                .onAppear {
+                    viewModel.requestRegion()
+                }
+        }
     }
+    
 }
