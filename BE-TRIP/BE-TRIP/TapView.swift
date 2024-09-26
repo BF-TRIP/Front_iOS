@@ -15,7 +15,7 @@ struct TapView: View {
                     Image(systemName: "1.square.fill")
                     Text("홈")
                 }
-            ContentView()
+            MapView()
                 .tabItem {
                     Image(systemName: "2.square.fill")
                     Text("지도")
