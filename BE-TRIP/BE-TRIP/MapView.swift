@@ -15,7 +15,7 @@ struct MapView: View {
     
     var body: some View {
         VStack {
-            Map(coordinateRegion: $viewModel.region)
+            Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
                 .onAppear {
                     viewModel.requestRegion()
                 }
