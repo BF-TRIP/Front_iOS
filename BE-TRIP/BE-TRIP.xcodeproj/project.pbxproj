@@ -14,6 +14,7 @@
 		8FAE996E2CA5C1EA0043C2AD /* TapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAE996D2CA5C1EA0043C2AD /* TapView.swift */; };
 		8FAE99702CA5C6420043C2AD /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAE996F2CA5C6420043C2AD /* MapView.swift */; };
 		8FAE99722CA5C6DD0043C2AD /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAE99712CA5C6DD0043C2AD /* MapViewModel.swift */; };
+		8FE6AD932CA6B3B0004A7701 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 8FE6AD922CA6B3B0004A7701 /* BottomSheet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FE6AD932CA6B3B0004A7701 /* BottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +94,9 @@
 			dependencies = (
 			);
 			name = "BE-TRIP";
+			packageProductDependencies = (
+				8FE6AD922CA6B3B0004A7701 /* BottomSheet */,
+			);
 			productName = "BE-TRIP";
 			productReference = 8FAE995C2CA5C1820043C2AD /* BE-TRIP.app */;
 			productType = "com.apple.product-type.application";
@@ -120,6 +125,9 @@
 				Base,
 			);
 			mainGroup = 8FAE99532CA5C1820043C2AD;
+			packageReferences = (
+				8FE6AD912CA6B3B0004A7701 /* XCRemoteSwiftPackageReference "BottomSheet" */,
+			);
 			productRefGroup = 8FAE995D2CA5C1820043C2AD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -358,6 +366,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8FE6AD912CA6B3B0004A7701 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucaszischka/BottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8FE6AD922CA6B3B0004A7701 /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FE6AD912CA6B3B0004A7701 /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8FAE99542CA5C1820043C2AD /* Project object */;
 }
