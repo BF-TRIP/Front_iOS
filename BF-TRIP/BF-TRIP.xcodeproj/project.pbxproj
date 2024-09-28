@@ -11,6 +11,11 @@
 		8F489F462CA830C300B45EDD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F489F452CA830C300B45EDD /* ContentView.swift */; };
 		8F489F482CA830C500B45EDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F489F472CA830C500B45EDD /* Assets.xcassets */; };
 		8F489F4B2CA830C500B45EDD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F489F4A2CA830C500B45EDD /* Preview Assets.xcassets */; };
+		8F827F742CA832A0001711DA /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 8F827F732CA832A0001711DA /* BottomSheet */; };
+		8F827F762CA832EA001711DA /* BFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F827F752CA832E9001711DA /* BFView.swift */; };
+		8F827F782CA832FA001711DA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F827F772CA832FA001711DA /* MapView.swift */; };
+		8F827F7A2CA8330D001711DA /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F827F792CA8330D001711DA /* SearchBar.swift */; };
+		8F827F7C2CA83319001711DA /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F827F7B2CA83319001711DA /* MapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,10 @@
 		8F489F452CA830C300B45EDD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F489F472CA830C500B45EDD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F489F4A2CA830C500B45EDD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8F827F752CA832E9001711DA /* BFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BFView.swift; sourceTree = "<group>"; };
+		8F827F772CA832FA001711DA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		8F827F792CA8330D001711DA /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		8F827F7B2CA83319001711DA /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F827F742CA832A0001711DA /* BottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +63,10 @@
 			children = (
 				8F489F432CA830C300B45EDD /* BF_TRIPApp.swift */,
 				8F489F452CA830C300B45EDD /* ContentView.swift */,
+				8F827F752CA832E9001711DA /* BFView.swift */,
+				8F827F772CA832FA001711DA /* MapView.swift */,
+				8F827F7B2CA83319001711DA /* MapViewModel.swift */,
+				8F827F792CA8330D001711DA /* SearchBar.swift */,
 				8F489F472CA830C500B45EDD /* Assets.xcassets */,
 				8F489F492CA830C500B45EDD /* Preview Content */,
 			);
@@ -83,6 +97,9 @@
 			dependencies = (
 			);
 			name = "BF-TRIP";
+			packageProductDependencies = (
+				8F827F732CA832A0001711DA /* BottomSheet */,
+			);
 			productName = "BF-TRIP";
 			productReference = 8F489F402CA830C300B45EDD /* BF-TRIP.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +128,9 @@
 				Base,
 			);
 			mainGroup = 8F489F372CA830C300B45EDD;
+			packageReferences = (
+				8F827F722CA832A0001711DA /* XCRemoteSwiftPackageReference "BottomSheet" */,
+			);
 			productRefGroup = 8F489F412CA830C300B45EDD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,7 +158,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F489F462CA830C300B45EDD /* ContentView.swift in Sources */,
+				8F827F782CA832FA001711DA /* MapView.swift in Sources */,
+				8F827F7A2CA8330D001711DA /* SearchBar.swift in Sources */,
+				8F827F762CA832EA001711DA /* BFView.swift in Sources */,
 				8F489F442CA830C300B45EDD /* BF_TRIPApp.swift in Sources */,
+				8F827F7C2CA83319001711DA /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +299,7 @@
 				DEVELOPMENT_TEAM = GJ33M9U2S2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "User Location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +329,7 @@
 				DEVELOPMENT_TEAM = GJ33M9U2S2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "User Location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -344,6 +370,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8F827F722CA832A0001711DA /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucaszischka/BottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F827F732CA832A0001711DA /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F827F722CA832A0001711DA /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8F489F382CA830C300B45EDD /* Project object */;
 }
