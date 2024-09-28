@@ -14,6 +14,15 @@ struct SearchBar: View {
     
     var body: some View {
         HStack {
+            Button {
+                //TODO: 필터 뷰 띄우기
+            } label: {
+                Image(systemName: "line.3.horizontal")
+                    .foregroundColor(Color(.black))
+            }
+            
+            Spacer()
+
             TextField("검색어를 입력해주세요.", text: self.$text)
                 .padding(15)
                 .padding(.horizontal, 15)
@@ -25,6 +34,12 @@ struct SearchBar: View {
                         
                         if self.editText {
                             Button {
+                                //TODO: 검색기능 구현
+                            } label: {
+                                Image(systemName: "magnifyingglass")
+                                    .foregroundColor(Color(.black))
+                            }
+                            Button {
                                 self.editText = false
                                 self.text = ""
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -34,9 +49,13 @@ struct SearchBar: View {
                                     .padding()
                             }
                         } else {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(Color(.black))
-                                .padding()
+                            Button {
+                                //TODO: 음성녹음 띄우기
+                            } label: {
+                                Image(systemName: "mic")
+                                    .foregroundColor(Color(.black))
+                                    .padding()
+                            }
                         }
                     }
                 )
@@ -44,5 +63,6 @@ struct SearchBar: View {
                     self.editText = true
                 }
         }
+        .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
     }
 }
