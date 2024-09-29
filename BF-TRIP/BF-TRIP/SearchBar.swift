@@ -11,11 +11,12 @@ struct SearchBar: View {
     
     @Binding var text: String
     @State var editText: Bool = false
+    @State var isFilterViewShowing: Bool = false
     
     var body: some View {
         HStack {
             Button {
-                //TODO: 필터 뷰 띄우기
+                self.isFilterViewShowing = true
             } label: {
                 Image(systemName: "line.3.horizontal")
                     .foregroundColor(Color(.black))
@@ -64,5 +65,8 @@ struct SearchBar: View {
                 }
         }
         .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
+        .fullScreenCover(isPresented: $isFilterViewShowing, content: {
+            SearchFilterView(isFilterViewShowing: $isFilterViewShowing)
+        })
     }
 }
