@@ -24,7 +24,7 @@ struct BFView: View {
                     bottomSheetPosition: self.$bottomSheetPosition,
                     switchablePositions: [.relative(0.2), .relative(0.4), .relativeTop(0.95)],
                     content: {
-                    
+                        PlaceListView()
                 })
                 .tabItem {
                     Image(systemName: "2.square.fill")
