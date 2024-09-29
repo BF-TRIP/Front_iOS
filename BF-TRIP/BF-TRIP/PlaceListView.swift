@@ -110,6 +110,7 @@ struct PlaceListView: View {
             .scrollIndicators(.hidden)
             .listStyle(PlainListStyle())
         }
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 0))
     }
     
 }
