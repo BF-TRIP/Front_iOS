@@ -11,7 +11,7 @@ import SwiftUI
 struct BF_TRIPApp: App {
     var body: some Scene {
         WindowGroup {
-            BFView()
+            ContentView()
         }
     }
 }
