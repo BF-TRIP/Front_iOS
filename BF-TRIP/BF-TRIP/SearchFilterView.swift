@@ -17,7 +17,7 @@ struct SearchFilterView: View {
                     self.isFilterViewShowing = false
                 } label: {
                     Image(systemName: "chevron.backward")
-                        .foregroundColor(Color(.black))
+                        .foregroundColor(Color(.label))
                 }
                 .padding()
                 
@@ -68,7 +68,7 @@ struct SearchFilterView: View {
                 } label: {
                     Text("적용하기")
                         .frame(maxWidth: .infinity, maxHeight: 53)
-                        .foregroundColor(Color(.black))
+                        .foregroundColor(Color(.label))
                         .fontWeight(.bold)
                 }
                 .buttonStyle(.plain)

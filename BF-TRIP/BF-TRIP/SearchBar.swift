@@ -19,7 +19,7 @@ struct SearchBar: View {
                 self.isFilterViewShowing = true
             } label: {
                 Image(systemName: "line.3.horizontal")
-                    .foregroundColor(Color(.black))
+                    .foregroundColor(Color(.label))
             }
             
             Spacer()
@@ -38,7 +38,7 @@ struct SearchBar: View {
                                 //TODO: 검색기능 구현
                             } label: {
                                 Image(systemName: "magnifyingglass")
-                                    .foregroundColor(Color(.black))
+                                    .foregroundColor(Color(.label))
                             }
                             Button {
                                 self.editText = false
@@ -46,7 +46,7 @@ struct SearchBar: View {
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                             } label: {
                                 Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(Color(.black))
+                                    .foregroundColor(Color(.label))
                                     .padding()
                             }
                         } else {
@@ -54,7 +54,7 @@ struct SearchBar: View {
                                 //TODO: 음성녹음 띄우기
                             } label: {
                                 Image(systemName: "mic")
-                                    .foregroundColor(Color(.black))
+                                    .foregroundColor(Color(.label))
                                     .padding()
                             }
                         }
