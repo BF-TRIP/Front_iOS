@@ -1,8 +1,8 @@
 //
 //  BF_TRIPApp.swift
-//  BF-TRIP
+//  BF_TRIP
 //
-//  Created by 박동재 on 9/28/24.
+//  Created by 박동재 on 9/29/24.
 //
 
 import SwiftUI
