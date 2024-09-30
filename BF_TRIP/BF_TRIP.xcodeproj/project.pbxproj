@@ -23,6 +23,7 @@
 		8F71B4232CA9BB0300F1B782 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 8F71B4222CA9BB0300F1B782 /* Moya */; };
 		8F71B4252CA9BB0300F1B782 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8F71B4242CA9BB0300F1B782 /* ReactiveMoya */; };
 		8F71B4272CA9BB0300F1B782 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8F71B4262CA9BB0300F1B782 /* RxMoya */; };
+		8F71B4292CA9C0E200F1B782 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71B4282CA9C0E200F1B782 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		8F71B4102CA954A300F1B782 /* BF_TRIPApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BF_TRIPApp.swift; path = "../../../ㅠㅠㅠ/BF_TRIPApp.swift"; sourceTree = "<group>"; };
 		8F71B4112CA954A300F1B782 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		8F71B4122CA954A300F1B782 /* PlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
+		8F71B4282CA9C0E200F1B782 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		8F71B42A2CAA845400F1B782 /* BF-TRIP-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BF-TRIP-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +78,10 @@
 		8F71B3FB2CA953D800F1B782 /* BF_TRIP */ = {
 			isa = PBXGroup;
 			children = (
+				8F71B42A2CAA845400F1B782 /* BF-TRIP-Info.plist */,
 				8F71B4102CA954A300F1B782 /* BF_TRIPApp.swift */,
 				8F71B40D2CA954A300F1B782 /* BFView.swift */,
+				8F71B4282CA9C0E200F1B782 /* NetworkService.swift */,
 				8F71B40E2CA954A300F1B782 /* Color+.swift */,
 				8F71B40F2CA954A300F1B782 /* MapView.swift */,
 				8F71B4112CA954A300F1B782 /* MapViewModel.swift */,
@@ -179,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F71B4292CA9C0E200F1B782 /* NetworkService.swift in Sources */,
 				8F71B4172CA954A300F1B782 /* Color+.swift in Sources */,
 				8F71B41A2CA954A300F1B782 /* MapViewModel.swift in Sources */,
 				8F71B4182CA954A300F1B782 /* MapView.swift in Sources */,
@@ -324,6 +330,8 @@
 				DEVELOPMENT_TEAM = GJ33M9U2S2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BF-TRIP-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "User Location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -354,6 +362,8 @@
 				DEVELOPMENT_TEAM = GJ33M9U2S2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BF-TRIP-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "User Location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
