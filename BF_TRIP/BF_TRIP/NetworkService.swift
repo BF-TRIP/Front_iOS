@@ -16,13 +16,13 @@ enum NetworkService {
 
 extension NetworkService: TargetType {
     var baseURL: URL {
-        return URL(string: "http://43.203.92.36")!
+        return URL(string: "http://43.203.92.36:8080")!
     }
     
     var path: String {
         switch self {
-        case .getList(let gpsX, let gpsY):
-            return "/api/map?gpsX=\(gpsX)&gpsY=\(gpsY)"
+        case .getList:
+            return "/api/map"
         }
     }
     
@@ -35,8 +35,12 @@ extension NetworkService: TargetType {
     
     var task: Moya.Task {
         switch self {
-        case .getList:
-            return .requestPlain
+        case let .getList(gpsX, gpsY):
+            let params: [String: Double] = [
+                "gpsX": gpsX,
+                "gpsY": gpsY
+            ]
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
     }
     

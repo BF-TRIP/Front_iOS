@@ -26,6 +26,7 @@ struct MapView: View {
                     provider.request(.getList(gpsX: viewModel.gpsX, gpsY: viewModel.gpsY)) { result in
                         switch result {
                         case let .success(response):
+                            dump(response)
                             region = MKCoordinateRegion(
                                 center: CLLocationCoordinate2D(latitude: viewModel.gpsX, longitude: viewModel.gpsY),
                                 span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
