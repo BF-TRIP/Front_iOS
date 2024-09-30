@@ -8,11 +8,13 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import Moya
 
 struct MapView: View {
     
     @StateObject var viewModel: MapViewModel = MapViewModel()
     @State var text: String = ""
+    private var provider = MoyaProvider<NetworkService>()
     
     var body: some View {
         VStack {
@@ -20,6 +22,14 @@ struct MapView: View {
             Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
                 .onAppear {
                     viewModel.requestRegion()
+                    provider.request(.getList(gpsX: viewModel.gpsX, gpsY: viewModel.gpsY)) { result in
+                        switch result {
+                        case let .success(response):
+                            dump(response)
+                        case let .failure(error):
+                            dump(error.localizedDescription)
+                        }
+                    }
                 }
         }
     }

@@ -12,14 +12,19 @@ import CoreLocation
 final class MapViewModel: ObservableObject {
     
     @Published var region: MKCoordinateRegion = MKCoordinateRegion()
+    @Published var gpsX: Double = 0
+    @Published var gpsY: Double = 0
     
     func requestRegion() {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         
-        guard let gpsX = manager.location?.coordinate.latitude else { return }
-        guard let gpsY = manager.location?.coordinate.longitude else { return }
+        guard let tmpGpsX = manager.location?.coordinate.latitude else { return }
+        guard let tmpGpsY = manager.location?.coordinate.longitude else { return }
+        
+        self.gpsX = tmpGpsX
+        self.gpsY = tmpGpsY
         
         region = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: gpsX, longitude: gpsY),
