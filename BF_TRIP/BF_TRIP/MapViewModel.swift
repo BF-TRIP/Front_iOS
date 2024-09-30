@@ -25,11 +25,6 @@ final class MapViewModel: ObservableObject {
         
         self.gpsX = tmpGpsX
         self.gpsY = tmpGpsY
-        
-        region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: gpsX, longitude: gpsY),
-            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        )
     }
     
 }
