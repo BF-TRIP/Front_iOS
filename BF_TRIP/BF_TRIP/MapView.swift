@@ -28,7 +28,7 @@ struct MapView: View {
                         case let .success(response):
                             dump(response)
                             region = MKCoordinateRegion(
-                                center: CLLocationCoordinate2D(latitude: viewModel.gpsX, longitude: viewModel.gpsY),
+                                center: CLLocationCoordinate2D(latitude: viewModel.gpsY, longitude: viewModel.gpsX),
                                 span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
                             )
                         case let .failure(error):
