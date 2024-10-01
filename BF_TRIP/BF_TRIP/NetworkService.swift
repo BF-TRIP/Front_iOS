@@ -10,7 +10,8 @@ import Moya
 
 enum NetworkService {
     
-    case getList(gpsX: Double, gpsY: Double)
+    case getCoordinateToList(gpsX: Double, gpsY: Double)
+    case getFileToList(file: URL)
     
 }
 
@@ -21,25 +22,36 @@ extension NetworkService: TargetType {
     
     var path: String {
         switch self {
-        case .getList:
-            return "/api/map"
+        case .getCoordinateToList(gpsX: let gpsX, gpsY: let gpsY):
+            return "api/map"
+        case .getFileToList(file: let file):
+            return "api/transcription"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getList:
+        case .getCoordinateToList(gpsX: let gpsX, gpsY: let gpsY):
+            return .get
+        case .getFileToList(file: let file):
             return .get
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case let .getList(gpsX, gpsY):
+        case let .getCoordinateToList(gpsX, gpsY):
             let params: [String: Double] = [
                 "gpsX": gpsX,
                 "gpsY": gpsY
             ]
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+        case .getFileToList(file: let file):
+            let params: [String: URL] = [
+                "file": file
+            ]
+            
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
     }
@@ -47,8 +59,5 @@ extension NetworkService: TargetType {
     var headers: [String : String]? {
         return ["Content-Type": "application/json"]
     }
-    
-    
-    
     
 }

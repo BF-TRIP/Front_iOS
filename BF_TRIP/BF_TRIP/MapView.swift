@@ -23,7 +23,7 @@ struct MapView: View {
             Map(coordinateRegion: $region, showsUserLocation: true)
                 .onAppear {
                     viewModel.requestRegion()
-                    provider.request(.getList(gpsX: viewModel.gpsX, gpsY: viewModel.gpsY)) { result in
+                    provider.request(.getCoordinateToList(gpsX: viewModel.gpsX, gpsY: viewModel.gpsY)) { result in
                         switch result {
                         case let .success(response):
                             dump(response)
