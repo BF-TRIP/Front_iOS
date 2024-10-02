@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Moya
 
 struct VoiceView: View {
     @StateObject var audioRecorderManager = AudioRecorderManager()
-    
+    private var provider = MoyaProvider<NetworkService>()
+
     var body: some View {
         VStack {
            
@@ -18,6 +20,22 @@ struct VoiceView: View {
             RecordingButtonView(audioRecorderManager: audioRecorderManager)
             
             RecordingListView(audioRecorderManager: audioRecorderManager)
+            
+            Button {
+                guard let fileURL = audioRecorderManager.recordedFile.last else { return }
+
+                provider.request(.getFileToList(file: fileURL)) { result in
+                    switch result {
+                    case .success(let response):
+                        dump(response)
+                    case .failure(let error):
+                        dump(error)
+                    }
+                }
+            } label: {
+                Text("음성보내기 연습!")
+            }
+
         }
     }
 }
