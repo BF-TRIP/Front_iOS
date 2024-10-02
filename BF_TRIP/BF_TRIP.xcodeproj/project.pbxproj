@@ -24,6 +24,8 @@
 		8F71B4252CA9BB0300F1B782 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8F71B4242CA9BB0300F1B782 /* ReactiveMoya */; };
 		8F71B4272CA9BB0300F1B782 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8F71B4262CA9BB0300F1B782 /* RxMoya */; };
 		8F71B4292CA9C0E200F1B782 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71B4282CA9C0E200F1B782 /* NetworkService.swift */; };
+		8FA8382E2CAA8BB0003C9884 /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8382D2CAA8BB0003C9884 /* VoiceView.swift */; };
+		8FA838312CAB115D003C9884 /* AudioRecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		8F71B4122CA954A300F1B782 /* PlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		8F71B4282CA9C0E200F1B782 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8F71B42A2CAA845400F1B782 /* BF-TRIP-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BF-TRIP-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8FA8382D2CAA8BB0003C9884 /* VoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
+		8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +89,11 @@
 				8F71B40E2CA954A300F1B782 /* Color+.swift */,
 				8F71B40F2CA954A300F1B782 /* MapView.swift */,
 				8F71B4112CA954A300F1B782 /* MapViewModel.swift */,
+				8FA8382D2CAA8BB0003C9884 /* VoiceView.swift */,
 				8F71B40A2CA954A300F1B782 /* PlaceListView.swift */,
 				8F71B4122CA954A300F1B782 /* PlaceView.swift */,
 				8F71B40C2CA954A300F1B782 /* SearchBar.swift */,
+				8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */,
 				8F71B40B2CA954A300F1B782 /* SearchFilterView.swift */,
 				8F71B4002CA953DA00F1B782 /* Assets.xcassets */,
 				8F71B4022CA953DA00F1B782 /* Preview Content */,
@@ -188,6 +194,8 @@
 				8F71B4172CA954A300F1B782 /* Color+.swift in Sources */,
 				8F71B41A2CA954A300F1B782 /* MapViewModel.swift in Sources */,
 				8F71B4182CA954A300F1B782 /* MapView.swift in Sources */,
+				8FA838312CAB115D003C9884 /* AudioRecorderManager.swift in Sources */,
+				8FA8382E2CAA8BB0003C9884 /* VoiceView.swift in Sources */,
 				8F71B4142CA954A300F1B782 /* SearchFilterView.swift in Sources */,
 				8F71B4132CA954A300F1B782 /* PlaceListView.swift in Sources */,
 				8F71B4162CA954A300F1B782 /* BFView.swift in Sources */,
@@ -331,8 +339,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BF-TRIP-Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "User Location";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Voice to Record";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -363,8 +371,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BF-TRIP-Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "User Location";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Voice to Record";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

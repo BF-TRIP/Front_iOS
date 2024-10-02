@@ -20,16 +20,11 @@ final class MapViewModel: ObservableObject {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         
-        guard let tmpGpsX = manager.location?.coordinate.latitude else { return }
-        guard let tmpGpsY = manager.location?.coordinate.longitude else { return }
+        guard let tmpGpsX = manager.location?.coordinate.longitude else { return }
+        guard let tmpGpsY = manager.location?.coordinate.latitude else { return }
         
         self.gpsX = tmpGpsX
         self.gpsY = tmpGpsY
-        
-        region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: gpsX, longitude: gpsY),
-            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        )
     }
     
 }
