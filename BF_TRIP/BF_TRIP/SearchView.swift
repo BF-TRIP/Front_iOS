@@ -37,7 +37,14 @@ struct SearchView: View {
                             
                             if self.editText {
                                 Button {
-                                    //TODO: 검색기능 구현
+                                    MoyaManager.shared.textToList(text: self.searchText) { result in
+                                        switch result {
+                                        case .success(let response):
+                                            dump(response)
+                                        case .failure(let error):
+                                            dump(error.localizedDescription)
+                                        }
+                                    }
                                 } label: {
                                     Image(systemName: "magnifyingglass")
                                         .foregroundColor(Color(.label))
