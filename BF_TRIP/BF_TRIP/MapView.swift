@@ -12,6 +12,7 @@ import Moya
 
 struct MapView: View {
     
+    @State var isFilterViewShowing: Bool = false
     @StateObject var viewModel: MapViewModel = MapViewModel()
     @State var text: String = ""
     @State private var region: MKCoordinateRegion = MKCoordinateRegion()
@@ -19,7 +20,19 @@ struct MapView: View {
     
     var body: some View {
         VStack {
-            SearchBar(text: self.$text)
+            HStack {
+                Button {
+                    self.isFilterViewShowing = true
+                } label: {
+                    Image(systemName: "line.3.horizontal")
+                        .foregroundColor(Color(.label))
+                }
+                
+                Spacer()
+                
+                SearchBar()
+            }
+            .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
             Map(coordinateRegion: $region, showsUserLocation: true)
                 .onAppear {
                     viewModel.requestRegion()
@@ -36,7 +49,18 @@ struct MapView: View {
                         }
                     }
                 }
+                .fullScreenCover(isPresented: $isFilterViewShowing, content: {
+                    SearchFilterView(isFilterViewShowing: $isFilterViewShowing)
+                })
+                .transaction { transaction in
+                    transaction.disablesAnimations = true
+                }
         }
     }
     
 }
+
+#Preview {
+    MapView()
+}
+

@@ -9,47 +9,24 @@ import SwiftUI
 
 struct SearchBar: View {
     
-    @Binding var text: String
-    @State var editText: Bool = false
-    @State var isFilterViewShowing: Bool = false
+    @State var isSearchViewShowing: Bool = false
+    @State var text: String = ""
     
     var body: some View {
         HStack {
             Button {
-                self.isFilterViewShowing = true
+                isSearchViewShowing = true
             } label: {
-                Image(systemName: "line.3.horizontal")
-                    .foregroundColor(Color(.label))
-            }
-            
-            Spacer()
-
-            TextField("검색어를 입력해주세요.", text: self.$text)
-                .padding(15)
-                .padding(.horizontal, 15)
-                .background(Color(.systemGray6))
-                .cornerRadius(15)
-                .overlay(
-                    HStack {
-                        Spacer()
-                        
-                        if self.editText {
-                            Button {
-                                //TODO: 검색기능 구현
-                            } label: {
-                                Image(systemName: "magnifyingglass")
-                                    .foregroundColor(Color(.label))
-                            }
-                            Button {
-                                self.editText = false
-                                self.text = ""
-                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                            } label: {
-                                Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(Color(.label))
-                                    .padding()
-                            }
-                        } else {
+                Text("검색어를 입력해주세요.")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(15)
+                    .padding(.horizontal, 15)
+                    .foregroundColor(Color(.placeholderText))
+                    .background(Color(.systemGray6))
+                    .cornerRadius(15)
+                    .overlay(
+                        HStack {
+                            Spacer()
                             Button {
                                 //TODO: 음성녹음 띄우기
                             } label: {
@@ -57,16 +34,22 @@ struct SearchBar: View {
                                     .foregroundColor(Color(.label))
                                     .padding()
                             }
+
                         }
-                    }
-                )
-                .onTapGesture {
-                    self.editText = true
-                }
+                    )
+            }
+            .fullScreenCover(isPresented: $isSearchViewShowing, content: {
+                SearchView(isSearchViewShowing: $isSearchViewShowing, text: self.$text)
+            })
+            .transaction { transaction in
+                transaction.disablesAnimations = true
+            }
+            .background(.clear)
         }
-        .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
-        .fullScreenCover(isPresented: $isFilterViewShowing, content: {
-            SearchFilterView(isFilterViewShowing: $isFilterViewShowing)
-        })
     }
+}
+
+
+#Preview {
+    SearchBar()
 }
