@@ -18,17 +18,14 @@ struct SearchView: View {
         NavigationStack {
             HStack {
                 Button {
-                    //TODO: 뒤로가기
                     isSearchViewShowing = false;
                 } label: {
                     Image(systemName: "chevron.backward")
                         .foregroundColor(Color(.label))
                 }
-                .padding()
                 
                 Spacer()
                 
-//                SearchBar(text: self.$searchText)
                 TextField("검색어를 입력해주세요.", text: self.$text)
                     .padding(15)
                     .padding(.horizontal, 15)
