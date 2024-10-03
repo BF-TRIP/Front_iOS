@@ -14,6 +14,7 @@ enum NetworkService {
     
     case getCoordinateToList(gpsX: Double, gpsY: Double)
     case getFileToList(file: URL)
+    case getTextToList(text: String)
     
 }
 
@@ -26,8 +27,10 @@ extension NetworkService: TargetType {
         switch self {
         case .getCoordinateToList(gpsX: _, gpsY: _):
             return "api/map"
-        case .getFileToList(file: let file):
+        case .getFileToList(file: _):
             return "api/transcription"
+        case .getTextToList(text: let text):
+            return "api/search"
         }
     }
     
@@ -37,6 +40,8 @@ extension NetworkService: TargetType {
             return .get
         case .getFileToList(file: _):
             return .post
+        default:
+            return .get
         }
     }
     
@@ -80,6 +85,13 @@ extension NetworkService: TargetType {
             )
             
             return .uploadMultipart(multiPartData)
+            
+        case .getTextToList(text: let text):
+            let params: [String: String] = [
+                "keyword": text
+            ]
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
     }
     
