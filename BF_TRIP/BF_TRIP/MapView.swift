@@ -52,6 +52,9 @@ struct MapView: View {
                 .fullScreenCover(isPresented: $isFilterViewShowing, content: {
                     SearchFilterView(isFilterViewShowing: $isFilterViewShowing)
                 })
+                .transaction { transaction in
+                    transaction.disablesAnimations = true
+                }
         }
     }
     
