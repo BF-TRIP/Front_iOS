@@ -31,22 +31,36 @@ final class MoyaManager {
         }
     }
     
-    func fileToList(fileURL: URL, completion: @escaping (Result<String, Error>) -> Void) {
+    func fileToList(fileURL: URL, completion: @escaping (Result<[ResponsePlaceDTO], Error>) -> Void) {
         provider.request(.getFileToList(file: fileURL)) { result in
             switch result {
             case .success(let response):
-                completion(.success("file"))
+                do {
+                    let decoder = JSONDecoder()
+                    let jsonData = try decoder.decode([ResponsePlaceDTO].self, from: response.data)
+                    
+                    completion(.success(jsonData))
+                } catch {
+                    completion(.failure(error))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    func textToList(text: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func textToList(text: String, completion: @escaping (Result<[ResponsePlaceDTO], Error>) -> Void) {
         provider.request(.getTextToList(text: text)) { result in
             switch result {
             case .success(let response):
-                completion(.success("123"))
+                do {
+                    let decoder = JSONDecoder()
+                    let jsonData = try decoder.decode([ResponsePlaceDTO].self, from: response.data)
+                    
+                    completion(.success(jsonData))
+                } catch {
+                    completion(.failure(error))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
