@@ -39,31 +39,31 @@ struct PlaceView: View {
             HStack {
                 Spacer()
                 
-                Image(systemName: "1.square.fill")
+                Image(uiImage: .physical)
                     .frame(width: 36, height: 36)
                     .background(Color(hex: "#D9D9D9"))
                 
                 Spacer()
                 
-                Image(systemName: "2.square.fill")
+                Image(uiImage: .senior)
                     .frame(width: 36, height: 36)
                     .background(Color(hex: "#D9D9D9"))
                 
                 Spacer()
                 
-                Image(systemName: "3.square.fill")
+                Image(uiImage: .wheelChair)
                     .frame(width: 36, height: 36)
                     .background(Color(hex: "#D9D9D9"))
                 
                 Spacer()
                 
-                Image(systemName: "4.square.fill")
+                Image(uiImage: .eye)
                     .frame(width: 36, height: 36)
                     .background(Color(hex: "#D9D9D9"))
                 
                 Spacer()
                 
-                Image(systemName: "5.square.fill")
+                Image(uiImage: .ear)
                     .frame(width: 36, height: 36)
                     .background(Color(hex: "#D9D9D9"))
                 
