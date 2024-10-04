@@ -29,7 +29,7 @@ extension NetworkService: TargetType {
             return "api/map"
         case .getFileToList(file: _):
             return "api/transcription"
-        case .getTextToList(text: let text):
+        case .getTextToList(text: _):
             return "api/search"
         }
     }
