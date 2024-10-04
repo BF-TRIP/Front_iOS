@@ -14,9 +14,9 @@ struct BFView: View {
     
     var body: some View {
         TabView {
-            MapView()
+            MainView()
                 .tabItem {
-                    Image(systemName: "1.square.fill")
+                    Image(systemName: "house")
                     Text("홈")
                 }
             MapView()
@@ -27,14 +27,15 @@ struct BFView: View {
                         PlaceListView()
                 })
                 .tabItem {
-                    Image(systemName: "2.square.fill")
+                    Image(systemName: "map")
                     Text("지도")
                 }
             MapView()
                 .tabItem {
-                    Image(systemName: "3.square.fill")
+                    Image(systemName: "bookmark")
                     Text("저장")
                 }
         }
+        .accentColor(Color(.label))
     }
 }
