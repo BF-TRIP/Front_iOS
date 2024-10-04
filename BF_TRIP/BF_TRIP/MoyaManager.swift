@@ -13,13 +13,13 @@ final class MoyaManager {
     static let shared = MoyaManager()
     let provider: MoyaProvider = MoyaProvider<NetworkService>()
     
-    func coordinateToList(gpsX: Double, gpsY: Double, completion: @escaping (Result<[ResponseCoordinateDTO], Error>) -> Void) {
+    func coordinateToList(gpsX: Double, gpsY: Double, completion: @escaping (Result<[ResponsePlaceDTO], Error>) -> Void) {
         provider.request(.getCoordinateToList(gpsX: gpsX, gpsY: gpsY)) { result in
             switch result {
             case .success(let response):
                 do {
                     let decoder = JSONDecoder()
-                    let jsonData = try decoder.decode([ResponseCoordinateDTO].self, from: response.data)
+                    let jsonData = try decoder.decode([ResponsePlaceDTO].self, from: response.data)
                     
                     completion(.success(jsonData))
                 } catch {

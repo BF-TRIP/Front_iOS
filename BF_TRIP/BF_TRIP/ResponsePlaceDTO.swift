@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ResponseCoordinateDTO: Codable {
+struct ResponsePlaceDTO: Codable {
     
     let contentId: Int
     let contentTitle: String

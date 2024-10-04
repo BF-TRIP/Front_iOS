@@ -13,7 +13,7 @@ import Moya
 final class MapViewModel: ObservableObject {
     
     @Published var region: MKCoordinateRegion = MKCoordinateRegion()
-    @Published var placeList: [ResponseCoordinateDTO] = []
+    @Published var placeList: [ResponsePlaceDTO] = []
     @Published var gpsX: Double = 0
     @Published var gpsY: Double = 0
     
