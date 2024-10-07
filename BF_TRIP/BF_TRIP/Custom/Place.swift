@@ -1,5 +1,5 @@
 //
-//  PlaceView.swift
+//  Place.swift
 //  BF-TRIP
 //
 //  Created by 박동재 on 9/29/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlaceView: View {
+struct Place: View {
     private let place: ResponsePlaceDTO
     
     init(place: ResponsePlaceDTO) {

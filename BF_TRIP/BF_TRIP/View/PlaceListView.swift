@@ -67,7 +67,7 @@ struct PlaceListView: View {
             .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             
             List(0..<viewModel.placeList.count, id: \.self) { index in
-                PlaceView(place: viewModel.placeList[index])
+                Place(place: viewModel.placeList[index])
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .listRowSeparator(.hidden)
                     .shadow(radius: 2)
