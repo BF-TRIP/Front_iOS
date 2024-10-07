@@ -13,7 +13,11 @@ import Moya
 struct MapView: View {
     
     @State var isFilterViewShowing: Bool = false
-    @StateObject var viewModel: MapViewModel = MapViewModel()
+    @ObservedObject var viewModel: MapViewModel
+    
+    init(viewModel: MapViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
@@ -43,9 +47,5 @@ struct MapView: View {
         }
     }
     
-}
-
-#Preview {
-    MapView()
 }
 

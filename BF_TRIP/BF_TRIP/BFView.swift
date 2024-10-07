@@ -11,6 +11,7 @@ import BottomSheet
 struct BFView: View {
     
     @State var bottomSheetPosition: BottomSheetPosition = .relative(0.3)
+    @StateObject var mapViewModel: MapViewModel = MapViewModel()
     
     var body: some View {
         TabView {
@@ -19,12 +20,12 @@ struct BFView: View {
                     Image(systemName: "house")
                     Text("홈")
                 }
-            MapView()
+            MapView(viewModel: mapViewModel)
                 .bottomSheet(
                     bottomSheetPosition: self.$bottomSheetPosition,
                     switchablePositions: [.relative(0.3), .relative(0.5), .relativeTop(0.95)],
                     content: {
-                        PlaceListView()
+                        PlaceListView(viewModel: mapViewModel)
                 })
                 .tabItem {
                     Image(systemName: "map")
@@ -37,5 +38,13 @@ struct BFView: View {
                 }
         }
         .accentColor(Color(.label))
+        .onAppear(perform: {
+            self.mapViewModel.requestRegion()
+        })
     }
 }
+
+#Preview {
+    BFView()
+}
+
