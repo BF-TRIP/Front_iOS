@@ -10,9 +10,13 @@ import SwiftUI
 struct SearchView: View {
     
     @Binding var isSearchViewShowing: Bool
+    @State var isPlaceListViewShowing: Bool = false
+    
     @State private var searchText: String = ""
     @Binding var text: String
     @State var editText: Bool = false
+    
+    @State var viewModel: MapViewModel = MapViewModel()
     
     var body: some View {
         NavigationStack {
@@ -37,15 +41,8 @@ struct SearchView: View {
                             
                             if self.editText {
                                 Button {
-                                    MoyaManager.shared.textToList(text: self.searchText) { result in
-                                        switch result {
-                                        case .success(let data):
-                                            //TODO: 데이터 가지고 결과 화면 보여주기
-                                            dump(data)
-                                        case .failure(let error):
-                                            dump(error.localizedDescription)
-                                        }
-                                    }
+                                    viewModel.requestText(text: self.text)
+                                    self.isPlaceListViewShowing = true
                                 } label: {
                                     Image(systemName: "magnifyingglass")
                                         .foregroundColor(Color(.label))
@@ -82,6 +79,14 @@ struct SearchView: View {
             
             Spacer()
         }
+        .fullScreenCover(isPresented: $isPlaceListViewShowing, content: {
+            PlaceListView(
+                title: "\"\(self.text)\" 검색 결과",
+                searching: true,
+                isPlaceListViewShowing: $isPlaceListViewShowing,
+                viewModel: self.viewModel
+            )
+        })
         .transaction { transaction in
             transaction.disablesAnimations = true
         }
