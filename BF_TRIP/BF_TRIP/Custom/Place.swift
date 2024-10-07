@@ -23,12 +23,12 @@ struct Place: View {
                 }
                     .frame(maxWidth: .infinity, minHeight: 148, maxHeight: 148)
                     .background(Color(.white))
-                    .cornerRadius(15)
+                    .clipped()
             } else {
                 Image(systemName: "book")
                     .frame(maxWidth: .infinity, minHeight: 148)
                     .background(Color(.white))
-                    .cornerRadius(15)
+                    .clipped()
             }
             
             HStack {
