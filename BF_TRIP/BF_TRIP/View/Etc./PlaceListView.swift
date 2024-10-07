@@ -65,6 +65,9 @@ struct PlaceListView: View {
         .fullScreenCover(isPresented: $isPlaceFilterViewShowing, content: {
             PlaceFilterView(isPlaceFilterViewShowing: $isPlaceFilterViewShowing)
         })
+        .transaction { transaction in
+            transaction.disablesAnimations = true
+        }
         
     }
     
