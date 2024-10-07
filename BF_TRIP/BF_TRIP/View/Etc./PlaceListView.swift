@@ -46,7 +46,8 @@ struct PlaceListView: View {
             FilterButtonGroup(
                 list: stateList,
                 backgroundColor: "#393939",
-                fontColor: "#FFE023"
+                fontColor: "#FFE023",
+                radiusColor: "#000000"
             )
             
             List(0..<viewModel.placeList.count, id: \.self) { index in

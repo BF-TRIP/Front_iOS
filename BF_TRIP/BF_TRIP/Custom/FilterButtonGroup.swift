@@ -13,6 +13,7 @@ struct FilterButtonGroup: View {
     let list: [String]
     let backgroundColor: String
     let fontColor: String
+    let radiusColor: String
         
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -35,6 +36,7 @@ struct FilterButtonGroup: View {
                 }
                 .overlay(RoundedRectangle(cornerRadius: 100)
                     .stroke(lineWidth: 1)
+                    .foregroundColor(Color(hex: "\(radiusColor)"))
                 )
                 .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
             }
@@ -48,5 +50,7 @@ struct FilterButtonGroup: View {
     FilterButtonGroup(
         list: ["1", "2"],
         backgroundColor: "#393939", 
-        fontColor: "#FFE023")
+        fontColor: "#FFE023",
+        radiusColor: "#000000"
+    )
 }
