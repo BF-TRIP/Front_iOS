@@ -23,8 +23,14 @@ struct FilterButtonGroup: View {
                         if self.selectedComponents.contains(index) {
                             self.selectedComponents.removeAll { $0 == index }
                         } else {
-                            self.selectedComponents.append(index)
+                            if index == 0 || self.selectedComponents.contains(0) {
+                                self.selectedComponents.removeAll()
+                                self.selectedComponents.append(index)
+                            } else {
+                                self.selectedComponents.append(index)
+                            }
                         }
+                        dump(self.selectedComponents)
                     } label: {
                         Text("\(self.list[index])")
                             .font(.system(size: 14))
