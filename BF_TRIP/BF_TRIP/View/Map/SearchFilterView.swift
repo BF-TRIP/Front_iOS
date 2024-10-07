@@ -12,8 +12,6 @@ struct SearchFilterView: View {
     @Binding var isFilterViewShowing: Bool
     @State var isPlaceListViewShowing: Bool = false
     
-    @State var showPlaceListView: Bool = false
-    
     @State private var selectedState: String = ""
     @State private var selectedStateIndex: Int? = nil
     @State private var selectedCity: String = ""
@@ -113,10 +111,8 @@ struct SearchFilterView: View {
             
             HStack {
                 Button {
-                    //TODO: API 통신 후 받은 데이터 결과 화면 이동
                     viewModel.requestState(state: self.selectedState, city: self.selectedCity)
                     self.isPlaceListViewShowing = true
-                    self.showPlaceListView = true
                 } label: {
                     Text("적용하기")
                         .frame(maxWidth: .infinity, maxHeight: 53)
