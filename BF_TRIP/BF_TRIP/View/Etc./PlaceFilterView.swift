@@ -55,6 +55,31 @@ struct PlaceFilterView: View {
             
             Spacer()
             Spacer()
+            HStack {
+                Button {
+                    //TODO: 필터 초기화
+                } label: {
+                    Text("초기화")
+                        .frame(maxWidth: .infinity, maxHeight: 40)
+                        .foregroundColor(Color(.label))
+                }
+                .buttonStyle(.plain)
+                .background(Color(hex: "#FFE023"))
+                .cornerRadius(10)
+                .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 10))
+                
+                Button {
+                    //TODO: 필터 결과 전달
+                } label: {
+                    Text("적용하기")
+                        .frame(maxWidth: .infinity, maxHeight: 40)
+                        .foregroundColor(Color(.label))
+                }
+                .buttonStyle(.plain)
+                .background(Color(hex: "#FFE023"))
+                .cornerRadius(10)
+                .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 30))
+            }
         }
     }
 }
