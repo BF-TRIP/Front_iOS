@@ -12,6 +12,7 @@ struct BFView: View {
     
     @State var bottomSheetPosition: BottomSheetPosition = .relative(0.3)
     @StateObject var mapViewModel: MapViewModel = MapViewModel()
+    @State var emtpyShowing: Bool = false
     
     var body: some View {
         TabView {
@@ -25,7 +26,12 @@ struct BFView: View {
                     bottomSheetPosition: self.$bottomSheetPosition,
                     switchablePositions: [.relative(0.3), .relative(0.5), .relativeTop(0.95)],
                     content: {
-                        PlaceListView(viewModel: mapViewModel)
+                        PlaceListView(
+                            title: "관광지 목록",
+                            searching: false,
+                            isPlaceListViewShowing: $emtpyShowing,
+                            viewModel: self.mapViewModel
+                        )
                 })
                 .tabItem {
                     Image(systemName: "map")

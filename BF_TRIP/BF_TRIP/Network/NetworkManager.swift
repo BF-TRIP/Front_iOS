@@ -15,6 +15,7 @@ enum NetworkManager {
     case getCoordinateToList(gpsX: Double, gpsY: Double)
     case getFileToList(file: URL)
     case getTextToList(text: String)
+    case getStateToList(state: String, city: String)
     
 }
 
@@ -31,13 +32,13 @@ extension NetworkManager: TargetType {
             return "api/transcription"
         case .getTextToList(text: _):
             return "api/search"
+        case .getStateToList(state: _, city: _):
+            return "location"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getCoordinateToList(gpsX: _, gpsY: _):
-            return .get
         case .getFileToList(file: _):
             return .post
         default:
@@ -65,7 +66,7 @@ extension NetworkManager: TargetType {
             exportSession?.exportAsynchronously {
                 switch exportSession?.status {
                 case .completed:
-                    dump("성공")
+                    dump("success")
                 case .failed:
                     dump("failed \(String(describing: exportSession?.error))")
                 case .cancelled:
@@ -92,7 +93,16 @@ extension NetworkManager: TargetType {
             ]
             
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            
+        case .getStateToList(state: let state, city: let city):
+            let params: [String: String] = [
+                "state": state,
+                "city": city
+            ]
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
+        
     }
     
     var headers: [String : String]? {
