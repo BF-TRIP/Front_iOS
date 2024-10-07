@@ -1,5 +1,5 @@
 //
-//  NetworkService.swift
+//  NetworkManager.swift
 //  BF_TRIP
 //
 //  Created by 박동재 on 9/30/24.
@@ -10,7 +10,7 @@ import Moya
 import AVFAudio
 import AVFoundation
 
-enum NetworkService {
+enum NetworkManager {
     
     case getCoordinateToList(gpsX: Double, gpsY: Double)
     case getFileToList(file: URL)
@@ -18,7 +18,7 @@ enum NetworkService {
     
 }
 
-extension NetworkService: TargetType {
+extension NetworkManager: TargetType {
     var baseURL: URL {
         return URL(string: "http://43.203.92.36:8080")!
     }

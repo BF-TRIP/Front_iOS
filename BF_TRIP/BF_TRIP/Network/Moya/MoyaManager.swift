@@ -11,7 +11,7 @@ import Moya
 final class MoyaManager {
     
     static let shared = MoyaManager()
-    let provider: MoyaProvider = MoyaProvider<NetworkService>()
+    let provider: MoyaProvider = MoyaProvider<NetworkManager>()
     
     func coordinateToList(gpsX: Double, gpsY: Double, completion: @escaping (Result<[ResponsePlaceDTO], Error>) -> Void) {
         provider.request(.getCoordinateToList(gpsX: gpsX, gpsY: gpsY)) { result in

@@ -14,21 +14,21 @@ struct ResponsePlaceDTO: Codable {
     let addr: String
     let gpsX: Double
     let gpsY: Double
-    let originalImage: String
-    let thumbnailImage: String
-    let publicTransport: String
-    let elevator: String
-    let restroom: String
-    let wheelchair: String
-    let helpDog: String
-    let guideHuman: String
-    let braileBlock: String
-    let signGuide: String
-    let videoGuide: String
-    let hearingHandicapEtc: String
-    let stroller: String
-    let lactationRoom: String
-    let babySpareChair: String
+    let originalImage: String?
+    let thumbnailImage: String?
+    let publicTransport: String?
+    let elevator: String?
+    let restroom: String?
+    let wheelchair: String?
+    let helpDog: String?
+    let guideHuman: String?
+    let braileBlock: String?
+    let signGuide: String?
+    let videoGuide: String?
+    let hearingHandicapEtc: String?
+    let stroller: String?
+    let lactationRoom: String?
+    let babySpareChair: String?
     
     enum CodingKeys: String, CodingKey {
         case contentId
