@@ -39,8 +39,9 @@ struct SearchView: View {
                                 Button {
                                     MoyaManager.shared.textToList(text: self.searchText) { result in
                                         switch result {
-                                        case .success(let response):
-                                            dump(response)
+                                        case .success(let data):
+                                            //TODO: 데이터 가지고 결과 화면 보여주기
+                                            dump(data)
                                         case .failure(let error):
                                             dump(error.localizedDescription)
                                         }
