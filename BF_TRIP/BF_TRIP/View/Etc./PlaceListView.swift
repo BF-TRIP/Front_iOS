@@ -10,23 +10,28 @@ import SwiftUI
 struct PlaceListView: View {
     
     
-    private var title: String = ""
+    var title: String = ""
+    var searching: Bool = false
     private let stateList: [String] = ["전체", "지체장애", "고령자", "영유아동반자", "시각장애", "청각장애"]
     @State private var selectedStateList: [Bool] = [false, false, false, false, false, false,]
     @State private var selectedStates = [Int]()
     
-    @State var isPlaceFilterViewShowing: Bool = false
+    @State private var isPlaceFilterViewShowing: Bool = false
+    @Binding var isPlaceListViewShowing: Bool
     
     @ObservedObject var viewModel: MapViewModel
-    
-    init(title: String, viewModel: MapViewModel) {
-        self.title = title
-        self.viewModel = viewModel
-    }
     
     var body: some View {
         VStack {
             HStack {
+                if searching {
+                    Button {
+                        self.isPlaceListViewShowing = false
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(Color(.label))
+                    }
+                }
                 Text("\(title)")
                     .font(.system(size: 20))
                     .fontWeight(.bold)

@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct SearchFilterView: View {
+    
     @Binding var isFilterViewShowing: Bool
-    @State private var selectedState: String? = nil
+    @State var isPlaceListViewShowing: Bool = false
+    
+    @State var showPlaceListView: Bool = false
+    
+    @State private var selectedState: String = ""
     @State private var selectedStateIndex: Int? = nil
-    @State private var selectedCity: String? = nil
+    @State private var selectedCity: String = ""
+    
+    @StateObject var viewModel: MapViewModel = MapViewModel()
     
     private let stateList: [String] = ["서울", "경기", "인천", "강원", "충북", "충남", "경북", "경남", "전북", "전남", "제주"]
     
@@ -37,6 +44,7 @@ struct SearchFilterView: View {
     ]
     
     var body: some View {
+        
         VStack {
             HStack {
                 Button {
@@ -106,8 +114,9 @@ struct SearchFilterView: View {
             HStack {
                 Button {
                     //TODO: API 통신 후 받은 데이터 결과 화면 이동
-                    dump("\(String(describing: self.selectedState)) \(String(describing: self.selectedCity))")
-                    self.isFilterViewShowing = false
+                    viewModel.requestState(state: self.selectedState, city: self.selectedCity)
+                    self.isPlaceListViewShowing = true
+                    self.showPlaceListView = true
                 } label: {
                     Text("적용하기")
                         .frame(maxWidth: .infinity, maxHeight: 53)
@@ -119,7 +128,19 @@ struct SearchFilterView: View {
                 .cornerRadius(10)
                 .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 30))
             }
-
         }
+        .fullScreenCover(isPresented: $isPlaceListViewShowing, content: {
+            PlaceListView(
+                title: "\"\(selectedState) \(selectedCity)\" 검색 결과",
+                searching: true,
+                isPlaceListViewShowing: $isPlaceListViewShowing,
+                viewModel: self.viewModel
+            )
+        })
+        .transaction { transaction in
+            transaction.disablesAnimations = true
+        }
+        
     }
+    
 }
