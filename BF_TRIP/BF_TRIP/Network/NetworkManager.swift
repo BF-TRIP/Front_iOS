@@ -65,7 +65,7 @@ extension NetworkManager: TargetType {
             exportSession?.exportAsynchronously {
                 switch exportSession?.status {
                 case .completed:
-                    dump("성공")
+                    dump("success")
                 case .failed:
                     dump("failed \(String(describing: exportSession?.error))")
                 case .cancelled:

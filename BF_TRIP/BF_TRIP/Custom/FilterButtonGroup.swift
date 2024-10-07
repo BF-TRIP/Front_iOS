@@ -30,7 +30,6 @@ struct FilterButtonGroup: View {
                                 self.selectedComponents.append(index)
                             }
                         }
-                        dump(self.selectedComponents)
                     } label: {
                         Text("\(self.list[index])")
                             .font(.system(size: 14))

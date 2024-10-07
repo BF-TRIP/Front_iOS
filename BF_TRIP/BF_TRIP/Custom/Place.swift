@@ -45,7 +45,6 @@ struct Place: View {
                 
                 Button {
                     //TODO: 관광지 저장 + 통신
-                    dump("SAVE")
                 } label: {
                     Image(systemName: "bookmark")
                         .foregroundColor(Color(.label))
