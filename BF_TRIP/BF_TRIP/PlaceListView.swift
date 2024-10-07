@@ -13,6 +13,12 @@ struct PlaceListView: View {
     @State private var selectedStateList: [Bool] = [false, false, false, false, false, false,]
     @State private var selectedStates = [Int]()
     
+    @ObservedObject var viewModel: MapViewModel
+    
+    init(viewModel: MapViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -60,10 +66,11 @@ struct PlaceListView: View {
             }
             .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             
-            List(0..<5) {_ in
-                PlaceView()
+            List(0..<viewModel.placeList.count, id: \.self) { index in
+                PlaceView(place: viewModel.placeList[index])
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .listRowSeparator(.hidden)
+                    .shadow(radius: 2)
             }
             .scrollIndicators(.hidden)
             .listStyle(PlainListStyle())
@@ -72,8 +79,4 @@ struct PlaceListView: View {
         
     }
     
-}
-
-#Preview {
-    PlaceListView()
 }
