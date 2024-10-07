@@ -31,7 +31,7 @@ struct BFView: View {
                     Image(systemName: "map")
                     Text("지도")
                 }
-            MapView()
+            BookmarkView()
                 .tabItem {
                     Image(systemName: "bookmark")
                     Text("저장")
