@@ -43,4 +43,16 @@ final class MapViewModel: ObservableObject {
         }
     }
     
+    func requestState(state: String, city: String) {
+        
+        MoyaManager.shared.StateToList(state: state, city: city) { result in
+            switch result {
+            case .success(let data):
+                self.placeList = data
+            case .failure(let error):
+                dump(error.localizedDescription)
+            }
+        }
+    }
+    
 }
