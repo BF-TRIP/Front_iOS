@@ -15,6 +15,8 @@ struct PlaceListView: View {
     @State private var selectedStateList: [Bool] = [false, false, false, false, false, false,]
     @State private var selectedStates = [Int]()
     
+    @State var isPlaceFilterViewShowing: Bool = false
+    
     @ObservedObject var viewModel: MapViewModel
     
     init(title: String, viewModel: MapViewModel) {
@@ -33,7 +35,7 @@ struct PlaceListView: View {
                 Spacer()
                 
                 Button {
-                    dump("FILTER")
+                    self.isPlaceFilterViewShowing = true
                 } label: {
                     Image(systemName: "slider.vertical.3")
                         .foregroundColor(Color(.label))
@@ -60,6 +62,9 @@ struct PlaceListView: View {
             .listStyle(PlainListStyle())
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 0))
+        .fullScreenCover(isPresented: $isPlaceFilterViewShowing, content: {
+            PlaceFilterView(isPlaceFilterViewShowing: $isPlaceFilterViewShowing)
+        })
         
     }
     
