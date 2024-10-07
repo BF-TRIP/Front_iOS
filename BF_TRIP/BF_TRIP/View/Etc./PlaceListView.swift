@@ -43,31 +43,11 @@ struct PlaceListView: View {
             }
             .padding()
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(0..<stateList.count, id: \.self) { index in
-                        Button {
-                            if self.selectedStates.contains(index) {
-                                self.selectedStates.removeAll { $0 == index }
-                            } else {
-                                self.selectedStates.append(index)
-                            }
-                        } label: {
-                            Text("\(self.stateList[index])")
-                                .font(.system(size: 14))
-                                .foregroundStyle(self.selectedStates.contains(index) == true ? Color(hex: "#FFE023") : Color(.label))
-                                .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
-                        }
-                        .background(self.selectedStates.contains(index) ? Color(hex: "#393939") : Color(.clear))
-                        .cornerRadius(100)
-                    }
-                    .overlay(RoundedRectangle(cornerRadius: 100)
-                        .stroke(lineWidth: 1)
-                    )
-                    .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
-                }
-            }
-            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
+            FilterButtonGroup(
+                list: stateList,
+                backgroundColor: "#393939",
+                fontColor: "#FFE023"
+            )
             
             List(0..<viewModel.placeList.count, id: \.self) { index in
                 Place(place: viewModel.placeList[index])
