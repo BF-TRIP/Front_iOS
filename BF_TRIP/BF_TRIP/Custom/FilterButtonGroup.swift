@@ -33,12 +33,12 @@ struct FilterButtonGroup: View {
                     }
                     .background(self.selectedComponents.contains(index) ? Color(hex: "\(backgroundColor)") : Color(.clear))
                     .cornerRadius(100)
+                    .overlay(RoundedRectangle(cornerRadius: 100)
+                        .stroke(lineWidth: 1)
+                        .foregroundColor(self.selectedComponents.contains(index) ? Color(hex: "\(radiusColor)") : Color(.black))
+                    )
+                    .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
                 }
-                .overlay(RoundedRectangle(cornerRadius: 100)
-                    .stroke(lineWidth: 1)
-                    .foregroundColor(Color(hex: "\(radiusColor)"))
-                )
-                .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
             }
         }
         .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))

@@ -46,7 +46,7 @@ struct PlaceFilterView: View {
                     .padding(EdgeInsets(top: 20, leading: 15, bottom: 0, trailing: 0))
                 FilterButtonGroup(
                     list: detailfilters[index],
-                    backgroundColor: "#FFE54A",
+                    backgroundColor: "#FFFCE7",
                     fontColor: "000000",
                     radiusColor: "#FFE838")
                 
