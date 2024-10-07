@@ -25,7 +25,7 @@ struct BFView: View {
                     bottomSheetPosition: self.$bottomSheetPosition,
                     switchablePositions: [.relative(0.3), .relative(0.5), .relativeTop(0.95)],
                     content: {
-                        PlaceListView(viewModel: mapViewModel)
+                        PlaceListView(title: "관광지 목록", viewModel: mapViewModel)
                 })
                 .tabItem {
                     Image(systemName: "map")

@@ -97,8 +97,8 @@
 				8FB559EA2CB3CD3F00046E4C /* BF_TRIPApp.swift */,
 				8FB559F42CB3CED300046E4C /* AVFoundation */,
 				8FB559F12CB3CEB300046E4C /* Network */,
-				8FB559EE2CB3CE7500046E4C /* ViewModel */,
 				8FB559ED2CB3CE5E00046E4C /* View */,
+				8FB559EE2CB3CE7500046E4C /* ViewModel */,
 				8FB559EF2CB3CE7C00046E4C /* Custom */,
 				8FB559F02CB3CEA500046E4C /* Extenstion */,
 				8F71B4022CA953DA00F1B782 /* Preview Content */,
@@ -116,17 +116,49 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		8F9255FC2CB3D27E00801E86 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8FBAC3F12CAFF156007AD4CB /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		8F9255FD2CB3D28800801E86 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				8F71B40F2CA954A300F1B782 /* MapView.swift */,
+				8F832CAE2CADA10300DA5A40 /* SearchView.swift */,
+				8F71B40B2CA954A300F1B782 /* SearchFilterView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		8F9255FE2CB3D28D00801E86 /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				8F96A72D2CB023BA009FC384 /* BookmarkView.swift */,
+			);
+			path = Bookmark;
+			sourceTree = "<group>";
+		};
+		8F9255FF2CB3D33200801E86 /* Etc. */ = {
+			isa = PBXGroup;
+			children = (
+				8FA8382D2CAA8BB0003C9884 /* VoiceView.swift */,
+				8F71B40A2CA954A300F1B782 /* PlaceListView.swift */,
+			);
+			path = Etc.;
+			sourceTree = "<group>";
+		};
 		8FB559ED2CB3CE5E00046E4C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8F71B40B2CA954A300F1B782 /* SearchFilterView.swift */,
 				8F71B40D2CA954A300F1B782 /* BFView.swift */,
-				8F71B40F2CA954A300F1B782 /* MapView.swift */,
-				8F832CAE2CADA10300DA5A40 /* SearchView.swift */,
-				8FA8382D2CAA8BB0003C9884 /* VoiceView.swift */,
-				8F71B40A2CA954A300F1B782 /* PlaceListView.swift */,
-				8FBAC3F12CAFF156007AD4CB /* MainView.swift */,
-				8F96A72D2CB023BA009FC384 /* BookmarkView.swift */,
+				8F9255FC2CB3D27E00801E86 /* Main */,
+				8F9255FD2CB3D28800801E86 /* Map */,
+				8F9255FE2CB3D28D00801E86 /* Bookmark */,
+				8F9255FF2CB3D33200801E86 /* Etc. */,
 			);
 			path = View;
 			sourceTree = "<group>";
