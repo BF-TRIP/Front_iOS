@@ -8,15 +8,38 @@
 import SwiftUI
 
 struct PlaceView: View {
+    private let place: ResponsePlaceDTO
+    
+    init(place: ResponsePlaceDTO) {
+        self.place = place
+    }
+    
     var body: some View {
         VStack {
+            if let urlString = place.originalImage,
+               let url = URL(string: urlString) {
+                AsyncImage(url: url) { image in
+                    image.image?.resizable()
+                }
+                    .frame(maxWidth: .infinity, minHeight: 148, maxHeight: 148)
+                    .background(Color(.white))
+                    .cornerRadius(15)
+            } else {
+                Image(systemName: "book")
+                    .frame(maxWidth: .infinity, minHeight: 148)
+                    .background(Color(.white))
+                    .cornerRadius(15)
+            }
+            
             HStack {
-                Text("창경궁")
+                Text("\(place.contentTitle)")
                     .font(.system(size: 22))
                     .fontWeight(.bold)
+                    .foregroundColor(Color(.black))
                 
-                Text("서울 종로구 창경궁로 185")
+                Text("\(place.addr)")
                     .font(.system(size: 14))
+                    .foregroundColor(Color(.black))
                 
                 Spacer()
                 
@@ -28,59 +51,42 @@ struct PlaceView: View {
                         .foregroundColor(Color(.label))
                 }
             }
-            .padding(EdgeInsets(top: 15, leading: 15, bottom: 0, trailing: 15))
-            
-            Image(systemName: "book")
-                .frame(maxWidth: .infinity, minHeight: 120)
-                .background(Color(.white))
-                .cornerRadius(15)
-                .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
+            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             
             HStack {
                 Spacer()
                 
                 Image(uiImage: .physical)
                     .frame(width: 36, height: 36)
-                    .background(Color(hex: "#D9D9D9"))
                 
                 Spacer()
                 
                 Image(uiImage: .senior)
                     .frame(width: 36, height: 36)
-                    .background(Color(hex: "#D9D9D9"))
                 
                 Spacer()
                 
                 Image(uiImage: .wheelChair)
                     .frame(width: 36, height: 36)
-                    .background(Color(hex: "#D9D9D9"))
                 
                 Spacer()
                 
                 Image(uiImage: .eye)
                     .frame(width: 36, height: 36)
-                    .background(Color(hex: "#D9D9D9"))
                 
                 Spacer()
                 
                 Image(uiImage: .ear)
                     .frame(width: 36, height: 36)
-                    .background(Color(hex: "#D9D9D9"))
                 
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: 50)
             .background(Color(.white))
-            .cornerRadius(15)
-            .padding(EdgeInsets(top: 0, leading: 15, bottom: 15, trailing: 15))
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
             
         }
-        .background(Color(hex: "#D9D9D9"))
-        .cornerRadius(15)
+        .background(.white)
+        .cornerRadius(20)
     }
-}
-
-#Preview {
-    PlaceView()
-        .previewLayout(.sizeThatFits)
 }
