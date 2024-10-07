@@ -67,4 +67,22 @@ final class MoyaManager {
         }
     }
     
+    func StateToList(state: String, city: String, completion: @escaping (Result<[ResponsePlaceDTO], Error>) -> Void) {
+        provider.request(.getStateToList(state: state, city: city)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let decoder = JSONDecoder()
+                    let jsonData = try decoder.decode([ResponsePlaceDTO].self, from: response.data)
+                    
+                    completion(.success(jsonData))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }
