@@ -1,5 +1,5 @@
 //
-//  VoiceView.swift
+//  VoicePracticeView.swift
 //  BF_TRIP
 //
 //  Created by 박동재 on 9/30/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct VoiceView: View {
+struct VoicePracticeView: View {
     @StateObject var audioRecorderManager = AudioRecorderManager()
 
     var body: some View {
@@ -120,5 +120,5 @@ private struct RecordingListView: View {
 
 
 #Preview {
-    VoiceView()
+    VoicePracticeView()
 }

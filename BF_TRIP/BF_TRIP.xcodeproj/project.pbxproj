@@ -28,7 +28,7 @@
 		8F9256032CB3D59E00801E86 /* FilterButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9256022CB3D59E00801E86 /* FilterButtonGroup.swift */; };
 		8F9256052CB3D7F900801E86 /* PlaceFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9256042CB3D7F900801E86 /* PlaceFilterView.swift */; };
 		8F96A72E2CB023BA009FC384 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F96A72D2CB023BA009FC384 /* BookmarkView.swift */; };
-		8FA8382E2CAA8BB0003C9884 /* VoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8382D2CAA8BB0003C9884 /* VoiceView.swift */; };
+		8FA8382E2CAA8BB0003C9884 /* VoicePracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8382D2CAA8BB0003C9884 /* VoicePracticeView.swift */; };
 		8FA838312CAB115D003C9884 /* AudioRecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */; };
 		8FB559EB2CB3CD3F00046E4C /* BF_TRIPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB559EA2CB3CD3F00046E4C /* BF_TRIPApp.swift */; };
 		8FBAC3EE2CAFAE03007AD4CB /* ResponsePlaceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAC3ED2CAFAE03007AD4CB /* ResponsePlaceDTO.swift */; };
@@ -56,7 +56,7 @@
 		8F9256022CB3D59E00801E86 /* FilterButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonGroup.swift; sourceTree = "<group>"; };
 		8F9256042CB3D7F900801E86 /* PlaceFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFilterView.swift; sourceTree = "<group>"; };
 		8F96A72D2CB023BA009FC384 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
-		8FA8382D2CAA8BB0003C9884 /* VoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceView.swift; sourceTree = "<group>"; };
+		8FA8382D2CAA8BB0003C9884 /* VoicePracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePracticeView.swift; sourceTree = "<group>"; };
 		8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderManager.swift; sourceTree = "<group>"; };
 		8FB559EA2CB3CD3F00046E4C /* BF_TRIPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_TRIPApp.swift; sourceTree = "<group>"; };
 		8FBAC3ED2CAFAE03007AD4CB /* ResponsePlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePlaceDTO.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		8F9255FF2CB3D33200801E86 /* Etc. */ = {
 			isa = PBXGroup;
 			children = (
-				8FA8382D2CAA8BB0003C9884 /* VoiceView.swift */,
+				8FA8382D2CAA8BB0003C9884 /* VoicePracticeView.swift */,
 				8F71B40A2CA954A300F1B782 /* PlaceListView.swift */,
 				8F9256042CB3D7F900801E86 /* PlaceFilterView.swift */,
 			);
@@ -322,7 +322,7 @@
 				8F9256052CB3D7F900801E86 /* PlaceFilterView.swift in Sources */,
 				8F71B4182CA954A300F1B782 /* MapView.swift in Sources */,
 				8FA838312CAB115D003C9884 /* AudioRecorderManager.swift in Sources */,
-				8FA8382E2CAA8BB0003C9884 /* VoiceView.swift in Sources */,
+				8FA8382E2CAA8BB0003C9884 /* VoicePracticeView.swift in Sources */,
 				8FBAC3F42CAFF18E007AD4CB /* WebKit.swift in Sources */,
 				8F71B4142CA954A300F1B782 /* SearchFilterView.swift in Sources */,
 				8FBAC3F22CAFF156007AD4CB /* MainView.swift in Sources */,
