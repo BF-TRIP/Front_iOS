@@ -66,4 +66,47 @@ final class MapViewModel: ObservableObject {
         }
     }
     
+    func seperateList(selectedStates: [Int]) -> [ResponsePlaceDTO] {
+        var list = placeList
+        let senior: Bool = selectedStates.contains(1)
+        let eyes: Bool = selectedStates.contains(2)
+        let ears: Bool = selectedStates.contains(3)
+        let child: Bool = selectedStates.contains(4)
+        
+        if senior {
+            list = list.filter {
+                $0.publicTransport != "" ||
+                $0.elevator != "" ||
+                $0.restroom != "" ||
+                $0.wheelchair != ""
+            }
+        }
+        
+        if eyes {
+            list = list.filter {
+                $0.helpDog != "" ||
+                $0.guideHuman != "" ||
+                $0.braileBlock != ""
+            }
+        }
+        
+        if ears {
+            list = list.filter {
+                $0.signGuide != "" ||
+                $0.videoGuide != "" ||
+                $0.hearingHandicapEtc != ""
+            }
+        }
+        
+        if child {
+            list = list.filter {
+                $0.stroller != "" ||
+                $0.lactationRoom != "" ||
+                $0.babySpareChair != ""
+            }
+        }
+        
+        return list
+    }
+    
 }

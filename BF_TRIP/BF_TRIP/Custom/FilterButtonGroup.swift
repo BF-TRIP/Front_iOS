@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FilterButtonGroup: View {
     
-    @State var selectedComponents: [Int] = []
+    @Binding var selectedComponents: [Int]
     let list: [String]
     let backgroundColor: String
     let fontColor: String
@@ -49,13 +49,4 @@ struct FilterButtonGroup: View {
         .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
     }
 
-}
-
-#Preview {
-    FilterButtonGroup(
-        list: ["1", "2"],
-        backgroundColor: "#393939", 
-        fontColor: "#FFE023",
-        radiusColor: "#000000"
-    )
 }

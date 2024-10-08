@@ -19,6 +19,11 @@ struct PlaceFilterView: View {
         ["전체", "유모차 대여", "수유실", "유아용 보조의자"],
     ]
     
+    @State var selectedStates: [[Int]] = [
+        [], [], [], []
+    ]
+
+    
     var body: some View {
         VStack {
             HStack {
@@ -45,6 +50,7 @@ struct PlaceFilterView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(EdgeInsets(top: 20, leading: 15, bottom: 0, trailing: 0))
                 FilterButtonGroup(
+                    selectedComponents: $selectedStates[index],
                     list: detailfilters[index],
                     backgroundColor: "#FFFCE7",
                     fontColor: "000000",
@@ -57,7 +63,7 @@ struct PlaceFilterView: View {
             Spacer()
             HStack {
                 Button {
-                    //TODO: 필터 초기화
+                    self.selectedStates = [ [], [], [], [] ]
                 } label: {
                     Text("초기화")
                         .frame(maxWidth: .infinity, maxHeight: 40)
