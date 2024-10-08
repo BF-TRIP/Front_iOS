@@ -55,30 +55,47 @@ struct Place: View {
             HStack {
                 Spacer()
                 
-                Image(uiImage: .physical)
-                    .frame(width: 36, height: 36)
+                if place.publicTransport != "" ||
+                    place.elevator != "" ||
+                    place.restroom != "" ||
+                    place.wheelchair != "" {
+                    Image(uiImage: .physical)
+                        .frame(width: 36, height: 36)
+                    
+                    Spacer()
+                    
+                    Image(uiImage: .senior)
+                        .frame(width: 36, height: 36)
+                    
+                    Spacer()
+                }
                 
-                Spacer()
+                if place.stroller != "" ||
+                    place.lactationRoom != "" ||
+                    place.babySpareChair != "" {
+                    Image(uiImage: .wheelChair)
+                        .frame(width: 36, height: 36)
+                    
+                    Spacer()
+                }
                 
-                Image(uiImage: .senior)
-                    .frame(width: 36, height: 36)
+                if place.helpDog != "" ||
+                    place.guideHuman != "" ||
+                    place.braileBlock != "" {
+                    Image(uiImage: .eye)
+                        .frame(width: 36, height: 36)
+                    
+                    Spacer()
+                }
                 
-                Spacer()
-                
-                Image(uiImage: .wheelChair)
-                    .frame(width: 36, height: 36)
-                
-                Spacer()
-                
-                Image(uiImage: .eye)
-                    .frame(width: 36, height: 36)
-                
-                Spacer()
-                
-                Image(uiImage: .ear)
-                    .frame(width: 36, height: 36)
-                
-                Spacer()
+                if place.signGuide != "" ||
+                    place.videoGuide != "" ||
+                    place.hearingHandicapEtc != "" {
+                    Image(uiImage: .ear)
+                        .frame(width: 36, height: 36)
+                    
+                    Spacer()
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: 50)
             .background(Color(.white))

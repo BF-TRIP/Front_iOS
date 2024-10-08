@@ -12,8 +12,7 @@ struct PlaceListView: View {
     
     var title: String = ""
     var searching: Bool = false
-    private let stateList: [String] = ["전체", "지체장애", "고령자", "영유아동반자", "시각장애", "청각장애"]
-    @State private var selectedStateList: [Bool] = [false, false, false, false, false, false,]
+    private let stateList: [String] = ["전체", "휠체어 & 고령자", "시각장애", "청각장애", "영유아동반자"]
     @State var selectedStates = [Int]()
     
     @State private var isPlaceFilterViewShowing: Bool = false
@@ -70,7 +69,9 @@ struct PlaceListView: View {
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 0))
         .fullScreenCover(isPresented: $isPlaceFilterViewShowing, content: {
-            PlaceFilterView(isPlaceFilterViewShowing: $isPlaceFilterViewShowing)
+            PlaceFilterView(
+                isPlaceFilterViewShowing: $isPlaceFilterViewShowing,
+                viewModel: self.viewModel)
         })
         .transaction { transaction in
             transaction.disablesAnimations = true

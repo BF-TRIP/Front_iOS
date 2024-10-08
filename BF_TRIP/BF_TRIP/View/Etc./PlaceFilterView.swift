@@ -10,6 +10,7 @@ import SwiftUI
 struct PlaceFilterView: View {
     
     @Binding var isPlaceFilterViewShowing: Bool
+    @ObservedObject var viewModel: MapViewModel
     
     private let filterList: [String] = ["휠체어 & 고령자 관련", "시각 관련", "청각 관련", "영유아 관련"]
     private let detailfilters: [[String]] = [
@@ -63,6 +64,7 @@ struct PlaceFilterView: View {
             Spacer()
             HStack {
                 Button {
+                    self.viewModel.revertList()
                     self.selectedStates = [ [], [], [], [] ]
                 } label: {
                     Text("초기화")
@@ -75,7 +77,9 @@ struct PlaceFilterView: View {
                 .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 10))
                 
                 Button {
-                    //TODO: 필터 결과 전달
+                    self.viewModel.revertList()
+                    self.viewModel.changeList(list: self.viewModel.seperateList(selectedStates: selectedStates))
+                    self.isPlaceFilterViewShowing = false
                 } label: {
                     Text("적용하기")
                         .frame(maxWidth: .infinity, maxHeight: 40)
