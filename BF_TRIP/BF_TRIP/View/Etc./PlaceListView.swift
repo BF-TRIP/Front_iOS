@@ -12,9 +12,8 @@ struct PlaceListView: View {
     
     var title: String = ""
     var searching: Bool = false
-    private let stateList: [String] = ["전체", "지체장애", "고령자", "영유아동반자", "시각장애", "청각장애"]
-    @State private var selectedStateList: [Bool] = [false, false, false, false, false, false,]
-    @State private var selectedStates = [Int]()
+    private let stateList: [String] = ["전체", "휠체어 & 고령자", "시각장애", "청각장애", "영유아동반자"]
+    @State var selectedStates = [Int]()
     
     @State private var isPlaceFilterViewShowing: Bool = false
     @Binding var isPlaceListViewShowing: Bool
@@ -51,14 +50,16 @@ struct PlaceListView: View {
             .padding()
             
             FilterButtonGroup(
+                selectedComponents: $selectedStates,
                 list: stateList,
                 backgroundColor: "#393939",
                 fontColor: "#FFE023",
                 radiusColor: "#000000"
             )
             
-            List(0..<viewModel.placeList.count, id: \.self) { index in
-                Place(place: viewModel.placeList[index])
+            let list = viewModel.seperateList(selectedStates: self.selectedStates)
+            List(0..<list.count, id: \.self) { index in
+                Place(place: list[index])
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .listRowSeparator(.hidden)
                     .shadow(radius: 2)
@@ -68,7 +69,9 @@ struct PlaceListView: View {
         }
         .padding(EdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 0))
         .fullScreenCover(isPresented: $isPlaceFilterViewShowing, content: {
-            PlaceFilterView(isPlaceFilterViewShowing: $isPlaceFilterViewShowing)
+            PlaceFilterView(
+                isPlaceFilterViewShowing: $isPlaceFilterViewShowing,
+                viewModel: self.viewModel)
         })
         .transaction { transaction in
             transaction.disablesAnimations = true

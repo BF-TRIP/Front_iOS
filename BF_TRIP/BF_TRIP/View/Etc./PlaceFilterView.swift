@@ -10,6 +10,7 @@ import SwiftUI
 struct PlaceFilterView: View {
     
     @Binding var isPlaceFilterViewShowing: Bool
+    @ObservedObject var viewModel: MapViewModel
     
     private let filterList: [String] = ["휠체어 & 고령자 관련", "시각 관련", "청각 관련", "영유아 관련"]
     private let detailfilters: [[String]] = [
@@ -18,6 +19,11 @@ struct PlaceFilterView: View {
         ["전체", "수화 안내", "자막 안내"],
         ["전체", "유모차 대여", "수유실", "유아용 보조의자"],
     ]
+    
+    @State var selectedStates: [[Int]] = [
+        [], [], [], []
+    ]
+
     
     var body: some View {
         VStack {
@@ -45,6 +51,7 @@ struct PlaceFilterView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(EdgeInsets(top: 20, leading: 15, bottom: 0, trailing: 0))
                 FilterButtonGroup(
+                    selectedComponents: $selectedStates[index],
                     list: detailfilters[index],
                     backgroundColor: "#FFFCE7",
                     fontColor: "000000",
@@ -57,7 +64,8 @@ struct PlaceFilterView: View {
             Spacer()
             HStack {
                 Button {
-                    //TODO: 필터 초기화
+                    self.viewModel.revertList()
+                    self.selectedStates = [ [], [], [], [] ]
                 } label: {
                     Text("초기화")
                         .frame(maxWidth: .infinity, maxHeight: 40)
@@ -69,7 +77,9 @@ struct PlaceFilterView: View {
                 .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 10))
                 
                 Button {
-                    //TODO: 필터 결과 전달
+                    self.viewModel.revertList()
+                    self.viewModel.changeList(list: self.viewModel.seperateList(selectedStates: selectedStates))
+                    self.isPlaceFilterViewShowing = false
                 } label: {
                     Text("적용하기")
                         .frame(maxWidth: .infinity, maxHeight: 40)
