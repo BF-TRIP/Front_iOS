@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F4710B92CB598D200550E08 /* LocationMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4710B82CB598D200550E08 /* LocationMapAnnotation.swift */; };
 		8F488DFA2CADBED8009CF18A /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 8F488DF92CADBED8009CF18A /* BottomSheet */; };
 		8F488DFD2CADBEE5009CF18A /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 8F488DFC2CADBEE5009CF18A /* CombineMoya */; };
 		8F488DFF2CADBEE5009CF18A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 8F488DFE2CADBEE5009CF18A /* Moya */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8F4710B82CB598D200550E08 /* LocationMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapAnnotation.swift; sourceTree = "<group>"; };
 		8F71B3F92CA953D800F1B782 /* BF_TRIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BF_TRIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F71B4002CA953DA00F1B782 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F71B4032CA953DA00F1B782 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				8F71B4122CA954A300F1B782 /* Place.swift */,
+				8F4710B82CB598D200550E08 /* LocationMapAnnotation.swift */,
 				8F9256022CB3D59E00801E86 /* FilterButtonGroup.swift */,
 				8F71B40C2CA954A300F1B782 /* SearchBar.swift */,
 				8FBAC3F32CAFF18E007AD4CB /* WebKit.swift */,
@@ -324,6 +327,7 @@
 				8F71B4142CA954A300F1B782 /* SearchFilterView.swift in Sources */,
 				8FBAC3F22CAFF156007AD4CB /* MainView.swift in Sources */,
 				8F71B4132CA954A300F1B782 /* PlaceListView.swift in Sources */,
+				8F4710B92CB598D200550E08 /* LocationMapAnnotation.swift in Sources */,
 				8F832CAF2CADA10300DA5A40 /* SearchView.swift in Sources */,
 				8FB559EB2CB3CD3F00046E4C /* BF_TRIPApp.swift in Sources */,
 				8F71B4162CA954A300F1B782 /* BFView.swift in Sources */,

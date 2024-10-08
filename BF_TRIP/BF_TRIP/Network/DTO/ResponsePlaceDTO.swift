@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct ResponsePlaceDTO: Codable {
+struct ResponsePlaceDTO: Identifiable, Codable {
     
+    let id = UUID().uuidString
     let contentId: Int
     let contentTitle: String
     let addr: String

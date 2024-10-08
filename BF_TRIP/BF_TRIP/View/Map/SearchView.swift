@@ -30,6 +30,7 @@ struct SearchView: View {
                 Spacer()
                 
                 TextField("검색어를 입력해주세요.", text: self.$text)
+                    .autocorrectionDisabled()
                     .padding(15)
                     .padding(.horizontal, 15)
                     .background(Color(.systemGray6))
