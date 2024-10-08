@@ -32,7 +32,7 @@ final class MapViewModel: ObservableObject {
         
         self.region = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: self.gpsY, longitude: self.gpsX),
-            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         )
         
         MoyaManager.shared.coordinateToList(gpsX: self.gpsX, gpsY: self.gpsY) { result in

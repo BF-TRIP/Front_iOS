@@ -13,7 +13,7 @@ struct LocationMapAnnotation: View {
             Image(systemName: "map.circle.fill")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 30, height: 30)
+                .frame(width: 20, height: 20)
                 .font(.headline)
                 .padding(6)
                 .foregroundColor(.white)

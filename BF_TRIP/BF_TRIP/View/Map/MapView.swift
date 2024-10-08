@@ -36,7 +36,10 @@ struct MapView: View {
             }
             .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
             
-            Map(coordinateRegion: $viewModel.region, annotationItems: self.viewModel.placeList, annotationContent: { location in
+            Map(coordinateRegion: $viewModel.region,
+                showsUserLocation: true,
+                annotationItems: self.viewModel.placeList,
+                annotationContent: { location in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.gpsY, longitude: location.gpsX)) {
                     LocationMapAnnotation()
                 }
