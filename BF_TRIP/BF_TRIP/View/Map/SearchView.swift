@@ -11,6 +11,7 @@ struct SearchView: View {
     
     @Binding var isSearchViewShowing: Bool
     @State var isPlaceListViewShowing: Bool = false
+    @State var isVoiceViewShowing: Bool = false
     
     @Binding var text: String
     @State var editText: Bool = false
@@ -60,7 +61,7 @@ struct SearchView: View {
                                 }
                             } else {
                                 Button {
-                                    //TODO: 음성녹음 띄우기
+                                    self.isVoiceViewShowing.toggle()
                                 } label: {
                                     Image(systemName: "mic")
                                         .foregroundColor(Color(.label))
@@ -88,6 +89,9 @@ struct SearchView: View {
                 isPlaceListViewShowing: $isPlaceListViewShowing,
                 viewModel: self.viewModel
             )
+        })
+        .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
+            VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
         })
         .transaction { transaction in
             transaction.disablesAnimations = true
