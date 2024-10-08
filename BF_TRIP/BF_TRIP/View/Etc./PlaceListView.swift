@@ -12,7 +12,7 @@ struct PlaceListView: View {
     
     var title: String = ""
     var searching: Bool = false
-    private let stateList: [String] = ["전체", "휠체어 & 고령자", "시각장애", "청각장애", "영유아동반자"]
+    private let stateList: [String] = ["전체", "휠체어 & 고령자", "시각장애", "청각장애", "임산부 & 영유아"]
     @State var selectedStates = [Int]()
     
     @State private var isPlaceFilterViewShowing: Bool = false
