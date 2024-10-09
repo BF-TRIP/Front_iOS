@@ -33,7 +33,7 @@ extension NetworkManager: TargetType {
         case .getTextToList(text: _):
             return "api/search"
         case .getStateToList(state: _, city: _):
-            return "location"
+            return "location/district"
         }
     }
     
