@@ -9,11 +9,18 @@ import SwiftUI
 
 struct MainView: View {
     
-    let webView = WebKit(request: URLRequest(url: URL(string: "http://localhost:5173/")!))
+    @State private var isVoiceViewShowing = false
         
     var body: some View {
-        VStack {
-            webView
+        WebKit(
+            request: URLRequest(url: URL(string: "http://localhost:5173/")!),
+            isVoiceViewShowing: $isVoiceViewShowing
+        )
+        .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
+            VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
+        })
+        .transaction { transaction in
+            transaction.disablesAnimations = true
         }
     }
 }
