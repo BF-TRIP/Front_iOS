@@ -2,123 +2,110 @@
 //  VoiceView.swift
 //  BF_TRIP
 //
-//  Created by 박동재 on 9/30/24.
+//  Created by 박동재 on 10/9/24.
 //
 
 import SwiftUI
 
 struct VoiceView: View {
+    
     @StateObject var audioRecorderManager = AudioRecorderManager()
-
+    
+    @Binding var isVoiceViewShowing: Bool
+    @State var isPlaceListViewShowing: Bool = false
+    
+    @StateObject var viewModel: MapViewModel = MapViewModel()
+    
     var body: some View {
         VStack {
-           
-            RecordingStatusView(audioRecorderManager: audioRecorderManager)
-            
-            RecordingButtonView(audioRecorderManager: audioRecorderManager)
-            
-            RecordingListView(audioRecorderManager: audioRecorderManager)
-            
-            Button {
-                guard let fileURL = audioRecorderManager.recordedFile.last else { return }
-
-                MoyaManager.shared.fileToList(fileURL: fileURL) { result in
-                    switch result {
-                    case .success(let data):
-                        //TODO: 데이터 가지고 결과 화면 보여주기
-                        dump(data)
-                    case .failure(let error):
-                        dump(error.localizedDescription)
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        self.isVoiceViewShowing.toggle()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(Color(.label))
+                            .padding(.horizontal, 15)
                     }
                 }
-            } label: {
-                Text("음성보내기 연습!")
-            }
-
-        }
-    }
-}
-
-private struct RecordingStatusView: View {
-    
-    @ObservedObject private var audioRecorderManager: AudioRecorderManager
-    
-    fileprivate init(audioRecorderManager: AudioRecorderManager) {
-        self.audioRecorderManager = audioRecorderManager
-    }
-    
-    var body: some View {
-        if audioRecorderManager.isRecording {
-            Text("Recording...")
-                .foregroundColor(.red)
-        } else {
-            Text("Waiting...")
-        }
-    }
-    
-}
-
-private struct RecordingButtonView: View {
-    
-    @ObservedObject private var audioRecorderManager: AudioRecorderManager
-    
-    fileprivate init(audioRecorderManager: AudioRecorderManager) {
-        self.audioRecorderManager = audioRecorderManager
-    }
-    
-    var body: some View {
-        HStack {
-            Button {
-                audioRecorderManager.isRecording
-                ? audioRecorderManager.stopRecording()
-                : audioRecorderManager.startRecording()
-            } label: {
-                Text(audioRecorderManager.isRecording ? "종료" : "시작")
-                    .foregroundColor(.white)
+                .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
+                
+                Spacer()
+                
+                Text("듣고 있어요!")
+                    .foregroundColor(Color(.label))
+                    .font(.system(size: 28))
                     .padding()
-                    .background(audioRecorderManager.isRecording ? Color.red : Color.blue)
-                    .cornerRadius(10)
-            }
-        }
-    }
-    
-}
-
-private struct RecordingListView: View {
-    
-    @ObservedObject private var audioRecorderManager: AudioRecorderManager
-    
-    fileprivate init(audioRecorderManager: AudioRecorderManager) {
-        self.audioRecorderManager = audioRecorderManager
-    }
-    
-    var body: some View {
-        List {
-            ForEach(audioRecorderManager.recordedFile, id: \.self) { recordedFile in
+                Text("공원, 바다, 박물관과 같은")
+                    .foregroundColor(Color(hex: "#A1A5AC"))
+                    .font(.system(size: 20))
+                Text("장소 키워드를 말해주세요.")
+                    .foregroundColor(Color(hex: "#A1A5AC"))
+                    .font(.system(size: 20))
+                
                 Button {
-                    if audioRecorderManager.isPlaying && audioRecorderManager.audioPlayer?.url == recordedFile {
-                        audioRecorderManager.isPaused
-                        ? audioRecorderManager.resumePlaying()
-                        : audioRecorderManager.pausePlaying()
-                    } else {
-                        audioRecorderManager.startPlaying(recordingURL: recordedFile)
+                    audioRecorderManager.stopRecording()
+                    if let url = audioRecorderManager.captureURL {
+                        self.viewModel.requestFile(fileURL: url)
+                        self.isPlaceListViewShowing = true
                     }
                 } label: {
-                    Text(recordedFile.lastPathComponent)
-                        .foregroundColor(
-                            audioRecorderManager.isPlaying && audioRecorderManager.audioPlayer?.url == recordedFile
-                            ? (audioRecorderManager.isPaused ? .green : .red)
-                            : .black
-                        )
+                    Image(uiImage: .mic)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                        .tint(Color(hex: "#FFE023"))
                 }
-
+                
+                Spacer()
             }
+            .frame(maxWidth: .infinity, maxHeight: 450)
+            .background(Color(hex: "#F6F5FA"))
+            
+            Spacer()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(.black).opacity(0.4))
+        .background(ClearBackground())
+        .onAppear(perform: {
+            audioRecorderManager.startRecording()
+        })
+        .fullScreenCover(isPresented: $isPlaceListViewShowing, content: {
+            PlaceListView(
+                title: "음성 인식 검색 결과",
+                searching: true,
+                isPlaceListViewShowing: $isPlaceListViewShowing,
+                viewModel: self.viewModel
+            )
+            .onDisappear(perform: {
+                self.isVoiceViewShowing = false
+            })
+        })
     }
+}
+
+public struct ClearBackground: UIViewRepresentable {
+    
+    public func makeUIView(context: Context) -> some UIView {
+        let view = ClearBackgroundView()
+        DispatchQueue.main.async {
+            view.superview?.superview?.backgroundColor = .clear
+        }
+        return view
+    }
+    
+    public func updateUIView(_ uiView: UIViewType, context: Context) {}
     
 }
 
-
-#Preview {
-    VoiceView()
+final class ClearBackgroundView: UIView {
+    
+    public override func layoutSubviews() {
+        guard let parantView = superview?.superview else {
+            return
+        }
+        parantView.backgroundColor = .clear
+    }
+    
 }

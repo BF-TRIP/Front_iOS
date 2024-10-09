@@ -10,10 +10,20 @@ import WebKit
 import Combine
 
 class ContentController: NSObject, WKScriptMessageHandler {
+    
+    var isVoiceViewShowing: Binding<Bool>
+    
+    init(isVoiceViewShowing: Binding<Bool>) {
+        self.isVoiceViewShowing = isVoiceViewShowing
+    }
+    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "serverEvent" {
             print("message name : \(message.name)")
             print("post Message : \(message.body)")
+            if message.body as! String == "Voice" {
+                isVoiceViewShowing.wrappedValue = true
+            }
         }
     }
 }
@@ -22,11 +32,17 @@ struct WebKit: UIViewRepresentable {
 
     let request: URLRequest
     private var webView: WKWebView?
+    
+    @Binding var isVoiceViewShowing: Bool
 
-    init(request: URLRequest) {
+    init(request: URLRequest, isVoiceViewShowing: Binding<Bool>) {
         self.webView = WKWebView()
         self.request = request
-        self.webView?.configuration.userContentController.add(ContentController(), name: "serverEvent")
+//        self.isVoiceViewShowing = isVoiceViewShowing
+        self._isVoiceViewShowing = isVoiceViewShowing
+        self.webView?.configuration.userContentController.add(
+            ContentController(isVoiceViewShowing: isVoiceViewShowing), name: "serverEvent"
+        )
     }
 
     func makeUIView(context: Context) -> WKWebView {

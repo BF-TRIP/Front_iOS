@@ -18,6 +18,24 @@ final class AudioRecorderManager: NSObject, ObservableObject, AVAudioPlayerDeleg
     @Published var isPaused = false
     
     var recordedFile = [URL]()
+    var captureURL: URL?
+    
+    var recordingSession = AVAudioSession.sharedInstance()
+    
+    override init() {
+        super.init()
+        do {
+            try recordingSession.setCategory(.playAndRecord, options: .defaultToSpeaker)
+            
+            AVAudioApplication.requestRecordPermission { allowed in
+                if !allowed {
+                    print("Recording not allowed by the user" as! Error)
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
     
 }
 
@@ -45,6 +63,7 @@ extension AudioRecorderManager {
     func stopRecording() {
         audioRecorder?.stop()
         self.recordedFile.append(self.audioRecorder!.url)
+        self.captureURL = self.audioRecorder!.url
         self.isRecording = false
     }
     

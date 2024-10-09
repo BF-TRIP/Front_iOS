@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchBar: View {
     
     @State var isSearchViewShowing: Bool = false
+    @State var isVoiceViewShowing: Bool = false
     @State var text: String = ""
     
     var body: some View {
@@ -28,7 +29,7 @@ struct SearchBar: View {
                         HStack {
                             Spacer()
                             Button {
-                                //TODO: 음성녹음 띄우기
+                                self.isVoiceViewShowing.toggle()
                             } label: {
                                 Image(systemName: "mic")
                                     .foregroundColor(Color(.label))
@@ -41,10 +42,12 @@ struct SearchBar: View {
             .fullScreenCover(isPresented: $isSearchViewShowing, content: {
                 SearchView(isSearchViewShowing: $isSearchViewShowing, text: self.$text)
             })
+            .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
+                VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
+            })
             .transaction { transaction in
                 transaction.disablesAnimations = true
             }
-            .background(.clear)
         }
     }
 }
