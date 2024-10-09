@@ -59,43 +59,75 @@ struct Place: View {
                     place.elevator != "" ||
                     place.restroom != "" ||
                     place.wheelchair != "" {
-                    Image(uiImage: .physical)
+                    Image(uiImage: .wheelchair)
+                        .scaledToFit()
                         .frame(width: 36, height: 36)
                     
                     Spacer()
                     
                     Image(uiImage: .senior)
+                        .scaledToFit()
                         .frame(width: 36, height: 36)
+                } else {
+                    Image(uiImage: .wheelchair)
+                        .frame(width: 36, height: 36)
+                        .scaledToFit()
+                        .opacity(0.2)
                     
                     Spacer()
+                    
+                    Image(uiImage: .senior)
+                        .frame(width: 36, height: 36)
+                        .scaledToFit()
+                        .opacity(0.2)
                 }
+                
+                Spacer()
                 
                 if place.stroller != "" ||
                     place.lactationRoom != "" ||
                     place.babySpareChair != "" {
-                    Image(uiImage: .wheelChair)
+                    Image(uiImage: .pregnant)
                         .frame(width: 36, height: 36)
-                    
-                    Spacer()
+                        .scaledToFit()
+                } else {
+                    Image(uiImage: .pregnant)
+                        .frame(width: 36, height: 36)
+                        .scaledToFit()
+                        .opacity(0.2)
                 }
+                
+                Spacer()
                 
                 if place.helpDog != "" ||
                     place.guideHuman != "" ||
                     place.braileBlock != "" {
-                    Image(uiImage: .eye)
+                    Image(uiImage: .eyes)
                         .frame(width: 36, height: 36)
-                    
-                    Spacer()
+                        .scaledToFit()
+                } else {
+                    Image(uiImage: .eyes)
+                        .frame(width: 36, height: 36)
+                        .scaledToFit()
+                        .opacity(0.2)
                 }
+                
+                Spacer()
                 
                 if place.signGuide != "" ||
                     place.videoGuide != "" ||
                     place.hearingHandicapEtc != "" {
-                    Image(uiImage: .ear)
+                    Image(uiImage: .ears)
                         .frame(width: 36, height: 36)
-                    
-                    Spacer()
+                        .scaledToFit()
+                } else {
+                    Image(uiImage: .ears)
+                        .frame(width: 36, height: 36)
+                        .scaledToFit()
+                        .opacity(0.2)
                 }
+                
+                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: 50)
             .background(Color(.white))
