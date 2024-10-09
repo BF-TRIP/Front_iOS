@@ -69,6 +69,21 @@ final class MapViewModel: ObservableObject {
         }
     }
     
+    func requestFile(fileURL: URL) {
+        MoyaManager.shared.fileToList(fileURL: fileURL) { result in
+            switch result {
+            case .success(let data):
+                self.placeList = data
+            case .failure(let error):
+                dump(error.localizedDescription)
+            }
+        }
+    }
+    
+}
+
+extension MapViewModel {
+    
     func seperateList(selectedStates: [Int]) -> [ResponsePlaceDTO] {
         var list = placeList
         var senior: Bool = selectedStates.contains(1)

@@ -12,6 +12,9 @@ struct VoiceView: View {
     @StateObject var audioRecorderManager = AudioRecorderManager()
     
     @Binding var isVoiceViewShowing: Bool
+    @State var isPlaceListViewShowing: Bool = false
+    
+    @StateObject var viewModel: MapViewModel = MapViewModel()
     
     var body: some View {
         VStack {
@@ -41,11 +44,19 @@ struct VoiceView: View {
                     .foregroundColor(Color(hex: "#A1A5AC"))
                     .font(.system(size: 20))
                 
-                Image(uiImage: .mic)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 200, height: 200)
-                    .tint(Color(hex: "#FFE023"))
+                Button {
+                    audioRecorderManager.stopRecording()
+                    if let url = audioRecorderManager.captureURL {
+                        self.viewModel.requestFile(fileURL: url)
+                        self.isPlaceListViewShowing = true
+                    }
+                } label: {
+                    Image(uiImage: .mic)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200, height: 200)
+                        .tint(Color(hex: "#FFE023"))
+                }
                 
                 Spacer()
             }
@@ -57,6 +68,20 @@ struct VoiceView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.black).opacity(0.4))
         .background(ClearBackground())
+        .onAppear(perform: {
+            audioRecorderManager.startRecording()
+        })
+        .fullScreenCover(isPresented: $isPlaceListViewShowing, content: {
+            PlaceListView(
+                title: "음성 인식 검색 결과",
+                searching: true,
+                isPlaceListViewShowing: $isPlaceListViewShowing,
+                viewModel: self.viewModel
+            )
+            .onDisappear(perform: {
+                self.isVoiceViewShowing = false
+            })
+        })
     }
 }
 
