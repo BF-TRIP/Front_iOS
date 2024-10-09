@@ -32,6 +32,7 @@ struct BFView: View {
                             isPlaceListViewShowing: $emtpyShowing,
                             viewModel: self.mapViewModel
                         )
+                        .padding(.bottom, 100)
                 })
                 .tabItem {
                     Image(systemName: "map")
