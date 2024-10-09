@@ -25,7 +25,7 @@ struct Place: View {
                     .background(Color(.white))
                     .clipped()
             } else {
-                Image(systemName: "book")
+                Image(systemName: "photo")
                     .frame(maxWidth: .infinity, minHeight: 148)
                     .background(Color(.white))
                     .clipped()
