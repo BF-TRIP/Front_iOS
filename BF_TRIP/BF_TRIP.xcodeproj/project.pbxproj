@@ -31,6 +31,8 @@
 		8F96A72E2CB023BA009FC384 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F96A72D2CB023BA009FC384 /* BookmarkView.swift */; };
 		8FA8382E2CAA8BB0003C9884 /* VoicePracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8382D2CAA8BB0003C9884 /* VoicePracticeView.swift */; };
 		8FA838312CAB115D003C9884 /* AudioRecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */; };
+		8FB05FA52CB6DF96005698FE /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB05FA42CB6DF96005698FE /* PlaceViewModel.swift */; };
+		8FB05FA72CB6E318005698FE /* ResponseSaveDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB05FA62CB6E318005698FE /* ResponseSaveDTO.swift */; };
 		8FB559EB2CB3CD3F00046E4C /* BF_TRIPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB559EA2CB3CD3F00046E4C /* BF_TRIPApp.swift */; };
 		8FBAC3EE2CAFAE03007AD4CB /* ResponsePlaceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAC3ED2CAFAE03007AD4CB /* ResponsePlaceDTO.swift */; };
 		8FBAC3F22CAFF156007AD4CB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAC3F12CAFF156007AD4CB /* MainView.swift */; };
@@ -60,6 +62,8 @@
 		8F96A72D2CB023BA009FC384 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		8FA8382D2CAA8BB0003C9884 /* VoicePracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePracticeView.swift; sourceTree = "<group>"; };
 		8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderManager.swift; sourceTree = "<group>"; };
+		8FB05FA42CB6DF96005698FE /* PlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
+		8FB05FA62CB6E318005698FE /* ResponseSaveDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSaveDTO.swift; sourceTree = "<group>"; };
 		8FB559EA2CB3CD3F00046E4C /* BF_TRIPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_TRIPApp.swift; sourceTree = "<group>"; };
 		8FBAC3ED2CAFAE03007AD4CB /* ResponsePlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePlaceDTO.swift; sourceTree = "<group>"; };
 		8FBAC3F12CAFF156007AD4CB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				8F71B4112CA954A300F1B782 /* MapViewModel.swift */,
+				8FB05FA42CB6DF96005698FE /* PlaceViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				8FBAC3ED2CAFAE03007AD4CB /* ResponsePlaceDTO.swift */,
+				8FB05FA62CB6E318005698FE /* ResponseSaveDTO.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 				8F71B4292CA9C0E200F1B782 /* NetworkManager.swift in Sources */,
 				8F71B4172CA954A300F1B782 /* Color+.swift in Sources */,
 				8FF462452CAF07A90044DA8E /* MoyaManager.swift in Sources */,
+				8FB05FA52CB6DF96005698FE /* PlaceViewModel.swift in Sources */,
 				8F71B41A2CA954A300F1B782 /* MapViewModel.swift in Sources */,
 				8FBAC3EE2CAFAE03007AD4CB /* ResponsePlaceDTO.swift in Sources */,
 				8F9256052CB3D7F900801E86 /* PlaceFilterView.swift in Sources */,
@@ -336,6 +343,7 @@
 				8FB559EB2CB3CD3F00046E4C /* BF_TRIPApp.swift in Sources */,
 				8F71B4162CA954A300F1B782 /* BFView.swift in Sources */,
 				8F9256032CB3D59E00801E86 /* FilterButtonGroup.swift in Sources */,
+				8FB05FA72CB6E318005698FE /* ResponseSaveDTO.swift in Sources */,
 				8F71B4152CA954A300F1B782 /* SearchBar.swift in Sources */,
 				8F71B41B2CA954A300F1B782 /* Place.swift in Sources */,
 			);
