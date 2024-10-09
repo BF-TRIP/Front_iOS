@@ -60,7 +60,7 @@ struct VoiceView: View {
                 
                 Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: 450)
+            .frame(maxWidth: .infinity, maxHeight: 500)
             .background(Color(hex: "#F6F5FA"))
             
             Spacer()
