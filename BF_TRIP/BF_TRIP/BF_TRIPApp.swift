@@ -2,7 +2,7 @@
 //  BF_TRIPApp.swift
 //  BF_TRIP
 //
-//  Created by 박동재 on 9/29/24.
+//  Created by 박동재 on 10/7/24.
 //
 
 import SwiftUI
@@ -11,7 +11,7 @@ import SwiftUI
 struct BF_TRIPApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BFView()
         }
     }
 }
