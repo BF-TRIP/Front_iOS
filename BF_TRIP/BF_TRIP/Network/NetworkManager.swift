@@ -16,8 +16,8 @@ enum NetworkManager {
     case getFileToList(file: URL)
     case getTextToList(text: String)
     case getStateToList(state: String, city: String)
-    case getIdToList(userNumber: CLong)
-    case postAddSaveList(userNumber: CLong, contentId: CLong)
+    case getIdToList(userNumber: Int)
+    case postAddSaveList(userNumber: Int, contentId: Int)
     
 }
 
@@ -109,14 +109,14 @@ extension NetworkManager: TargetType {
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
             
         case .getIdToList(userNumber: let userNumber):
-            let params: [String: CLong] = [
+            let params: [String: Int] = [
                 "userName": userNumber
             ]
             
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
             
         case .postAddSaveList(userNumber: let userNumber, contentId: let contentId):
-            let params: [String: CLong] = [
+            let params: [String: Int] = [
                 "userName": userNumber,
                 "contentId": contentId
             ]

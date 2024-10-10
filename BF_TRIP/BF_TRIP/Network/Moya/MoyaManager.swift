@@ -85,7 +85,7 @@ final class MoyaManager {
         }
     }
     
-    func IdToList(userNumber: CLong, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
+    func IdToList(userNumber: Int, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
         provider.request(.getIdToList(userNumber: userNumber)) { result in
             switch result {
             case .success(let response):
@@ -103,7 +103,7 @@ final class MoyaManager {
         }
     }
     
-    func AddSaveList(userNumber: CLong, contentId: Int, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
+    func AddSaveList(userNumber: Int, contentId: Int, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
         provider.request(.postAddSaveList(userNumber: userNumber, contentId: contentId)) { result in
             switch result {
             case .success(let response):
