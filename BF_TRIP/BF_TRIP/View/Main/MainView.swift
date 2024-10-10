@@ -28,5 +28,8 @@ struct MainView: View {
             webView.callJS(gpsX: 126.98, gpsY: 37.57)
             dump("123123")
         })
+        .background(Color(hex: "#FFE023"))
+        .background(ignoresSafeAreaEdges: .top)
+        .padding(.bottom, 40)
     }
 }
