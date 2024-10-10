@@ -9,22 +9,25 @@ import SwiftUI
 
 struct BookmarkView: View {
     
-    @State private var text: String = "iPhone"
-    
-    let webView = WebKit(request: URLRequest(url: URL(string: "http://localhost:5173/")!))
+    @State var isVoiceViewShowing: Bool = false
     
     var body: some View {
-        VStack {
-            webView
-                .padding(5)
-                .background(.yellow)
-                .frame(height: 400)
-            
-            Button("Call JavaScript Function") {
-                webView.callJS()
-            }
+        let webView = WebKit(
+                request: URLRequest(url: URL(string: "http://localhost:5173/save-list")!),
+                isVoiceViewShowing: $isVoiceViewShowing
+            )
+            .edgesIgnoringSafeArea(.all)
+        
+        return webView
+        .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
+            VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
+        })
+        .transaction { transaction in
+            transaction.disablesAnimations = true
         }
-        .padding()
+        .background(Color(hex: "#FFE023"))
+        .background(ignoresSafeAreaEdges: .top)
+        
     }
 
 }
