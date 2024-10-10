@@ -38,7 +38,6 @@ struct WebKit: UIViewRepresentable {
     init(request: URLRequest, isVoiceViewShowing: Binding<Bool>) {
         self.webView = WKWebView()
         self.request = request
-//        self.isVoiceViewShowing = isVoiceViewShowing
         self._isVoiceViewShowing = isVoiceViewShowing
         self.webView?.configuration.userContentController.add(
             ContentController(isVoiceViewShowing: isVoiceViewShowing), name: "serverEvent"
