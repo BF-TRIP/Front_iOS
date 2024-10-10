@@ -68,13 +68,20 @@ struct PlaceFilterView: View {
                     self.selectedStates = [ [], [], [], [] ]
                 } label: {
                     Text("초기화")
-                        .frame(maxWidth: .infinity, maxHeight: 40)
+                        .frame(maxWidth: .infinity, maxHeight: 50)
                         .foregroundColor(Color(.label))
                 }
+                .disabled(self.selectedStates.allSatisfy { $0.isEmpty })
                 .buttonStyle(.plain)
-                .background(Color(hex: "#FFE023"))
+                .background(self.selectedStates.allSatisfy { $0.isEmpty } ? Color(.white) : Color(hex: "#FFE023"))
+                .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(lineWidth: 1)
+                    .foregroundColor(
+                        self.selectedStates.allSatisfy { $0.isEmpty } ? Color(hex: "#AAAAAA") : Color(hex: "#FFE023")
+                    )
+                )
                 .cornerRadius(10)
-                .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 10))
+                .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 5))
                 
                 Button {
                     self.viewModel.revertList()
@@ -82,13 +89,13 @@ struct PlaceFilterView: View {
                     self.isPlaceFilterViewShowing = false
                 } label: {
                     Text("적용하기")
-                        .frame(maxWidth: .infinity, maxHeight: 40)
+                        .frame(maxWidth: .infinity, maxHeight: 50)
                         .foregroundColor(Color(.label))
                 }
                 .buttonStyle(.plain)
                 .background(Color(hex: "#FFE023"))
                 .cornerRadius(10)
-                .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 30))
+                .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 20))
             }
         }
     }

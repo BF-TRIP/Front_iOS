@@ -19,6 +19,7 @@ struct PlaceListView: View {
     @Binding var isPlaceListViewShowing: Bool
     
     @ObservedObject var viewModel: MapViewModel
+    @StateObject var saveViewModel: PlaceViewModel = PlaceViewModel()
     
     var body: some View {
         VStack {
@@ -59,7 +60,7 @@ struct PlaceListView: View {
             
             let list = viewModel.seperateList(selectedStates: self.selectedStates)
             List(0..<list.count, id: \.self) { index in
-                Place(place: list[index])
+                Place(place: list[index], viewModel: saveViewModel)
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .listRowSeparator(.hidden)
                     .shadow(radius: 2)
@@ -67,7 +68,6 @@ struct PlaceListView: View {
             .scrollIndicators(.hidden)
             .listStyle(PlainListStyle())
         }
-        .padding(EdgeInsets(top: 0, leading: 0, bottom: 100, trailing: 0))
         .fullScreenCover(isPresented: $isPlaceFilterViewShowing, content: {
             PlaceFilterView(
                 isPlaceFilterViewShowing: $isPlaceFilterViewShowing,
@@ -76,6 +76,9 @@ struct PlaceListView: View {
         .transaction { transaction in
             transaction.disablesAnimations = true
         }
+        .onAppear(perform: {
+            self.saveViewModel.requestList()
+        })
         
     }
     

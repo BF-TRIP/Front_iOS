@@ -16,6 +16,8 @@ enum NetworkManager {
     case getFileToList(file: URL)
     case getTextToList(text: String)
     case getStateToList(state: String, city: String)
+    case getIdToList(userNumber: Int)
+    case postAddSaveList(userNumber: Int, contentId: Int)
     
 }
 
@@ -33,13 +35,17 @@ extension NetworkManager: TargetType {
         case .getTextToList(text: _):
             return "api/search"
         case .getStateToList(state: _, city: _):
-            return "location"
+            return "location/district"
+        case .getIdToList(userNumber: _):
+            return "course/save"
+        case .postAddSaveList(userNumber: _, contentId: _):
+            return "course/save"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getFileToList(file: _):
+        case .getFileToList(file: _), .postAddSaveList(userNumber: _, contentId: _):
             return .post
         default:
             return .get
@@ -98,6 +104,21 @@ extension NetworkManager: TargetType {
             let params: [String: String] = [
                 "state": state,
                 "city": city
+            ]
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            
+        case .getIdToList(userNumber: let userNumber):
+            let params: [String: Int] = [
+                "userName": userNumber
+            ]
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            
+        case .postAddSaveList(userNumber: let userNumber, contentId: let contentId):
+            let params: [String: Int] = [
+                "userName": userNumber,
+                "contentId": contentId
             ]
             
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)

@@ -1,19 +1,19 @@
 //
-//  MainView.swift
+//  OnboardingView.swift
 //  BF_TRIP
 //
-//  Created by 박동재 on 10/4/24.
+//  Created by 박동재 on 10/10/24.
 //
 
 import SwiftUI
 
-struct MainView: View {
+struct OnboardingView: View {
     
     @State var isVoiceViewShowing: Bool = false
     
     var body: some View {
         let webView = WebKit(
-                request: URLRequest(url: URL(string: "http://localhost:5173/home")!),
+                request: URLRequest(url: URL(string: "http://localhost:5173/")!),
                 isVoiceViewShowing: $isVoiceViewShowing
             )
         
@@ -25,7 +25,7 @@ struct MainView: View {
             transaction.disablesAnimations = true
         }
         .onAppear(perform: {
-            webView.callJS(gpsX: 126.98, gpsY: 37.57)
+//            webView.callJS(gpsX: 126.98, gpsY: 37.57)
             dump("123123")
         })
         .background(Color(hex: "#FFE023"))

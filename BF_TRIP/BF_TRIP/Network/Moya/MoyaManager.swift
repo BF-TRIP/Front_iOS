@@ -85,4 +85,40 @@ final class MoyaManager {
         }
     }
     
+    func IdToList(userNumber: Int, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
+        provider.request(.getIdToList(userNumber: userNumber)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let decoder = JSONDecoder()
+                    let jsonData = try decoder.decode([ResponseSaveDTO].self, from: response.data)
+                    
+                    completion(.success(jsonData))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func AddSaveList(userNumber: Int, contentId: Int, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
+        provider.request(.postAddSaveList(userNumber: userNumber, contentId: contentId)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let decoder = JSONDecoder()
+                    let jsonData = try decoder.decode([ResponseSaveDTO].self, from: response.data)
+                    
+                    completion(.success(jsonData))
+                } catch {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }
