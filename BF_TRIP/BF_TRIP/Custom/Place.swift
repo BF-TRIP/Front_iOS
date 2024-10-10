@@ -10,26 +10,56 @@ import SwiftUI
 struct Place: View {
     private let place: ResponsePlaceDTO
     
-    init(place: ResponsePlaceDTO) {
+    @ObservedObject var viewModel: PlaceViewModel
+    @State private var tmpcheck = false;
+    
+    init(place: ResponsePlaceDTO, viewModel: PlaceViewModel) {
         self.place = place
+        self.viewModel = viewModel
     }
     
     var body: some View {
         VStack {
-            if let urlString = place.originalImage,
-               let url = URL(string: urlString) {
-                AsyncImage(url: url) { image in
-                    image.image?.resizable()
-                }
+            ZStack {
+                if let urlString = place.originalImage,
+                   let url = URL(string: urlString) {
+                    AsyncImage(url: url) { image in
+                        image.image?.resizable()
+                    }
                     .frame(maxWidth: .infinity, minHeight: 148, maxHeight: 148)
                     .background(Color(.white))
                     .clipped()
-            } else {
-                Image(systemName: "photo")
-                    .frame(maxWidth: .infinity, minHeight: 148)
-                    .background(Color(.white))
-                    .clipped()
+                } else {
+                    Image(systemName: "photo")
+                        .frame(maxWidth: .infinity, minHeight: 148)
+                        .background(Color(hex: "#F6F5FA"))
+                        .clipped()
+                }
+                Button {
+                    viewModel.addPlace(contentId: place.contentId)
+                    if tmpcheck == true {
+                        self.tmpcheck = false
+                    } else {
+                        self.tmpcheck = true
+                    }
+                } label: {
+                    let check = viewModel.saveList.contains { $0.contentTitle == place.contentTitle }
+                    if !tmpcheck {
+                        Image(uiImage: .bFbookmark1)
+                            .foregroundColor(Color(.label))
+                            .frame(width: 50, height: 50)
+                            .scaledToFill()
+                    } else {
+                        Image(uiImage: .bFbookmark2)
+                            .foregroundColor(Color(.label))
+                            .frame(width: 50, height: 50)
+                            .scaledToFill()
+                    }
+                }
+                .position(x: UIScreen.main.bounds.width - 70, y: 30)
+                .buttonStyle(PlainButtonStyle())
             }
+
             
             HStack {
                 Text("\(place.contentTitle)")
@@ -42,13 +72,6 @@ struct Place: View {
                     .foregroundColor(Color(.black))
                 
                 Spacer()
-                
-                Button {
-                    //TODO: 관광지 저장 + 통신
-                } label: {
-                    Image(systemName: "bookmark")
-                        .foregroundColor(Color(.label))
-                }
             }
             .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             
