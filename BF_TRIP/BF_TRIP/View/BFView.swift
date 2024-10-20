@@ -15,8 +15,14 @@ struct BFView: View {
     @State var emtpyShowing: Bool = false
     @State var isOnboarding: Bool = true
     
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor(.white)
+    }
+    
     var body: some View {
-        if isOnboarding {
+        if !isOnboarding {
+            OnboardingView()
+        } else {
             TabView {
                 MainView()
                     .tabItem {
@@ -47,19 +53,12 @@ struct BFView: View {
                     }
                     .background(Color(hex: "#000000"))
                     .background(ignoresSafeAreaEdges: .all)
-                    .padding(.bottom, 100)
             }
             .accentColor(Color(.label))
             .onAppear(perform: {
                 self.mapViewModel.requestRegion()
+                UIScrollView.appearance().bounces = false
             })
-        } else {
-            OnboardingView()
         }
     }
 }
-
-#Preview {
-    BFView()
-}
-
