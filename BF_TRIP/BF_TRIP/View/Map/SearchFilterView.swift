@@ -81,6 +81,7 @@ struct SearchFilterView: View {
                             self.selectedState = stateList[index]
                             self.selectedStateIndex = index
                         }
+                        .scrollIndicators(.hidden)
                 }
                 .listStyle(PlainListStyle())
                 .frame(width: 120, height: CGFloat(self.stateList.count) * 50)
@@ -96,6 +97,7 @@ struct SearchFilterView: View {
                     .listStyle(PlainListStyle())
                     .frame(width: 240, height: CGFloat(self.stateList.count) * 50)
                     .scrollBounceBehavior(.basedOnSize)
+                    .scrollIndicators(.hidden)
                 } else {
                     List {
                         EmptyView()

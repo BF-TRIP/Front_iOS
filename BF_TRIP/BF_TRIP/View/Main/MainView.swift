@@ -31,5 +31,6 @@ struct MainView: View {
         .background(Color(hex: "#FFE023"))
         .background(ignoresSafeAreaEdges: .top)
         .padding(.bottom, 40)
+        .scrollIndicators(.hidden)
     }
 }
