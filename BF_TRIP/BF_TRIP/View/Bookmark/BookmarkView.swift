@@ -13,21 +13,19 @@ struct BookmarkView: View {
     
     var body: some View {
         let webView = WebKit(
-                request: URLRequest(url: URL(string: "http://localhost:5173/save-list")!),
-                isVoiceViewShowing: $isVoiceViewShowing
-            )
-            .edgesIgnoringSafeArea(.all)
+            request: URLRequest(url: URL(string: "http://localhost:5173/save-list")!),
+            isVoiceViewShowing: $isVoiceViewShowing
+        )
         
-        return webView
-        .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
-            VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
-        })
-        .transaction { transaction in
-            transaction.disablesAnimations = true
+        VStack {
+            webView
+                .transaction { transaction in
+                    transaction.disablesAnimations = true
+                }
+                .background(Color(hex: "#FFE023"))
+                .background(ignoresSafeAreaEdges: .top)
+                .scrollIndicators(.hidden)
         }
-        .background(Color(hex: "#FFE023"))
-        .background(ignoresSafeAreaEdges: .top)
-        
     }
 
 }
