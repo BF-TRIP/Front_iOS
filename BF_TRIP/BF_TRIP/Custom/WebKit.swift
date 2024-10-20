@@ -42,6 +42,7 @@ struct WebKit: UIViewRepresentable {
         self.webView?.configuration.userContentController.add(
             ContentController(isVoiceViewShowing: isVoiceViewShowing), name: "serverEvent"
         )
+        webView?.scrollView.isScrollEnabled = false
     }
 
     func makeUIView(context: Context) -> WKWebView {
@@ -55,7 +56,6 @@ struct WebKit: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
-
 
     class Coordinator: NSObject {
         let parent: WebKit
