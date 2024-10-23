@@ -43,7 +43,7 @@ struct Place: View {
                         self.tmpcheck = true
                     }
                 } label: {
-                    let check = viewModel.saveList.contains { $0.contentTitle == place.contentTitle }
+                    let check = viewModel.saveList.contains { $0.courseName == place.contentTitle }
                     if !tmpcheck {
                         Image(uiImage: .bFbookmark1)
                             .foregroundColor(Color(.label))
