@@ -70,7 +70,7 @@ struct WebKit: UIViewRepresentable {
 extension WebKit {
     
     func callJS(gpsX: Double, gpsY: Double) {
-        webView?.evaluateJavaScript("iOSToJavaScript(gpsX: \(gpsX), gpsY: \(gpsY)") { result, error in
+        webView.evaluateJavaScript("iOSToJavaScript(\(gpsX), \(gpsY))") { result, error in
             if let error {
                 print("Error \(error.localizedDescription)")
                 return
