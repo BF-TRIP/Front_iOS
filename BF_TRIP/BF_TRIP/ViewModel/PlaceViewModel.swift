@@ -16,7 +16,6 @@ final class PlaceViewModel: ObservableObject {
         MoyaManager.shared.IdToList(userNumber: self.userNumber) { result in
             switch result {
             case .success(let data):
-                dump(data)
                 self.saveList = data
             case .failure(let error):
                 dump(error.localizedDescription)
@@ -28,7 +27,7 @@ final class PlaceViewModel: ObservableObject {
         MoyaManager.shared.AddSaveList(userNumber: self.userNumber, contentId: contentId) { result in
             switch result {
             case .success(let data):
-                dump(data)
+                self.saveList.append(contentsOf: data)
             case .failure(let error):
                 dump(error.localizedDescription)
             }

@@ -105,7 +105,6 @@ final class MoyaManager {
     
     func AddSaveList(userNumber: UInt64, contentId: UInt64, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
         provider.request(.postAddSaveList(userNumber: userNumber, contentId: contentId)) { result in
-            dump(result)
             switch result {
             case .success(let response):
                 do {
