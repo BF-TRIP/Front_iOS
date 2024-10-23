@@ -17,6 +17,7 @@ struct BFView: View {
     
     init() {
         UITabBar.appearance().backgroundColor = UIColor(.white)
+        UIScrollView.appearance().bounces = false
     }
     
     var body: some View {
@@ -24,7 +25,7 @@ struct BFView: View {
             OnboardingView()
         } else {
             TabView {
-                MainView()
+                MainView(gpsX: mapViewModel.gpsX, gpsY: mapViewModel.gpsY)
                     .tabItem {
                         Image(systemName: "house")
                         Text("홈")
@@ -57,7 +58,6 @@ struct BFView: View {
             .accentColor(Color(.label))
             .onAppear(perform: {
                 self.mapViewModel.requestRegion()
-                UIScrollView.appearance().bounces = false
             })
         }
     }
