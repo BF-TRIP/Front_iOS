@@ -31,9 +31,10 @@ struct MainView: View {
             .transaction { transaction in
                 transaction.disablesAnimations = true
             }
-            .onAppear(perform: {
+            .task {
+                try? await Task.sleep(for: .seconds(2))
                 webView.callJS(gpsX: gpsX, gpsY: gpsY)
-            })
+            }
             .background(Color(hex: "#FFE023"))
             .background(ignoresSafeAreaEdges: .top)
             .scrollIndicators(.hidden)
