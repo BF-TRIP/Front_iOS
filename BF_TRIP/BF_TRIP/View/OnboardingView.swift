@@ -13,7 +13,7 @@ struct OnboardingView: View {
     
     var body: some View {
         let webView = WebKit(
-                request: URLRequest(url: URL(string: "http://localhost:5173/")!),
+                request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/")!),
                 isVoiceViewShowing: $isVoiceViewShowing
             )
         

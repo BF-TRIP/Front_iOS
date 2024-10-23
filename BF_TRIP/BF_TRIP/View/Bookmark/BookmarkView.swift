@@ -13,7 +13,7 @@ struct BookmarkView: View {
     
     var body: some View {
         let webView = WebKit(
-            request: URLRequest(url: URL(string: "http://localhost:5173/save-list")!),
+            request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/save-list")!),
             isVoiceViewShowing: $isVoiceViewShowing
         )
         

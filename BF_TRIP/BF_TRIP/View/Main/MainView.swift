@@ -13,7 +13,7 @@ struct MainView: View {
     
     var body: some View {
         let webView = WebKit(
-                request: URLRequest(url: URL(string: "http://localhost:5173/home")!),
+                request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/home")!),
                 isVoiceViewShowing: $isVoiceViewShowing
             )
         
