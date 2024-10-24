@@ -31,7 +31,7 @@ class ContentController: NSObject, WKScriptMessageHandler {
 struct WebKit: UIViewRepresentable {
 
     let request: URLRequest
-    private var webView: WKWebView?
+    var webView: WKWebView
     
     @Binding var isVoiceViewShowing: Bool
 
@@ -39,13 +39,15 @@ struct WebKit: UIViewRepresentable {
         self.webView = WKWebView()
         self.request = request
         self._isVoiceViewShowing = isVoiceViewShowing
-        self.webView?.configuration.userContentController.add(
+        self.webView.configuration.userContentController.add(
             ContentController(isVoiceViewShowing: isVoiceViewShowing), name: "serverEvent"
         )
+        webView.scrollView.isScrollEnabled = false
+        webView.isInspectable = true
     }
 
     func makeUIView(context: Context) -> WKWebView {
-        return webView!
+        return webView
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
@@ -55,7 +57,6 @@ struct WebKit: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
-
 
     class Coordinator: NSObject {
         let parent: WebKit
@@ -67,8 +68,9 @@ struct WebKit: UIViewRepresentable {
 }
 
 extension WebKit {
+    
     func callJS(gpsX: Double, gpsY: Double) {
-        webView?.evaluateJavaScript("iOSToJavaScript(gpsX: \(gpsX), gpsY: \(gpsY)") { result, error in
+        webView.evaluateJavaScript("iOSToJavaScript(\(gpsX), \(gpsY))") { result, error in
             if let error {
                 print("Error \(error.localizedDescription)")
                 return
@@ -82,4 +84,5 @@ extension WebKit {
             print("Received Data \(result ?? "")")
         }
     }
+    
 }

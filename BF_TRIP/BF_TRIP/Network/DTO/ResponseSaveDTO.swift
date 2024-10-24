@@ -9,16 +9,14 @@ import Foundation
 
 struct ResponseSaveDTO: Codable {
     
-    let contentId: Int
-    let contentTitle: String
-    let addr: String
-    let thumbnailImage: String
+    let courseNumber: Int
+    let courseName: String
+    let locNumber: UInt64
     
     enum CodingKeys: String, CodingKey {
-        case contentId = "content_id"
-        case contentTitle = "content_title"
-        case addr
-        case thumbnailImage = "thumbnail_image"
+        case courseNumber
+        case courseName
+        case locNumber
     }
     
 }

@@ -30,7 +30,6 @@
 		8F9256052CB3D7F900801E86 /* PlaceFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9256042CB3D7F900801E86 /* PlaceFilterView.swift */; };
 		8F93042E2CB7CCAD00430E15 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F93042D2CB7CCAD00430E15 /* OnboardingView.swift */; };
 		8F96A72E2CB023BA009FC384 /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F96A72D2CB023BA009FC384 /* BookmarkView.swift */; };
-		8FA8382E2CAA8BB0003C9884 /* VoicePracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8382D2CAA8BB0003C9884 /* VoicePracticeView.swift */; };
 		8FA838312CAB115D003C9884 /* AudioRecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */; };
 		8FB05FA52CB6DF96005698FE /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB05FA42CB6DF96005698FE /* PlaceViewModel.swift */; };
 		8FB05FA72CB6E318005698FE /* ResponseSaveDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB05FA62CB6E318005698FE /* ResponseSaveDTO.swift */; };
@@ -62,7 +61,6 @@
 		8F9256042CB3D7F900801E86 /* PlaceFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFilterView.swift; sourceTree = "<group>"; };
 		8F93042D2CB7CCAD00430E15 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		8F96A72D2CB023BA009FC384 /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
-		8FA8382D2CAA8BB0003C9884 /* VoicePracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePracticeView.swift; sourceTree = "<group>"; };
 		8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderManager.swift; sourceTree = "<group>"; };
 		8FB05FA42CB6DF96005698FE /* PlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 		8FB05FA62CB6E318005698FE /* ResponseSaveDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSaveDTO.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 		8F9255FF2CB3D33200801E86 /* Etc. */ = {
 			isa = PBXGroup;
 			children = (
-				8FA8382D2CAA8BB0003C9884 /* VoicePracticeView.swift */,
 				8F4710BA2CB5A3B100550E08 /* VoiceView.swift */,
 				8F71B40A2CA954A300F1B782 /* PlaceListView.swift */,
 				8F9256042CB3D7F900801E86 /* PlaceFilterView.swift */,
@@ -335,7 +332,6 @@
 				8F9256052CB3D7F900801E86 /* PlaceFilterView.swift in Sources */,
 				8F71B4182CA954A300F1B782 /* MapView.swift in Sources */,
 				8FA838312CAB115D003C9884 /* AudioRecorderManager.swift in Sources */,
-				8FA8382E2CAA8BB0003C9884 /* VoicePracticeView.swift in Sources */,
 				8FBAC3F42CAFF18E007AD4CB /* WebKit.swift in Sources */,
 				8F71B4142CA954A300F1B782 /* SearchFilterView.swift in Sources */,
 				8FBAC3F22CAFF156007AD4CB /* MainView.swift in Sources */,
@@ -480,10 +476,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BF_TRIP/Preview Content\"";
-				DEVELOPMENT_TEAM = GJ33M9U2S2;
+				DEVELOPMENT_TEAM = 666996G6K9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BF-TRIP-Info.plist";
@@ -500,7 +497,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-jea0716.BF-TRIP";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.BF-TRIP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -513,10 +510,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BF_TRIP/Preview Content\"";
-				DEVELOPMENT_TEAM = GJ33M9U2S2;
+				DEVELOPMENT_TEAM = 666996G6K9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BF-TRIP-Info.plist";
@@ -533,7 +531,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "https---github.com-jea0716.BF-TRIP";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.BF-TRIP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

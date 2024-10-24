@@ -10,26 +10,34 @@ import SwiftUI
 struct MainView: View {
     
     @State var isVoiceViewShowing: Bool = false
+    private var gpsX: Double
+    private var gpsY: Double
+    
+    init(gpsX: Double, gpsY: Double) {
+        self.gpsX = gpsX
+        self.gpsY = gpsY
+    }
     
     var body: some View {
         let webView = WebKit(
-                request: URLRequest(url: URL(string: "http://localhost:5173/home")!),
+                request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/home")!),
                 isVoiceViewShowing: $isVoiceViewShowing
             )
         
-        return webView
-        .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
-            VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
-        })
-        .transaction { transaction in
-            transaction.disablesAnimations = true
+        VStack { webView
+            .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
+                VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
+            })
+            .transaction { transaction in
+                transaction.disablesAnimations = true
+            }
+            .task {
+                try? await Task.sleep(for: .seconds(2))
+                webView.callJS(gpsX: gpsX, gpsY: gpsY)
+            }
+            .background(Color(hex: "#FFE023"))
+            .background(ignoresSafeAreaEdges: .top)
+            .scrollIndicators(.hidden)
         }
-        .onAppear(perform: {
-            webView.callJS(gpsX: 126.98, gpsY: 37.57)
-            dump("123123")
-        })
-        .background(Color(hex: "#FFE023"))
-        .background(ignoresSafeAreaEdges: .top)
-        .padding(.bottom, 40)
     }
 }

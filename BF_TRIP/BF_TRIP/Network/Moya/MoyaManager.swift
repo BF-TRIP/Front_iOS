@@ -85,7 +85,7 @@ final class MoyaManager {
         }
     }
     
-    func IdToList(userNumber: Int, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
+    func IdToList(userNumber: UInt64, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
         provider.request(.getIdToList(userNumber: userNumber)) { result in
             switch result {
             case .success(let response):
@@ -103,7 +103,7 @@ final class MoyaManager {
         }
     }
     
-    func AddSaveList(userNumber: Int, contentId: Int, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
+    func AddSaveList(userNumber: UInt64, contentId: UInt64, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
         provider.request(.postAddSaveList(userNumber: userNumber, contentId: contentId)) { result in
             switch result {
             case .success(let response):
@@ -111,11 +111,14 @@ final class MoyaManager {
                     let decoder = JSONDecoder()
                     let jsonData = try decoder.decode([ResponseSaveDTO].self, from: response.data)
                     
+                    print(jsonData)
                     completion(.success(jsonData))
                 } catch {
+                    print(error)
                     completion(.failure(error))
                 }
             case .failure(let error):
+                print(error)
                 completion(.failure(error))
             }
         }

@@ -10,7 +10,7 @@ import Foundation
 struct ResponsePlaceDTO: Identifiable, Codable {
     
     let id = UUID().uuidString
-    let contentId: Int
+    let contentId: UInt64
     let contentTitle: String
     let addr: String
     let gpsX: Double

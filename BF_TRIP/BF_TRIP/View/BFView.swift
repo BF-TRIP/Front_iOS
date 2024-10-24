@@ -15,10 +15,17 @@ struct BFView: View {
     @State var emtpyShowing: Bool = false
     @State var isOnboarding: Bool = true
     
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor(.white)
+        UIScrollView.appearance().bounces = false
+    }
+    
     var body: some View {
-        if isOnboarding {
+        if !isOnboarding {
+            OnboardingView()
+        } else {
             TabView {
-                MainView()
+                MainView(gpsX: mapViewModel.gpsX, gpsY: mapViewModel.gpsY)
                     .tabItem {
                         Image(systemName: "house")
                         Text("홈")
@@ -47,19 +54,11 @@ struct BFView: View {
                     }
                     .background(Color(hex: "#000000"))
                     .background(ignoresSafeAreaEdges: .all)
-                    .padding(.bottom, 100)
             }
             .accentColor(Color(.label))
             .onAppear(perform: {
                 self.mapViewModel.requestRegion()
             })
-        } else {
-            OnboardingView()
         }
     }
 }
-
-#Preview {
-    BFView()
-}
-

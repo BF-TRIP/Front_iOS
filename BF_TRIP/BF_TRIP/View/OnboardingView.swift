@@ -13,23 +13,25 @@ struct OnboardingView: View {
     
     var body: some View {
         let webView = WebKit(
-                request: URLRequest(url: URL(string: "http://localhost:5173/")!),
+                request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/")!),
                 isVoiceViewShowing: $isVoiceViewShowing
             )
         
-        return webView
-        .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
-            VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
-        })
-        .transaction { transaction in
-            transaction.disablesAnimations = true
+        VStack {
+            webView
+                .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
+                    VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
+                })
+                .transaction { transaction in
+                    transaction.disablesAnimations = true
+                }
+                .onAppear(perform: {
+                    
+                })
+                .scrollDisabled(true)
+                .background(Color(.white))
+                .background(ignoresSafeAreaEdges: .all)
         }
-        .onAppear(perform: {
-//            webView.callJS(gpsX: 126.98, gpsY: 37.57)
-            dump("123123")
-        })
-        .background(Color(hex: "#FFE023"))
-        .background(ignoresSafeAreaEdges: .top)
-        .padding(.bottom, 40)
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
