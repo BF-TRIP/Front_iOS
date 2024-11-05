@@ -29,17 +29,17 @@ extension NetworkManager: TargetType {
     var path: String {
         switch self {
         case .getCoordinateToList(gpsX: _, gpsY: _):
-            return "api/map"
+            return "api/search/map"
         case .getFileToList(file: _):
-            return "api/transcription"
+            return "api/search/transcription"
         case .getTextToList(text: _):
-            return "api/search"
+            return "api/search/keyword"
         case .getStateToList(state: _, city: _):
-            return "location/district"
-        case .getIdToList(userNumber: _):
-            return "course/save"
+            return "api/location/district"
+        case .getIdToList(userNumber: let userNumber):
+            return "api/course/\(userNumber)"
         case .postAddSaveList(userNumber: _, contentId: _):
-            return "course/save"
+            return "api/course"
         }
     }
     
