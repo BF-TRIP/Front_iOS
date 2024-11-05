@@ -28,7 +28,7 @@ struct OnboardingView: View {
                     transaction.disablesAnimations = true
                 }
                 .onAppear(perform: {
-                    
+                    webView.sendUUID()
                 })
                 .scrollDisabled(true)
                 .background(Color(.white))

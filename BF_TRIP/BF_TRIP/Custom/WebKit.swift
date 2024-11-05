@@ -21,10 +21,17 @@ class ContentController: NSObject, WKScriptMessageHandler {
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if message.name == "serverEvent" {
-            print("message name : \(message.name)")
-            print("post Message : \(message.body)")
-            if message.body as! String == "Voice" {
+            dump("message name : \(message.name)")
+            dump("post Message : \(message.body)")
+            if message.body as? String == "Voice" {
                 isVoiceViewShowing.wrappedValue = true
+            } else if message.body as? String == "confirm" {
+                dump("message name : \(message.name)")
+                dump("post Message : \(message.body)")
+            } else {
+                isOnboarding.wrappedValue = true
+                dump("message name : \(message.name)")
+                dump("post Message : \(message.body)")
             }
         }
     }
@@ -78,6 +85,24 @@ extension WebKit {
     
     func callJS(gpsX: Double, gpsY: Double) {
         webView.evaluateJavaScript("iOSToJavaScript(\(gpsX), \(gpsY))") { result, error in
+            if let error {
+                print("Error \(error.localizedDescription)")
+                return
+            }
+            
+            if result == nil {
+                print("It's void function")
+                return
+            }
+            
+            print("Received Data \(result ?? "")")
+        }
+    }
+    
+    func sendUUID() {
+        let deviceUUID = UIDevice.current.identifierForVendor!.uuidString
+        dump(deviceUUID)
+        webView.evaluateJavaScript("iOSToJavaScript(\(deviceUUID))") { result, error in
             if let error {
                 print("Error \(error.localizedDescription)")
                 return
