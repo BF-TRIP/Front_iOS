@@ -9,7 +9,7 @@ import Foundation
 
 final class PlaceViewModel: ObservableObject {
     
-    private let userNumber: UInt64 = 42
+    private let userNumber: String = "test-uuid-1234"
     @Published var saveList: [ResponseSaveDTO] = []
     
     func requestList() {
