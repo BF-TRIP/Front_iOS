@@ -12,9 +12,11 @@ import Combine
 class ContentController: NSObject, WKScriptMessageHandler {
     
     var isVoiceViewShowing: Binding<Bool>
+    var isOnboarding: Binding<Bool>
     
-    init(isVoiceViewShowing: Binding<Bool>) {
+    init(isVoiceViewShowing: Binding<Bool>, isOnboarding: Binding<Bool>) {
         self.isVoiceViewShowing = isVoiceViewShowing
+        self.isOnboarding = isOnboarding
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -34,13 +36,18 @@ struct WebKit: UIViewRepresentable {
     var webView: WKWebView
     
     @Binding var isVoiceViewShowing: Bool
+    @Binding var isOnboarding: Bool
 
-    init(request: URLRequest, isVoiceViewShowing: Binding<Bool>) {
+    init(request: URLRequest, isVoiceViewShowing: Binding<Bool>, isOnboarding: Binding<Bool>) {
         self.webView = WKWebView()
         self.request = request
         self._isVoiceViewShowing = isVoiceViewShowing
+        self._isOnboarding = isOnboarding
         self.webView.configuration.userContentController.add(
-            ContentController(isVoiceViewShowing: isVoiceViewShowing), name: "serverEvent"
+            ContentController(
+                isVoiceViewShowing: isVoiceViewShowing,
+                isOnboarding: isOnboarding
+            ), name: "serverEvent"
         )
         webView.scrollView.isScrollEnabled = false
         webView.isInspectable = true

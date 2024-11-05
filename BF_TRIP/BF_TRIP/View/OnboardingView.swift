@@ -10,11 +10,13 @@ import SwiftUI
 struct OnboardingView: View {
     
     @State var isVoiceViewShowing: Bool = false
+    @Binding var isOnboarding: Bool
     
     var body: some View {
         let webView = WebKit(
                 request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/")!),
-                isVoiceViewShowing: $isVoiceViewShowing
+                isVoiceViewShowing: $isVoiceViewShowing,
+                isOnboarding: $isOnboarding
             )
         
         VStack {
