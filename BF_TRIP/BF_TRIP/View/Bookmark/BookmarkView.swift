@@ -10,11 +10,13 @@ import SwiftUI
 struct BookmarkView: View {
     
     @State var isVoiceViewShowing: Bool = false
+    @State var isOnboarding: Bool = false
     
     var body: some View {
         let webView = WebKit(
             request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/save-list")!),
-            isVoiceViewShowing: $isVoiceViewShowing
+            isVoiceViewShowing: $isVoiceViewShowing,
+            isOnboarding: $isOnboarding
         )
         
         VStack {

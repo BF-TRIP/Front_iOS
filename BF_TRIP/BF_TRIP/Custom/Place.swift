@@ -30,8 +30,9 @@ struct Place: View {
                     .background(Color(.white))
                     .clipped()
                 } else {
-                    Image(systemName: "photo")
-                        .frame(maxWidth: .infinity, minHeight: 148)
+                    Image(uiImage: .placeholder)
+                        .resizable()
+                        .frame(maxWidth: .infinity, maxHeight: 148)
                         .background(Color(hex: "#F6F5FA"))
                         .clipped()
                 }

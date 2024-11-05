@@ -290,6 +290,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 8F71B3F02CA953D800F1B782;
 			packageReferences = (
@@ -484,8 +485,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BF-TRIP-Info.plist";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "User Location";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Voice to Record";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 기반 관광지를 위한 현재 위치를 알기 위해 해당 권한이 필요합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 인식 기반 검색을 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -499,9 +500,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BF-TRIP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -518,8 +523,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BF-TRIP-Info.plist";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "User Location";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use Voice to Record";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 기반 관광지를 위한 현재 위치를 알기 위해 해당 권한이 필요합니다.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 인식 기반 검색을 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -533,9 +538,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BF-TRIP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

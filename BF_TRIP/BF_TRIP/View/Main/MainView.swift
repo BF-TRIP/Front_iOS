@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     @State var isVoiceViewShowing: Bool = false
+    @State var isOnboarding: Bool = false
     private var gpsX: Double
     private var gpsY: Double
     
@@ -21,7 +22,8 @@ struct MainView: View {
     var body: some View {
         let webView = WebKit(
                 request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/home")!),
-                isVoiceViewShowing: $isVoiceViewShowing
+                isVoiceViewShowing: $isVoiceViewShowing,
+                isOnboarding: $isOnboarding
             )
         
         VStack { webView

@@ -13,7 +13,7 @@ struct BFView: View {
     @State var bottomSheetPosition: BottomSheetPosition = .relative(0.3)
     @StateObject var mapViewModel: MapViewModel = MapViewModel()
     @State var emtpyShowing: Bool = false
-    @State var isOnboarding: Bool = true
+    @State var isOnboarding: Bool = false
     
     init() {
         UITabBar.appearance().backgroundColor = UIColor(.white)
@@ -22,7 +22,7 @@ struct BFView: View {
     
     var body: some View {
         if !isOnboarding {
-            OnboardingView()
+            OnboardingView(isOnboarding: $isOnboarding)
         } else {
             TabView {
                 MainView(gpsX: mapViewModel.gpsX, gpsY: mapViewModel.gpsY)

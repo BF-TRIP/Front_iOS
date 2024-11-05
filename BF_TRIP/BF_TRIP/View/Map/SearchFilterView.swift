@@ -18,7 +18,7 @@ struct SearchFilterView: View {
     
     @StateObject var viewModel: MapViewModel = MapViewModel()
     
-    private let stateList: [String] = ["서울", "경기", "인천", "강원", "충북", "충남", "경북", "경남", "전북", "전남", "제주"]
+    private let stateList: [String] = ["서울", "경기도", "인천", "강원도", "충청북도", "충청남도", "경상북도", "경상남도", "전라북도", "전라남도", "제주도"]
     
     //TODO: 광역시에 대한 것도 할건 지
     private let cityList: [[String]] = [
