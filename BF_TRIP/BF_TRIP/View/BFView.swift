@@ -25,6 +25,7 @@ struct BFView: View {
     var body: some View {
         if !loading {
             VStack {
+                SplashView()
             }
             .onAppear(perform: {
                 setup()
@@ -90,6 +91,14 @@ struct BFView: View {
 
 }
 
+struct SplashView: View {
+    var body: some View {
+        VStack {
+            Image(uiImage: .splashImg)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .clipped()
+                .edgesIgnoringSafeArea(.all)
         }
     }
 }
