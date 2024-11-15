@@ -23,7 +23,7 @@ enum NetworkManager {
 
 extension NetworkManager: TargetType {
     var baseURL: URL {
-        return URL(string: "http://43.203.92.36:8080")!
+        return URL(string: "http://223.130.160.52:8080")!
     }
     
     var path: String {
