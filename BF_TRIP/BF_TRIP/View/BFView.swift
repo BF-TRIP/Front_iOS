@@ -10,6 +10,7 @@ import BottomSheet
 
 struct BFView: View {
     
+    private let deviceUUID = UIDevice.current.identifierForVendor!.uuidString
     @State var bottomSheetPosition: BottomSheetPosition = .relative(0.3)
     @StateObject var mapViewModel: MapViewModel = MapViewModel()
     @State var emtpyShowing: Bool = false
@@ -26,6 +27,7 @@ struct BFView: View {
             VStack {
             }
             .onAppear(perform: {
+                setup()
             })
         } else {
             if !isOnboarding {
@@ -70,6 +72,24 @@ struct BFView: View {
         }
     }
     
+    private func setup() {
+        MoyaManager.shared.checkToID(uuid: self.deviceUUID) { result in
+            switch result {
+            case .success(let response):
+                self.loading = response
+                if response {
+                    self.isOnboarding = true
+                } else {
+                    self.isOnboarding = false
+                }
+            case .failure(let error):
+                self.loading = true
+            }
+        }
+    }
+
+}
+
         }
     }
 }
