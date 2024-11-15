@@ -124,4 +124,15 @@ final class MoyaManager {
         }
     }
     
+    func checkToID(uuid: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+        provider.request(.getUserExist(uuid: uuid)) { result in
+            switch result {
+            case .success(let response):
+                completion(.success((response.response != nil)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

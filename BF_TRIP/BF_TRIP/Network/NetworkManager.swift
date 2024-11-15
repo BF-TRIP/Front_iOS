@@ -18,6 +18,7 @@ enum NetworkManager {
     case getStateToList(state: String, city: String)
     case getIdToList(userNumber: String)
     case postAddSaveList(userNumber: String, contentId: UInt64)
+    case getUserExist(uuid: String)
     
 }
 
@@ -40,6 +41,8 @@ extension NetworkManager: TargetType {
             return "api/course/\(userNumber)"
         case .postAddSaveList(userNumber: _, contentId: _):
             return "api/course"
+        case .getUserExist(uuid: _):
+            return "api/user/exist"
         }
     }
     
@@ -119,6 +122,13 @@ extension NetworkManager: TargetType {
             let params: [String: Any] = [
                 "userNumber": userNumber,
                 "contentId": contentId
+            ]
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            
+        case .getUserExist(uuid: let uuid):
+            let params: [String: String] = [
+                "uuid": uuid
             ]
             
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
