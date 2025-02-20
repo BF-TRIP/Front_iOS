@@ -12,6 +12,8 @@ import AVFoundation
 
 enum NetworkManager {
     
+    case postJoin(name: String, gender: String, birth: String, disability: [Int], tripType: [Int])
+    
     case getCoordinateToList(gpsX: Double, gpsY: Double)
     case getFileToList(file: URL)
     case getTextToList(text: String)
@@ -24,11 +26,14 @@ enum NetworkManager {
 
 extension NetworkManager: TargetType {
     var baseURL: URL {
-        return URL(string: "http://223.130.160.52:8080")!
+//        return URL(string: "http://223.130.160.52:8080")!
+        return URL(string: "http://211.254.215.190:8080")!
     }
     
     var path: String {
         switch self {
+        case .postJoin(name: _, gender: _, birth: _, disability: _, tripType: _):
+            return "api/user/join"
         case .getCoordinateToList(gpsX: _, gpsY: _):
             return "api/search/map"
         case .getFileToList(file: _):
@@ -48,7 +53,10 @@ extension NetworkManager: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .getFileToList(file: _), .postAddSaveList(userNumber: _, contentId: _):
+        case
+            .getFileToList(file: _),
+            .postAddSaveList(userNumber: _, contentId: _),
+            .postJoin(name: _, gender: _, birth: _, disability: _, tripType: _):
             return .post
         default:
             return .get
@@ -57,6 +65,17 @@ extension NetworkManager: TargetType {
     
     var task: Moya.Task {
         switch self {
+        case let .postJoin(name, gender, birth, disability, tripType):
+            let params: [String: Any] = [
+                "userName": name,
+                "gender": gender,
+                "birth": birth,
+                "disability": disability,
+                "tripType": tripType
+            ]
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
         case let .getCoordinateToList(gpsX, gpsY):
             let params: [String: Double] = [
                 "gpsX": gpsX,

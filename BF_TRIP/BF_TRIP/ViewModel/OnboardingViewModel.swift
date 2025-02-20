@@ -31,6 +31,22 @@ final class OnboardingViewModel: ObservableObject {
         gender == 0 ? "man" : "woman"
     }
     
+    func postJoin() {
+        MoyaManager.shared.postJoin(
+            name: name,
+            gender: selectedGender,
+            birth: birth.toDateString(),
+            disability: selectedDisabilities,
+            tripType: selectedTripTypes) { result in
+                switch result {
+                case .success(let success):
+                    print(success)
+                case .failure(let error):
+                    dump(error.localizedDescription)
+                }
+            }
+    }
+    
     func updateName(_ newValue: String) {
         if newValue.count > 5 {
             name = String(newValue.prefix(5))

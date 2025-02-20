@@ -13,6 +13,30 @@ final class MoyaManager {
     static let shared = MoyaManager()
     let provider: MoyaProvider = MoyaProvider<NetworkManager>()
     
+    func postJoin(
+        name: String,
+        gender: String,
+        birth: String,
+        disability: [Int],
+        tripType: [Int],
+        completion: @escaping (Result<Data, Error>) -> Void) {
+            provider.request(.postJoin(
+                name: name,
+                gender: gender,
+                birth: birth,
+                disability: disability,
+                tripType: tripType)
+            ) { result in
+                switch result {
+                case .success(let response):
+                    completion(.success(response.data))
+                case .failure(let error):
+                    print(error)
+                    completion(.failure(error))
+                }
+            }
+        }
+    
     func coordinateToList(gpsX: Double, gpsY: Double, completion: @escaping (Result<[ResponsePlaceDTO], Error>) -> Void) {
         provider.request(.getCoordinateToList(gpsX: gpsX, gpsY: gpsY)) { result in
             switch result {
