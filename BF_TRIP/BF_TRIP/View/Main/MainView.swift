@@ -35,6 +35,7 @@ struct MainView: View {
             }
             .task {
                 try? await Task.sleep(for: .seconds(2))
+                webView.sendUUID()
                 webView.callJS(gpsX: gpsX, gpsY: gpsY)
             }
             .background(Color(hex: "#FFE023"))

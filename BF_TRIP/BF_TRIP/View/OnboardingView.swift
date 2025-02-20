@@ -14,7 +14,7 @@ struct OnboardingView: View {
     
     var body: some View {
         let webView = WebKit(
-                request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/")!),
+                request: URLRequest(url: URL(string: "http://localhost:5173/onboarding-step1")!),
                 isVoiceViewShowing: $isVoiceViewShowing,
                 isOnboarding: $isOnboarding
             )
@@ -27,9 +27,10 @@ struct OnboardingView: View {
                 .transaction { transaction in
                     transaction.disablesAnimations = true
                 }
-                .onAppear(perform: {
+                .task {
+                    try? await Task.sleep(for: .seconds(10))
                     webView.sendUUID()
-                })
+                }
                 .scrollDisabled(true)
                 .background(Color(.white))
                 .background(ignoresSafeAreaEdges: .all)

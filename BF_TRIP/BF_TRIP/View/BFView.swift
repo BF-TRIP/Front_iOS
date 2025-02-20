@@ -25,10 +25,11 @@ struct BFView: View {
     var body: some View {
         if !loading {
             VStack {
-                SplashView()
+//                SplashView()
+                OnboardingMainView()
             }
             .onAppear(perform: {
-                setup()
+//                setup()
             })
         } else {
             if !isOnboarding {

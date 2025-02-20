@@ -26,10 +26,8 @@ class ContentController: NSObject, WKScriptMessageHandler {
             if message.body as? String == "Voice" {
                 isVoiceViewShowing.wrappedValue = true
             } else if message.body as? String == "confirm" {
-                dump("message name : \(message.name)")
-                dump("post Message : \(message.body)")
-            } else {
                 isOnboarding.wrappedValue = true
+            } else {
                 dump("message name : \(message.name)")
                 dump("post Message : \(message.body)")
             }
@@ -100,9 +98,10 @@ extension WebKit {
     }
     
     func sendUUID() {
-        let deviceUUID = UIDevice.current.identifierForVendor!.uuidString
+        guard let deviceUUID = UIDevice.current.identifierForVendor?.uuidString else { return }
         dump(deviceUUID)
-        webView.evaluateJavaScript("iOSToJavaScript(\(deviceUUID))") { result, error in
+//        webView.evaluateJavaScript("iOSToJavaScript(\(deviceUUID));") { result, error in
+        webView.evaluateJavaScript("iOSToJavaScript('\(deviceUUID)')")  { result, error in
             if let error {
                 print("Error \(error.localizedDescription)")
                 return
