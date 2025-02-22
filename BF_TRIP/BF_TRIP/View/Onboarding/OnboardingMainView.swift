@@ -13,6 +13,7 @@ struct OnboardingMainView: View {
     @State private var currentPage: Int = 1
     
     @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel()
+    @Binding var showOnboarding: Bool?
     
     @State private var keyboardHeight: CGFloat = 0
     @FocusState private var isNameFocused: Bool
