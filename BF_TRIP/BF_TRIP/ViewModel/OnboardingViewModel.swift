@@ -67,4 +67,12 @@ final class OnboardingViewModel: ObservableObject {
         tripList[index].toggle()
     }
     
+    func reset() {
+        name = ""
+        gender = nil
+        birth = Date.now
+        disabilityList = Array(repeating: false, count: 4)
+        tripList = Array(repeating: false, count: 4)
+    }
+    
 }

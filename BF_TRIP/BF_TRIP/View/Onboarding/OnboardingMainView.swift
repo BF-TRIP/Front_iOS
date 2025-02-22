@@ -57,8 +57,11 @@ struct OnboardingMainView: View {
                         }
                     } catch {
                         await MainActor.run {
+                            onboardingViewModel.reset()
                             currentPage = 0
                         }
+                    }
+                }
             }
             isNameFocused = false
         }) {
