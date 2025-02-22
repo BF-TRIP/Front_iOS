@@ -18,24 +18,32 @@ final class MoyaManager {
         gender: String,
         birth: String,
         disability: [Int],
-        tripType: [Int],
-        completion: @escaping (Result<Data, Error>) -> Void) {
+        tripType: [Int]
+    ) async throws -> ResponseJoinModel {
+        return try await withCheckedThrowingContinuation { continuation in
             provider.request(.postJoin(
                 name: name,
                 gender: gender,
                 birth: birth,
                 disability: disability,
-                tripType: tripType)
-            ) { result in
+                tripType: tripType
+            )) { result in
                 switch result {
                 case .success(let response):
-                    completion(.success(response.data))
+                    do {
+                        let decoder = JSONDecoder()
+                        let jsonData = try decoder.decode(ResponseJoinModel.self, from: response.data)
+                        
+                        continuation.resume(returning: jsonData)
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
                 case .failure(let error):
-                    print(error)
-                    completion(.failure(error))
+                    continuation.resume(throwing: error)
                 }
             }
         }
+    }
     
     func coordinateToList(gpsX: Double, gpsY: Double, completion: @escaping (Result<[ResponsePlaceDTO], Error>) -> Void) {
         provider.request(.getCoordinateToList(gpsX: gpsX, gpsY: gpsY)) { result in

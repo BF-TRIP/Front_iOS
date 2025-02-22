@@ -31,20 +31,14 @@ final class OnboardingViewModel: ObservableObject {
         gender == 0 ? "man" : "woman"
     }
     
-    func postJoin() {
-        MoyaManager.shared.postJoin(
+    func postJoin() async throws -> ResponseJoinModel {
+        return try await MoyaManager.shared.postJoin(
             name: name,
             gender: selectedGender,
             birth: birth.toDateString(),
             disability: selectedDisabilities,
-            tripType: selectedTripTypes) { result in
-                switch result {
-                case .success(let success):
-                    print(success)
-                case .failure(let error):
-                    dump(error.localizedDescription)
-                }
-            }
+            tripType: selectedTripTypes
+        )
     }
     
     func updateName(_ newValue: String) {

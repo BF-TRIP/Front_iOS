@@ -45,7 +45,20 @@ struct OnboardingMainView: View {
         Button(action: {
             if currentPage < 6 { currentPage += 1 }
             else if currentPage == 6 {
-                onboardingViewModel.postJoin()
+                Task {
+                    do {
+                        let response = try await onboardingViewModel.postJoin()
+                        
+                        await MainActor.run {
+                            DataManager.shared.saveUserId(response.userNumber)
+                            print(response.userName)
+                            print(response.userNumber)
+                            showOnboarding = false
+                        }
+                    } catch {
+                        await MainActor.run {
+                            currentPage = 0
+                        }
             }
             isNameFocused = false
         }) {
