@@ -18,7 +18,7 @@ struct OnboardingSecondView: View {
             Text("알려주세요.")
                 .font(.system(size: 24, weight: .semibold))
             Text("연령대에 맞는 맞춤 추천을 제공해드려요.")
-                .font(.system(size: 20))
+                .font(.system(size: 18))
                 .foregroundColor(Color(hex: "6E6E6E"))
                 .padding(.top, 5)
         }

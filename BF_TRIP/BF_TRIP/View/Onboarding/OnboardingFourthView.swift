@@ -18,7 +18,7 @@ struct OnboardingFourthView: View {
             Text("점이 있나요?")
                 .font(.system(size: 24, weight: .semibold))
             Text("중복 선택이 가능해요.")
-                .font(.system(size: 20))
+                .font(.system(size: 18))
                 .foregroundColor(Color(hex: "6E6E6E"))
                 .padding(.top, 5)
         }

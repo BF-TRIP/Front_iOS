@@ -59,7 +59,7 @@ struct OnboardingMainView: View {
                     } catch {
                         await MainActor.run {
                             onboardingViewModel.reset()
-                            currentPage = 0
+                            currentPage = 1
                         }
                     }
                 }
