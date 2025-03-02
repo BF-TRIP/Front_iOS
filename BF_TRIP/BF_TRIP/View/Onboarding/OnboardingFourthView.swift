@@ -25,8 +25,6 @@ struct OnboardingFourthView: View {
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         
-        Spacer()
-        
         HStack(spacing: 10) {
             toggleButton(title1: "휠체어 사용자 및", title2: "고령자 지원", image: Image(uiImage: .wheelchair), index: 0)
             toggleButton(title1: "시각적 지원", title2: "", image: Image(uiImage: .eyes), index: 1)

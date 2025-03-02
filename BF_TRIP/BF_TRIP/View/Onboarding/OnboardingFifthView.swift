@@ -25,8 +25,6 @@ struct OnboardingFifthView: View {
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         
-        Spacer()
-        
         HStack(spacing: 10) {
             toggleButton(title1: "숲 속 휴양 및 치유", title2: "울창한, 자연, 치유, 웰빙", title3: "숲속, 산림욕장, 휴양림", image: Image(uiImage: .camping), index: 0)
             toggleButton(title1: "해양 및 수변활동", title2: "해수욕장, 백사장, 물놀이", title3: "댐, 호수", image: Image(uiImage: .beach), index: 1)
