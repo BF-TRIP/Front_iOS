@@ -14,6 +14,8 @@ final class OnboardingViewModel: ObservableObject {
     @Published private(set) var gender: Int? = nil
     @Published private(set) var disabilityList: [Bool] = Array(repeating: false, count: 4)
     @Published private(set) var tripList: [Bool] = Array(repeating: false, count: 4)
+    @Published private(set) var area: String? = nil
+    @Published private(set) var days: String? = nil
     
     private var selectedDisabilities: [Int] {
         disabilityList.enumerated()
@@ -65,6 +67,14 @@ final class OnboardingViewModel: ObservableObject {
     func toggleTrip(at index: Int) {
         guard index >= 0 && index < tripList.count else { return }
         tripList[index].toggle()
+    }
+    
+    func updateArea(_ newArea: String?) {
+        area = newArea
+    }
+    
+    func updateDays(_ newDays: String?) {
+        days = newDays
     }
     
     func reset() {
