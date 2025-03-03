@@ -22,6 +22,9 @@ enum NetworkManager {
     case postAddSaveList(userNumber: String, contentId: UInt64)
     case getUserExist(uuid: String)
     
+    case postAIQuickRecomnent(userNumber: Int, area: Int, period: Int)
+    case postAIRecomnent(userNumber: Int, area: Int, period: Int, disability: [Int], tripType: [Int])
+    
 }
 
 extension NetworkManager: TargetType {
@@ -48,6 +51,11 @@ extension NetworkManager: TargetType {
             return "api/course"
         case .getUserExist(uuid: _):
             return "api/user/exist"
+            
+        case .postAIQuickRecomnent(userNumber: _, area: _, period: _):
+            return "api/course/ai-rec"
+        case .postAIRecomnent(userNumber: _, area: _, period: _, disability: _, tripType: _):
+            return "api/course/ai-rec-quick"
         }
     }
     
@@ -56,7 +64,9 @@ extension NetworkManager: TargetType {
         case
             .getFileToList(file: _),
             .postAddSaveList(userNumber: _, contentId: _),
-            .postJoin(name: _, gender: _, birth: _, disability: _, tripType: _):
+            .postJoin(name: _, gender: _, birth: _, disability: _, tripType: _),
+            .postAIRecomnent(userNumber: _, area: _, period: _, disability: _, tripType: _),
+            .postAIQuickRecomnent(userNumber: _, area: _, period: _):
             return .post
         default:
             return .get
@@ -151,6 +161,32 @@ extension NetworkManager: TargetType {
             ]
             
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            
+        case .postAIQuickRecomnent(userNumber: let userNumber, area: let area, period: let period):
+            let params: [String: Any] = [
+                "userNumber": userNumber,
+                "area": area,
+                "period": period
+            ]
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case .postAIRecomnent(
+            userNumber: let userNumber,
+            area: let area,
+            period: let period,
+            disability: let disability,
+            tripType: let typeType
+        ):
+            let params: [String: Any] = [
+                "userNumber": userNumber,
+                "area": area,
+                "period": period,
+                "disability": disability,
+                "tripType": typeType
+            ]
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
         }
         
     }

@@ -167,4 +167,58 @@ final class MoyaManager {
         }
     }
     
+    func postAIQuickRecomnent(userNumber: Int, area: Int, period: Int) async throws -> Int {
+        return try await withCheckedThrowingContinuation { continuation in
+            provider.request(.postAIQuickRecomnent(
+                userNumber: userNumber, area: area, period: period
+            )) { result in
+                switch result {
+                case .success(let response):
+                    do {
+                        let decoder = JSONDecoder()
+                        let jsonData = try decoder.decode(Int.self, from: response.data)
+                        
+                        continuation.resume(returning: jsonData)
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
+    func postAIRecomnent(
+        userNumber: Int,
+        area: Int,
+        period: Int,
+        disability: [Int],
+        tripType: [Int]
+    ) async throws -> Int {
+        return try await withCheckedThrowingContinuation { continuation in
+            provider.request(.postAIRecomnent(
+                userNumber: userNumber,
+                area: area,
+                period: period,
+                disability: disability,
+                tripType: tripType
+            )) { result in
+                switch result {
+                case .success(let response):
+                    do {
+                        let decoder = JSONDecoder()
+                        let jsonData = try decoder.decode(Int.self, from: response.data)
+                        
+                        continuation.resume(returning: jsonData)
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+    
 }
