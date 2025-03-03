@@ -15,8 +15,10 @@ struct OnboardingFifthView: View {
         VStack(alignment: .leading) {
             Text("추구하는 여행 스타일을")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("선택해주세요.")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("중복 선택이 가능해요.")
                 .font(.system(size: 18))
                 .foregroundColor(Color(hex: "6E6E6E"))

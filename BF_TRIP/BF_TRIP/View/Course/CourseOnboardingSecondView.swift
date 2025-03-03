@@ -22,6 +22,7 @@ struct CourseOnboardingSecondView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("얼마나 떠날까요?")
+                .foregroundStyle(Color.black)
                 .font(.system(size: 24, weight: .semibold))
         }
         .padding()

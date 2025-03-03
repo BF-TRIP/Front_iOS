@@ -40,6 +40,7 @@ struct CourseOnboardingMainView: View {
                     pageIndicator
                 }
             }
+            .background(Color.white)
         }
     }
     
@@ -117,6 +118,7 @@ struct CourseOnboardingMainView: View {
             if let indicatorText = getIndicatorText() {
                 Text(indicatorText)
                     .fontWeight(.semibold)
+                    .foregroundStyle(Color.black)
             }
         }
     }

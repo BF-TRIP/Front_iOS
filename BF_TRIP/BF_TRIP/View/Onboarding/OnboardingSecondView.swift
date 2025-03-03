@@ -15,8 +15,10 @@ struct OnboardingSecondView: View {
         VStack(alignment: .leading) {
             Text("\(viewModel.name) 님의 생년월일을")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("알려주세요.")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("연령대에 맞는 맞춤 추천을 제공해드려요.")
                 .font(.system(size: 18))
                 .foregroundColor(Color(hex: "6E6E6E"))

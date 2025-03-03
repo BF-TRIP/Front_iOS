@@ -15,8 +15,10 @@ struct OnboardingThirdView: View {
         VStack(alignment: .leading) {
             Text("성별은")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("어떻게 되시나요?")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("성별 정보를 활용해 당신에 꼭 맞는")
                 .font(.system(size: 18))
                 .foregroundColor(Color(hex: "6E6E6E"))

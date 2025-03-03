@@ -30,6 +30,7 @@ struct CourseOnboardingFirstView: View {
         VStack(alignment: .leading) {
             Text("어디로 떠날까요?")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("지역 한 곳을 선택해주세요.")
                 .font(.system(size: 16))
                 .foregroundColor(Color(hex: "6E6E6E"))

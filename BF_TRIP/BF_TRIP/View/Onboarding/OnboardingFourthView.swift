@@ -15,8 +15,10 @@ struct OnboardingFourthView: View {
         VStack(alignment: .leading) {
             Text("특별히 고려해야 할")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("점이 있나요?")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("중복 선택이 가능해요.")
                 .font(.system(size: 18))
                 .foregroundColor(Color(hex: "6E6E6E"))
