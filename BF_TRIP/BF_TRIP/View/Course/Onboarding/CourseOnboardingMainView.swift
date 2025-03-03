@@ -70,23 +70,19 @@ struct CourseOnboardingMainView: View {
     private func handleNextAction() {
         if onboardingState {
             if currentStartPage < 1 {
-                finishOnboarding()
+                isShowing = false
             } else if currentStartPage < 3 {
                 currentStartPage += 1
             }
         } else {
             if currentStartPage < 1 {
-                finishOnboarding()
+                isShowing = false
             } else if currentRestartPage < 5 {
                 currentRestartPage += 1
             }
         }
     }
 
-    private func finishOnboarding() {
-        isShowing = false
-    }
-    
     private var backButton: some View {
         Group {
             if onboardingState
