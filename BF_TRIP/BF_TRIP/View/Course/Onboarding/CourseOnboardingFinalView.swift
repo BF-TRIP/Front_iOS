@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CourseOnboardingFinalView: View {
     
+    @ObservedObject var viewModel: OnboardingViewModel
+    @Binding var isShowing: Bool
+    @Binding var isResultViewShowing: Bool
     @State private var currentTextIndex = 0
     private let textMessages = [
         "조금만 기다려주세요",

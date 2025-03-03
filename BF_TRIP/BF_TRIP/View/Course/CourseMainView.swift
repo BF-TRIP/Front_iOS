@@ -9,9 +9,14 @@ import SwiftUI
 
 struct CourseMainView: View {
     
+    @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel()
+    
     @State private var isButtonEnabled = true
     @State private var isCreateViewShowing = false
+    @State private var isResultViewShowing = false
     @State private var isOnboardingState = false
+    
+    @State private var number: Int = 25
     
     var body: some View {
         GeometryReader { geometry in
@@ -41,7 +46,12 @@ struct CourseMainView: View {
                     }
                     .disabled(!isButtonEnabled)
                     .fullScreenCover(isPresented: $isCreateViewShowing) {
-                        CourseOnboardingMainView(onboardingState: $isOnboardingState, isShowing: $isCreateViewShowing)
+                        CourseOnboardingMainView(
+                            viewModel: onboardingViewModel,
+                            onboardingState: $isOnboardingState,
+                            isShowing: $isCreateViewShowing,
+                            isResultViewShowing: $isResultViewShowing
+                        )
                     }
                     
                     CourseCustomButton(
@@ -62,7 +72,12 @@ struct CourseMainView: View {
                     }
                     .disabled(!isButtonEnabled)
                     .fullScreenCover(isPresented: $isCreateViewShowing) {
-                        CourseOnboardingMainView(onboardingState: $isOnboardingState, isShowing: $isCreateViewShowing)
+                        CourseOnboardingMainView(
+                            viewModel: onboardingViewModel,
+                            onboardingState: $isOnboardingState,
+                            isShowing: $isCreateViewShowing,
+                            isResultViewShowing: $isResultViewShowing
+                        )
                     }
                 }
                 .padding(.leading)
@@ -72,6 +87,9 @@ struct CourseMainView: View {
         }
         .background(Color(hex: "FFFCE7"))
         .ignoresSafeArea()
+        .fullScreenCover(isPresented: $isResultViewShowing) {
+            CourseResultView(isResultShowing: $isResultViewShowing, courseNumber: $number)
+        }
     }
 
 }

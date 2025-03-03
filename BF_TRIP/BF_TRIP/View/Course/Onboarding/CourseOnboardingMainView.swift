@@ -9,13 +9,14 @@ import SwiftUI
 
 struct CourseOnboardingMainView: View {
     
-    @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel()
+    @ObservedObject var viewModel: OnboardingViewModel
     
     @State private var currentStartPage: Int = 1
     @State private var currentRestartPage: Int = 1
     
     @Binding var onboardingState: Bool
     @Binding var isShowing: Bool
+    @Binding var isResultViewShowing: Bool
     
     var body: some View {
         NavigationStack {
@@ -134,11 +135,15 @@ struct CourseOnboardingMainView: View {
     func startOnboardingView(for page: Int) -> some View {
         switch page {
         case 1:
-            CourseOnboardingFirstView(viewModel: onboardingViewModel)
+            CourseOnboardingFirstView(viewModel: viewModel)
         case 2:
-            CourseOnboardingSecondView(viewModel: onboardingViewModel)
+            CourseOnboardingSecondView(viewModel: viewModel)
         case 3:
-            CourseOnboardingFinalView()
+            CourseOnboardingFinalView(
+                viewModel: viewModel,
+                isShowing: $isShowing,
+                isResultViewShowing: $isResultViewShowing
+            )
         default:
             EmptyView()
         }
@@ -148,15 +153,19 @@ struct CourseOnboardingMainView: View {
     func restartOnboardingView(for page: Int) -> some View {
         switch page {
         case 1:
-            OnboardingFourthView(viewModel: onboardingViewModel)
+            OnboardingFourthView(viewModel: viewModel)
         case 2:
-            CourseOnboardingFirstView(viewModel: onboardingViewModel)
+            CourseOnboardingFirstView(viewModel: viewModel)
         case 3:
-            CourseOnboardingSecondView(viewModel: onboardingViewModel)
+            CourseOnboardingSecondView(viewModel: viewModel)
         case 4:
-            OnboardingFifthView(viewModel: onboardingViewModel)
+            OnboardingFifthView(viewModel: viewModel)
         case 5:
-            CourseOnboardingFinalView()
+            CourseOnboardingFinalView(
+                viewModel: viewModel,
+                isShowing: $isShowing,
+                isResultViewShowing: $isResultViewShowing
+            )
         default:
             EmptyView()
         }
