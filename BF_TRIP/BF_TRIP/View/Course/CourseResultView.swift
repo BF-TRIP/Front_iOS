@@ -17,6 +17,8 @@ struct CourseResultView: View {
     @Binding var isResultShowing: Bool
     @Binding var courseNumber: Int
     
+    @State private var showAlert = false
+    
     @State private var course: CourseModel = CourseModel(
         courseNumber: 1,
         courseName: "1",
@@ -35,9 +37,29 @@ struct CourseResultView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                HeaderView(isResultShowing: $isResultShowing)
+                ZStack {
+                    HStack {
+                        Button(action: { showAlert = true }) {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.black)
+                        }
+                        .alert("코스 생성을 취소할까요?", isPresented: $showAlert) {
+                            Button("아니요", role: .cancel) { }
+                            Button("취소하기", role: .destructive) {
+                                isResultShowing = false
+                            }
+                        }
+                        Spacer()
+                    }
+                    
+                    Text("완성된 코스를 확인해보세요")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.black)
+                }
+                .padding(.horizontal)
                 
                 CourseInfoView(course: course)
+                    .padding(.top)
                 
 //                MapView(draw: $draw, gpsY: $course.gpsY, gpsX: $course.gpsX, list: $dayList[0])
 //                    .frame(height: 200)
@@ -147,7 +169,7 @@ struct Constants {
     static let defaultColor = "E2E2E2"
     static let fontColor = "FFFFFF"
     
-    static let semiboldFontSize: CGFloat = 20
+    static let semiboldFontSize: CGFloat = 24
     static let mediumFontSize: CGFloat = 18
     static let floatingFontSize: CGFloat = 16
 }
