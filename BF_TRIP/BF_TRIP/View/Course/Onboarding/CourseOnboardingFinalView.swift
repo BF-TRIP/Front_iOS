@@ -12,6 +12,9 @@ struct CourseOnboardingFinalView: View {
     @ObservedObject var viewModel: OnboardingViewModel
     @Binding var isShowing: Bool
     @Binding var isResultViewShowing: Bool
+    
+    @State private var timer: Timer?
+    
     @State private var currentTextIndex = 0
     private let textMessages = [
         "조금만 기다려주세요",
@@ -69,14 +72,27 @@ struct CourseOnboardingFinalView: View {
         .onAppear {
             startTextRotation()
         }
+        .onDisappear {
+            stopTextRotation()
+        }
     }
     
     private func startTextRotation() {
-        Timer.scheduledTimer(withTimeInterval: 2.5, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: true) { _ in
             withAnimation {
+                if currentTextIndex != 0 {
+                    isShowing = false
+                    isResultViewShowing = true
+                    print(currentTextIndex)
+                }
                 currentTextIndex = (currentTextIndex + 1) % textSubMessages.count
             }
         }
+    }
+    
+    private func stopTextRotation() {
+        timer?.invalidate()
+        timer = nil
     }
     
 }
