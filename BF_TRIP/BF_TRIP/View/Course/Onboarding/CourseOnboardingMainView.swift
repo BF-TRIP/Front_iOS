@@ -45,12 +45,18 @@ struct CourseOnboardingMainView: View {
     }
     
     private var nextButton: some View {
-        Button(action: handleNextAction) {
-            Text(buttonText)
-                .font(.system(size: 20, weight: .bold))
-                .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.03)
+        Group {
+            if onboardingState && currentStartPage != 3 || !onboardingState && currentRestartPage != 5 {
+                Button(action: handleNextAction) {
+                    Text(buttonText)
+                        .font(.system(size: 20, weight: .bold))
+                        .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.03)
+                }
+                .buttonStyle(CustomButtonStyle())
+            } else {
+                Color.white
+            }
         }
-        .buttonStyle(CustomButtonStyle())
     }
 
     private var buttonText: String {
@@ -63,20 +69,16 @@ struct CourseOnboardingMainView: View {
 
     private func handleNextAction() {
         if onboardingState {
-            if currentStartPage < 2 {
+            if currentStartPage < 1 {
+                finishOnboarding()
+            } else if currentStartPage < 3 {
                 currentStartPage += 1
-            } else if currentStartPage == 2 {
-                finishOnboarding()
-            } else {
-                finishOnboarding()
             }
         } else {
-            if currentRestartPage < 4 {
+            if currentStartPage < 1 {
+                finishOnboarding()
+            } else if currentRestartPage < 5 {
                 currentRestartPage += 1
-            } else if currentStartPage == 4 {
-                finishOnboarding()
-            } else {
-                finishOnboarding()
             }
         }
     }
@@ -139,6 +141,8 @@ struct CourseOnboardingMainView: View {
             CourseOnboardingFirstView(viewModel: onboardingViewModel)
         case 2:
             CourseOnboardingSecondView(viewModel: onboardingViewModel)
+        case 3:
+            CourseOnboardingFinalView()
         default:
             EmptyView()
         }
@@ -155,6 +159,8 @@ struct CourseOnboardingMainView: View {
             CourseOnboardingSecondView(viewModel: onboardingViewModel)
         case 4:
             OnboardingFifthView(viewModel: onboardingViewModel)
+        case 5:
+            CourseOnboardingFinalView()
         default:
             EmptyView()
         }
