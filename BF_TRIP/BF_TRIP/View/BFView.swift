@@ -102,7 +102,7 @@ struct BFView: View {
 struct SplashView: View {
     var body: some View {
         VStack {
-            Image(uiImage: .splashImg)
+            Image(uiImage: .splash)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .clipped()
