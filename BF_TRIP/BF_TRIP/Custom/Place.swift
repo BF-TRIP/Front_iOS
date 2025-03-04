@@ -69,7 +69,6 @@ struct Place: View {
                 
                 Spacer()
             }
-            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             
             HStack {
                 Text("\(place.addr)")
@@ -78,34 +77,31 @@ struct Place: View {
                 
                 Spacer()
             }
-            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
             
             HStack {
-                Spacer()
-                
                 if place.publicTransport != "" ||
                     place.elevator != "" ||
                     place.restroom != "" ||
                     place.wheelchair != "" {
                     Image(uiImage: .wheelchair)
                         .scaledToFit()
-                        .frame(width: 32, height: 32)
+                        .frame(height: 32)
                     
                     Spacer()
                     
                     Image(uiImage: .senior)
                         .scaledToFit()
-                        .frame(width: 32, height: 32)
+                        .frame(height: 32)
                 } else {
                     Image(uiImage: .wheelchair)
-                        .frame(width: 32, height: 32)
+                        .frame(height: 32)
                         .scaledToFit()
                         .opacity(0.2)
                     
                     Spacer()
                     
                     Image(uiImage: .senior)
-                        .frame(width: 32, height: 32)
+                        .frame(height: 32)
                         .scaledToFit()
                         .opacity(0.2)
                 }
@@ -131,11 +127,11 @@ struct Place: View {
                     place.guideHuman != "" ||
                     place.braileBlock != "" {
                     Image(uiImage: .eyes)
-                        .frame(width: 32, height: 32)
+                        .frame(height: 32)
                         .scaledToFit()
                 } else {
                     Image(uiImage: .eyes)
-                        .frame(width: 32, height: 32)
+                        .frame(height: 32)
                         .scaledToFit()
                         .opacity(0.2)
                 }
@@ -146,20 +142,18 @@ struct Place: View {
                     place.videoGuide != "" ||
                     place.hearingHandicapEtc != "" {
                     Image(uiImage: .ears)
-                        .frame(width: 32, height: 32)
+                        .frame(height: 32)
                         .scaledToFit()
                 } else {
                     Image(uiImage: .ears)
-                        .frame(width: 32, height: 32)
+                        .frame(height: 32)
                         .scaledToFit()
                         .opacity(0.2)
                 }
-                
-                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: 48)
             .background(Color(.white))
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
+            .padding(EdgeInsets(top: 0, leading: 5, bottom: 15, trailing: 5))
             
         }
         .background(.white)

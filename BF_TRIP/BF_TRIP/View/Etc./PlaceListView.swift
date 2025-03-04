@@ -61,7 +61,7 @@ struct PlaceListView: View {
             let list = viewModel.seperateList(selectedStates: self.selectedStates)
             List(0..<list.count, id: \.self) { index in
                 Place(place: list[index], viewModel: saveViewModel)
-                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+                    .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
                     .listRowSeparator(.hidden)
 //                    .shadow(radius: 2)
             }
