@@ -6,21 +6,27 @@
 //
 
 import SwiftUI
+import Combine
 
 struct CourseSaveView: View {
+    
     @Binding var isSaving: Bool
     @Binding var isResultShowing: Bool
     
     @State private var text: String = ""
     @State private var date = Date()
     
+    @State private var keyboardHeight: CGFloat = 0
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 HStack {
-                    Button(action: { isSaving.toggle() }) {
+                    Button {
+                        self.isSaving.toggle()
+                    } label: {
                         Image(systemName: "chevron.backward")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(.label))
                     }
                     Spacer()
                 }
@@ -36,10 +42,12 @@ struct CourseSaveView: View {
                         .font(.system(size: 20, weight: .semibold))
                     Spacer()
                 }
-                TextField("코스의 제목을 만들어주세요. (ex) 가족여행)", text: self.$text)
+                TextField("코스의 제목을 만들어주세요. (ex. 가족여행)", text: self.$text)
                     .autocorrectionDisabled()
-                    .padding()
-                    .background(
+                    .padding(.top, 15)
+                    .padding(.bottom, 15)
+                    .padding(.horizontal, 15)
+                    .overlay(
                         RoundedRectangle(cornerRadius: 15)
                             .stroke(lineWidth: 1)
                             .foregroundColor(Color(hex: "#F2F2F2"))
@@ -61,19 +69,22 @@ struct CourseSaveView: View {
                 Spacer()
                 Spacer()
                 
-                Button(action: saveCourse) {
-                    Text("저장")
-                        .frame(maxWidth: .infinity, maxHeight: 55)
-                        .foregroundColor(.white)
-                        .font(.system(size: 20, weight: .bold))
-                        .background(text.isEmpty ? Color(hex: "#D9D9D9") : Color(hex: "#1650A9"))
-                        .cornerRadius(10)
+                HStack {
+                    Button {
+                        saveCourse()
+                    } label: {
+                        Text("저장")
+                            .font(.system(size: 20, weight: .bold))
+                            .frame(width: UIScreen.main.bounds.width * 0.8)
+                            .frame(height: UIScreen.main.bounds.height * 0.02)
+                    }
+                    .buttonStyle(CustomButtonStyle())
+                    .disabled(text.isEmpty)
+                    .padding(.bottom, keyboardHeight > 0 ? keyboardHeight - 260 : 0)
                 }
-                .disabled(text.isEmpty)
+                .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
             }
             .padding()
-            
-            Spacer()
         }
     }
 }
