@@ -63,7 +63,7 @@ struct PlaceListView: View {
                 Place(place: list[index], viewModel: saveViewModel)
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .listRowSeparator(.hidden)
-                    .shadow(radius: 2)
+//                    .shadow(radius: 2)
             }
             .scrollIndicators(.hidden)
             .listStyle(PlainListStyle())

@@ -26,15 +26,15 @@ struct Place: View {
                     AsyncImage(url: url) { image in
                         image.image?.resizable()
                     }
-                    .frame(maxWidth: .infinity, minHeight: 148, maxHeight: 148)
+                    .frame(maxWidth: .infinity, minHeight: 160, maxHeight: 160)
                     .background(Color(.white))
-                    .clipped()
+                    .cornerRadius(15)
                 } else {
                     Image(uiImage: .placeholder)
                         .resizable()
-                        .frame(maxWidth: .infinity, maxHeight: 148)
+                        .frame(maxWidth: .infinity, minHeight: 160, maxHeight: 160)
                         .background(Color(hex: "#F6F5FA"))
-                        .clipped()
+                        .cornerRadius(15)
                 }
                 Button {
                     viewModel.addPlace(contentId: place.contentId)
@@ -64,13 +64,17 @@ struct Place: View {
             
             HStack {
                 Text("\(place.contentTitle)")
-                    .font(.system(size: 22))
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(.black))
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(.black)
                 
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
+            
+            HStack {
                 Text("\(place.addr)")
-                    .font(.system(size: 14))
-                    .foregroundColor(Color(.black))
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundColor(.black)
                 
                 Spacer()
             }
@@ -85,23 +89,23 @@ struct Place: View {
                     place.wheelchair != "" {
                     Image(uiImage: .wheelchair)
                         .scaledToFit()
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                     
                     Spacer()
                     
                     Image(uiImage: .senior)
                         .scaledToFit()
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                 } else {
                     Image(uiImage: .wheelchair)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                         .scaledToFit()
                         .opacity(0.2)
                     
                     Spacer()
                     
                     Image(uiImage: .senior)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                         .scaledToFit()
                         .opacity(0.2)
                 }
@@ -112,11 +116,11 @@ struct Place: View {
                     place.lactationRoom != "" ||
                     place.babySpareChair != "" {
                     Image(uiImage: .pregnant)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                         .scaledToFit()
                 } else {
                     Image(uiImage: .pregnant)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                         .scaledToFit()
                         .opacity(0.2)
                 }
@@ -127,11 +131,11 @@ struct Place: View {
                     place.guideHuman != "" ||
                     place.braileBlock != "" {
                     Image(uiImage: .eyes)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                         .scaledToFit()
                 } else {
                     Image(uiImage: .eyes)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                         .scaledToFit()
                         .opacity(0.2)
                 }
@@ -142,18 +146,18 @@ struct Place: View {
                     place.videoGuide != "" ||
                     place.hearingHandicapEtc != "" {
                     Image(uiImage: .ears)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                         .scaledToFit()
                 } else {
                     Image(uiImage: .ears)
-                        .frame(width: 36, height: 36)
+                        .frame(width: 32, height: 32)
                         .scaledToFit()
                         .opacity(0.2)
                 }
                 
                 Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: 50)
+            .frame(maxWidth: .infinity, maxHeight: 48)
             .background(Color(.white))
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0))
             
