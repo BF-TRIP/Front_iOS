@@ -56,15 +56,15 @@ struct CourseResultView: View {
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.black)
                 }
-                .padding(.horizontal)
+                .padding()
                 
                 CourseInfoView(course: course)
                     .padding(.top)
                 
-//                MapView(draw: $draw, gpsY: $course.gpsY, gpsX: $course.gpsX, list: $dayList[0])
-//                    .frame(height: 200)
-//                    .onAppear { draw = true }
-//                    .onDisappear { draw = false }
+                KakaoMapView(draw: $draw, gpsY: $course.gpsY, gpsX: $course.gpsX, list: $dayList[0])
+                    .frame(height: 200)
+                    .onAppear { draw = true }
+                    .onDisappear { draw = false }
                 
                 DaysComponent(
                     selectedDay: $selectedDay,
@@ -94,7 +94,6 @@ struct CourseResultView: View {
                 }
                 .buttonStyle(InsetRoundButton())
             }
-            .padding()
             .fullScreenCover(isPresented: $isSaving) {
                 CourseSaveView(isSaving: $isSaving, isResultShowing: $isResultShowing)
             }
