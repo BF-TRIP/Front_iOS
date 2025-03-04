@@ -65,13 +65,13 @@ struct ButtonView: View {
         Button(action: action) {
             Text(button)
                 .frame(minWidth: 0, maxWidth: .infinity)
-                .frame(height: 50)
+                .frame(height: 48)
                 .background(isSelected ? Color(hex: "FFFCE7") : Color.white)
                 .foregroundColor(.black)
                 .font(.system(size: 18, weight: isSelected ? .semibold : .medium))
-                .cornerRadius(100)
+                .cornerRadius(40)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 100)
+                    RoundedRectangle(cornerRadius: 40)
                         .stroke((isSelected ? Color(hex: "FFE54A") : Color(hex: "676767")), lineWidth: 1)
                 )
         }
