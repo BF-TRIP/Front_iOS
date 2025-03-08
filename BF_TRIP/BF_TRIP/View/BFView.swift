@@ -23,18 +23,6 @@ struct BFView: View {
     }
     
     var body: some View {
-        //        if loading {
-        //            VStack {
-        ////                SplashView()
-        ////                OnboardingMainView()
-        //            }
-        //            .onAppear(perform: {
-        ////                setup()
-        //            })
-        //        } else {
-        //            if isOnboarding {
-        //                OnboardingView(isOnboarding: $isOnboarding)
-        //            } else {
         TabView {
             MainView(gpsX: mapViewModel.gpsX, gpsY: mapViewModel.gpsY)
                 .tabItem {
@@ -77,24 +65,6 @@ struct BFView: View {
         .onAppear(perform: {
             self.mapViewModel.requestRegion()
         })
-    }
-//        }
-//    }
-    
-    private func setup() {
-        MoyaManager.shared.checkToID(uuid: self.deviceUUID) { result in
-            switch result {
-            case .success(let response):
-                self.loading = response
-                if response {
-                    self.isOnboarding = true
-                } else {
-                    self.isOnboarding = false
-                }
-            case .failure(let error):
-                self.loading = true
-            }
-        }
     }
 
 }
