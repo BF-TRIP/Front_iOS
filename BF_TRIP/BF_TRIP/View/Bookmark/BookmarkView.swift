@@ -9,24 +9,56 @@ import SwiftUI
 
 struct BookmarkView: View {
     
-    @State var isVoiceViewShowing: Bool = false
-    @State var isOnboarding: Bool = false
+    @State private var selectedSegment = 0
+    
+    @State private var places: [ResponsePlaceDTO] = []
+    @State private var courses: [ResponsePlaceDTO] = []
+    
+    @Binding var userId: Int?
     
     var body: some View {
-        let webView = WebKit(
-            request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/save-list")!),
-            isVoiceViewShowing: $isVoiceViewShowing,
-            isOnboarding: $isOnboarding
-        )
-        
         VStack {
-            webView
-                .transaction { transaction in
-                    transaction.disablesAnimations = true
-                }
-                .background(Color(hex: "#FFE023"))
-                .background(ignoresSafeAreaEdges: .top)
-                .scrollIndicators(.hidden)
+            Text("저장")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(.black)
+                .padding(.top)
+                .padding(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Picker("Segments", selection: $selectedSegment) {
+                Text("관광지").tag(0)
+                Text("코스").tag(1)
+            }
+            .padding()
+            .pickerStyle(SegmentedPickerStyle())
+            
+            if selectedSegment == 0 {
+                //TODO: 저장된 저장지 목록
+            } else if selectedSegment == 1 {
+                //TODO: 저장된 코스 목록
+            }
+            
+            Spacer()
+        }
+        .background(Color.white.edgesIgnoringSafeArea(.all))
+        .task {
+            await fetchSavePlaceList()
+        }
+    }
+    
+    private func fetchSavePlaceList() async {
+        do {
+            places = try await MoyaManager.shared.getSavePlaceList(userNumber: userId ?? 0)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func fetchSaveCourseList() async {
+        do {
+            courses = try await MoyaManager.shared.getSaveCourseList(userNumber: userId ?? 0)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 

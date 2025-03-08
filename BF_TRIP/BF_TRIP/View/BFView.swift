@@ -17,9 +17,13 @@ struct BFView: View {
     @State var isOnboarding: Bool = false
     @State var loading: Bool = false
     
-    init() {
+    @Binding var userId: Int?
+    
+    init(userId: Binding<Int?>) {
         UITabBar.appearance().backgroundColor = UIColor(.white)
         UIScrollView.appearance().bounces = false
+        
+        _userId = userId
     }
     
     var body: some View {
@@ -53,7 +57,7 @@ struct BFView: View {
                 }
                 .background(Color(hex: "#000000"))
                 .background(ignoresSafeAreaEdges: .all)
-            BookmarkView()
+            BookmarkView(userId: $userId)
                 .tabItem {
                     Image(systemName: "bookmark")
                     Text("저장")
