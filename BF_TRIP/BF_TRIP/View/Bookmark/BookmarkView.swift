@@ -33,7 +33,14 @@ struct BookmarkView: View {
             .pickerStyle(SegmentedPickerStyle())
             
             if selectedSegment == 0 {
-                //TODO: 저장된 저장지 목록
+                List(0..<places.count, id: \.self) { index in
+                    SavePlaceView(place: $places[index])
+                        .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                        .listRowSeparator(.hidden)
+    //                    .shadow(radius: 2)
+                }
+                .scrollIndicators(.hidden)
+                .listStyle(PlainListStyle())
             } else if selectedSegment == 1 {
                 //TODO: 저장된 코스 목록
             }
