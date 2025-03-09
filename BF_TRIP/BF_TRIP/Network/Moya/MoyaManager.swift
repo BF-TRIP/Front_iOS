@@ -223,7 +223,7 @@ final class MoyaManager {
     
     func getSavePlaceList(userNumber: Int) async throws -> [ResponsePlaceDTO] {
         return try await withCheckedThrowingContinuation { continuation in
-            provider.request(.getSaveCourseList(userNumber: userNumber)) { result in
+            provider.request(.getSavePlaceList(userNumber: userNumber)) { result in
                 switch result {
                 case .success(let response):
                     do {
