@@ -35,3 +35,8 @@ struct Course: Codable, Hashable {
     var imageUrl: String
     
 }
+
+struct tmp: Codable, Hashable {
+    var courseNumber: Int
+    var courseName: String
+}

@@ -12,7 +12,10 @@ struct BookmarkView: View {
     @State private var selectedSegment = 0
     
     @State private var places: [ResponsePlaceDTO] = []
-    @State private var courses: [ResponsePlaceDTO] = []
+    @State private var courses: [tmp] = []
+    
+    @State private var selectedCourseNumber: Int?
+    @State var isDetailShowing: Bool = false
     
     @Binding var userId: Int?
     
@@ -37,12 +40,31 @@ struct BookmarkView: View {
                     SavePlaceView(place: $places[index])
                         .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
                         .listRowSeparator(.hidden)
-    //                    .shadow(radius: 2)
                 }
                 .scrollIndicators(.hidden)
                 .listStyle(PlainListStyle())
             } else if selectedSegment == 1 {
-                //TODO: 저장된 코스 목록
+                ForEach($courses, id: \.self) { $course in
+                    Button {
+                        self.isDetailShowing.toggle()
+                        self.selectedCourseNumber = course.courseNumber
+                    } label: {
+                        SaveCourseView(course: $course)
+                            .background(.white)
+                            .cornerRadius(15)
+                            .shadow(radius: 0.5)
+                    }
+                    .listRowSeparator(.hidden)
+                }
+                .onDelete(perform: { indexSet in
+                    courses.remove(atOffsets: indexSet)
+                })
+                .onMove(perform: { indices, newOffset in
+                    courses.move(fromOffsets: indices, toOffset: newOffset)
+                })
+                .padding(.top, 10)
+                .padding(.leading)
+                .padding(.trailing)
             }
             
             Spacer()
@@ -50,6 +72,7 @@ struct BookmarkView: View {
         .background(Color.white.edgesIgnoringSafeArea(.all))
         .task {
             await fetchSavePlaceList()
+            await fetchSaveCourseList()
         }
     }
     
