@@ -15,12 +15,20 @@ struct CourseModel: Codable, Hashable {
     let startDate: String
     let endDate: String
     let period: Int
-    let disability: [Int]
-    var gpsX: Double
-    var gpsY: Double
-    var day1: [Course]
-    var day2: [Course]
-    var day3: [Course]
+    let mobility: Bool
+    let blind: Bool
+    let hear: Bool
+    let family: Bool
+    let locationInfoResList: [ResponsePlaceDTO]
+    
+}
+
+struct CourseDetailModel: Codable, Hashable {
+    
+    let courseNumber: Int
+    let courseName: String
+    let description: String?
+    let locationInfoResList: [ResponsePlaceDTO]
     
 }
 
