@@ -9,17 +9,17 @@ import SwiftUI
 
 struct CourseView: View {
     
-    @Binding var day: Course
+    @Binding var day: ResponsePlaceDTO
 
     var body: some View {
         HStack {
             courseImage
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(day.name)
+                Text(day.contentTitle)
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(.black)
-                Text(day.address)
+                Text(day.addr)
                     .font(.system(size: 12, weight: .medium))
                     .foregroundColor(.black)
             }
@@ -34,7 +34,8 @@ struct CourseView: View {
     
     private var courseImage: some View {
         Group {
-            if let url = URL(string: day.imageUrl) {
+            if let urlString = day.originalImage,
+               let url = URL(string: urlString) {
                 AsyncImage(url: url) { image in
                     image.image?.resizable()
                 }

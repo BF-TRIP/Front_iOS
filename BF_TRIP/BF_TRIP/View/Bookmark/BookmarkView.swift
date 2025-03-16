@@ -74,6 +74,12 @@ struct BookmarkView: View {
             await fetchSavePlaceList()
             await fetchSaveCourseList()
         }
+        .fullScreenCover(isPresented: $isDetailShowing, content: {
+            CourseDetailResultView(
+                courseNumber: $selectedCourseNumber,
+                isDetailShowing: $isDetailShowing
+            )
+        })
     }
     
     private func fetchSavePlaceList() async {

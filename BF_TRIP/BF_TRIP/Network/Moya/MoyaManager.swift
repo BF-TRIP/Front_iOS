@@ -264,6 +264,31 @@ final class MoyaManager {
             }
         }
     }
-
     
+    func getCourseDetail(courseNumber: Int) async throws -> CourseModel {
+        return try await provider.requestDecoded(.getCourseDetail(courseNumber: courseNumber), as: CourseModel.self)
+    }
+
+}
+
+extension MoyaProvider {
+    func requestDecoded<T: Decodable>(_ target: Target, as type: T.Type) async throws -> T {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.request(target) { result in
+                switch result {
+                case .success(let response):
+                    dump(response)
+                    do {
+                        let decoder = JSONDecoder()
+                        let jsonData = try decoder.decode(T.self, from: response.data)
+                        continuation.resume(returning: jsonData)
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
 }

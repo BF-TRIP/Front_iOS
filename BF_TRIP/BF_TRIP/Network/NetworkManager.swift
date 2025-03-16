@@ -27,6 +27,8 @@ enum NetworkManager {
     case getSavePlaceList(userNumber: Int)
     case getSaveCourseList(userNumber: Int)
     
+    case getCourseDetail(courseNumber: Int)
+    
 }
 
 extension NetworkManager: TargetType {
@@ -62,6 +64,8 @@ extension NetworkManager: TargetType {
             return "api/course/save/\(userNumber)"
         case .getSaveCourseList(userNumber: let userNumber):
             return "api/course/\(userNumber)"
+        case .getCourseDetail(courseNumber: let courseNumber):
+            return "api/course/\(courseNumber)/list"
         }
     }
     
@@ -197,6 +201,8 @@ extension NetworkManager: TargetType {
         case .getSavePlaceList(userNumber: _):
             return .requestPlain
         case .getSaveCourseList(userNumber: _):
+            return .requestPlain
+        case .getCourseDetail(courseNumber: _):
             return .requestPlain
         }
         
