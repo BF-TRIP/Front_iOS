@@ -1,0 +1,142 @@
+//
+//  CourseDetailResultView.swift
+//  BF_TRIP
+//
+//  Created by 박동재 on 3/15/25.
+//
+
+import SwiftUI
+
+struct CourseDetailResultView: View {
+    
+    @State private var course: CourseModel = CourseModel(
+        courseNumber: 0,
+        courseName: "",
+        area: "",
+        startDate: "",
+        endDate: "",
+        period: 0,
+        mobility: false,
+        blind: false,
+        hear: false,
+        family: false,
+        locationInfoResList: []
+    )
+    @State private var selectedList: [Course] = []
+    @State private var selectedNumber: Int = 1
+    
+    @Binding var courseNumber: Int?
+    
+    @State private var draw: Bool = true
+    
+    @Binding var isDetailShowing: Bool
+    
+    @State private var offset: CGFloat = 0
+    @State private var lastOffset: CGFloat = 0
+    @GestureState var gestureOffset: CGFloat = 0
+    
+    @State var gpsX: Double = 127
+    @State var gpsY: Double = 38
+    
+    init(courseNumber: Binding<Int?>, isDetailShowing: Binding<Bool>) {
+        self._courseNumber = courseNumber
+        self._isDetailShowing = isDetailShowing
+    }
+    
+    var body: some View {
+        ZStack {
+            KakaoMapView(
+                draw: $draw,
+                gpsY: $gpsY,
+                gpsX: $gpsX,
+                list: $selectedList
+            )
+            .onAppear {
+                self.draw = true
+            }
+            .onDisappear{
+                self.draw = false
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea()
+            VStack {
+                HStack {
+                    Button {
+                        self.isDetailShowing.toggle()
+                    } label: {
+//                        Image(uiImage: .back)
+                        Image(systemName: "chevron.backward")
+                            .frame(width: 44, height: 44)
+                            .contentShape(Rectangle())
+                    }
+                    .padding(.top, 20)
+                    .padding(.leading, 20)
+                    
+                    Spacer()
+                }
+                Spacer()
+            }
+            
+            GeometryReader { proxy -> AnyView in
+                let height = proxy.frame(in: .global).height - 100
+                
+                AnyView(
+                    CourseDetailBottomSheetView(
+                        offset: $offset,
+                        course: $course,
+                        selectedList: $selectedList,
+                        selectedNumber: $selectedNumber,
+                        height: height
+                    )
+                        .offset(y: height)
+                        .offset(y: -offset > 0 ? -offset <= height ? offset : -height : 0)
+                        .gesture(DragGesture().updating($gestureOffset, body: { value, out, _ in
+                            out = value.translation.height
+                            onBottomSheetChange()
+                        }).onEnded({ value in
+                            withAnimation {
+                                if -offset < height / 2 {
+                                    offset = -(height / 3)
+                                } else {
+                                    offset = -height
+                                }
+                            }
+                            lastOffset = offset
+                        }))
+                        .edgesIgnoringSafeArea(.bottom)
+                        .onAppear {
+                            self.offset = -height
+                            lastOffset = offset
+                        }
+                )
+            }
+        }
+        .task {
+            if let number = self.courseNumber {
+                await setCourse(number: number)
+            }
+        }
+    }
+    
+}
+
+private extension CourseDetailResultView {
+    
+    func onBottomSheetChange() {
+        Task {
+            await MainActor.run {
+                self.offset = gestureOffset + lastOffset
+            }
+        }
+    }
+    
+    private func setCourse(number: Int) async {
+        do {
+            course = try await MoyaManager.shared.getCourseDetail(courseNumber: number)
+            print(course)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+ 
+}

@@ -24,6 +24,10 @@ enum NetworkManager {
     
     case postAIQuickRecomnent(userNumber: Int, area: Int, period: Int)
     case postAIRecomnent(userNumber: Int, area: Int, period: Int, disability: [Int], tripType: [Int])
+    case getSavePlaceList(userNumber: Int)
+    case getSaveCourseList(userNumber: Int)
+    
+    case getCourseDetail(courseNumber: Int)
     
 }
 
@@ -56,6 +60,12 @@ extension NetworkManager: TargetType {
             return "api/course/ai-rec"
         case .postAIRecomnent(userNumber: _, area: _, period: _, disability: _, tripType: _):
             return "api/course/ai-rec-quick"
+        case .getSavePlaceList(userNumber: let userNumber):
+            return "api/course/save/\(userNumber)"
+        case .getSaveCourseList(userNumber: let userNumber):
+            return "api/course/\(userNumber)"
+        case .getCourseDetail(courseNumber: let courseNumber):
+            return "api/course/\(courseNumber)/list"
         }
     }
     
@@ -187,6 +197,13 @@ extension NetworkManager: TargetType {
             ]
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case .getSavePlaceList(userNumber: _):
+            return .requestPlain
+        case .getSaveCourseList(userNumber: _):
+            return .requestPlain
+        case .getCourseDetail(courseNumber: _):
+            return .requestPlain
         }
         
     }

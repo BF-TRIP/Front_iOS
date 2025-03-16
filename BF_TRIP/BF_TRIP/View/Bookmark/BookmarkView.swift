@@ -9,24 +9,92 @@ import SwiftUI
 
 struct BookmarkView: View {
     
-    @State var isVoiceViewShowing: Bool = false
-    @State var isOnboarding: Bool = false
+    @State private var selectedSegment = 0
+    
+    @State private var places: [ResponsePlaceDTO] = []
+    @State private var courses: [tmp] = []
+    
+    @State private var selectedCourseNumber: Int?
+    @State var isDetailShowing: Bool = false
+    
+    @Binding var userId: Int?
     
     var body: some View {
-        let webView = WebKit(
-            request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/save-list")!),
-            isVoiceViewShowing: $isVoiceViewShowing,
-            isOnboarding: $isOnboarding
-        )
-        
         VStack {
-            webView
-                .transaction { transaction in
-                    transaction.disablesAnimations = true
+            Text("저장")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(.black)
+                .padding(.top)
+                .padding(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Picker("Segments", selection: $selectedSegment) {
+                Text("관광지").tag(0)
+                Text("코스").tag(1)
+            }
+            .padding()
+            .pickerStyle(SegmentedPickerStyle())
+            
+            if selectedSegment == 0 {
+                List(0..<places.count, id: \.self) { index in
+                    SavePlaceView(place: $places[index])
+                        .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                        .listRowSeparator(.hidden)
                 }
-                .background(Color(hex: "#FFE023"))
-                .background(ignoresSafeAreaEdges: .top)
                 .scrollIndicators(.hidden)
+                .listStyle(PlainListStyle())
+            } else if selectedSegment == 1 {
+                ForEach($courses, id: \.self) { $course in
+                    Button {
+                        self.isDetailShowing.toggle()
+                        self.selectedCourseNumber = course.courseNumber
+                    } label: {
+                        SaveCourseView(course: $course)
+                            .background(.white)
+                            .cornerRadius(15)
+                            .shadow(radius: 0.5)
+                    }
+                    .listRowSeparator(.hidden)
+                }
+                .onDelete(perform: { indexSet in
+                    courses.remove(atOffsets: indexSet)
+                })
+                .onMove(perform: { indices, newOffset in
+                    courses.move(fromOffsets: indices, toOffset: newOffset)
+                })
+                .padding(.top, 10)
+                .padding(.leading)
+                .padding(.trailing)
+            }
+            
+            Spacer()
+        }
+        .background(Color.white.edgesIgnoringSafeArea(.all))
+        .task {
+            await fetchSavePlaceList()
+            await fetchSaveCourseList()
+        }
+        .fullScreenCover(isPresented: $isDetailShowing, content: {
+            CourseDetailResultView(
+                courseNumber: $selectedCourseNumber,
+                isDetailShowing: $isDetailShowing
+            )
+        })
+    }
+    
+    private func fetchSavePlaceList() async {
+        do {
+            places = try await MoyaManager.shared.getSavePlaceList(userNumber: userId ?? 0)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func fetchSaveCourseList() async {
+        do {
+            courses = try await MoyaManager.shared.getSaveCourseList(userNumber: userId ?? 0)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 

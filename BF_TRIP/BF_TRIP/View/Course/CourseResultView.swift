@@ -25,14 +25,16 @@ struct CourseResultView: View {
         area: "서울",
         startDate: "2024/11/23",
         endDate: "2024/11/24",
-        period: 2,
-        disability: [],
-        gpsX: 38.4,
-        gpsY: 123.4,
-        day1: [],
-        day2: [],
-        day3: []
+        period: 0,
+        mobility: false,
+        blind: false,
+        hear: false,
+        family: false,
+        locationInfoResList: []
     )
+    
+    @State private var gpsX: Double = 128
+    @State private var gpsY: Double = 37
     
     var body: some View {
         NavigationStack {
@@ -61,7 +63,7 @@ struct CourseResultView: View {
                 CourseInfoView(course: course)
                     .padding(.top)
                 
-                KakaoMapView(draw: $draw, gpsY: $course.gpsY, gpsX: $course.gpsX, list: $dayList[0])
+                KakaoMapView(draw: $draw, gpsY: $gpsY, gpsX: $gpsX, list: $dayList[0])
                     .frame(height: 200)
                     .onAppear { draw = true }
                     .onDisappear { draw = false }
@@ -78,12 +80,7 @@ struct CourseResultView: View {
                 
                 CourseListView(
                     course: $course,
-                    selectedDay: $selectedDay,
-                    dayOneList: $course.day1,
-                    dayTwoList: $course.day2,
-                    dayThreeList: $course.day3,
-                    selectedList: $selectedList,
-                    selectedNumber: $selectedDay
+                    selectedDay: $selectedDay
                 )
                 
                 Spacer()

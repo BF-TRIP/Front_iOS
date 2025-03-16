@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ResponsePlaceDTO: Identifiable, Codable {
+struct ResponsePlaceDTO: Identifiable, Codable, Hashable {
     
     let id = UUID().uuidString
     let contentId: UInt64
