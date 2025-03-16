@@ -63,6 +63,18 @@
 		8FB05FA52CB6DF96005698FE /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB05FA42CB6DF96005698FE /* PlaceViewModel.swift */; };
 		8FB05FA72CB6E318005698FE /* ResponseSaveDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB05FA62CB6E318005698FE /* ResponseSaveDTO.swift */; };
 		8FB559EB2CB3CD3F00046E4C /* BF_TRIPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB559EA2CB3CD3F00046E4C /* BF_TRIPApp.swift */; };
+		8FB7BE192D86797D007EBEC8 /* CourseDetailSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE152D86797C007EBEC8 /* CourseDetailSegmentView.swift */; };
+		8FB7BE1A2D86797D007EBEC8 /* CourseDetailResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE142D86797C007EBEC8 /* CourseDetailResultView.swift */; };
+		8FB7BE1B2D86797D007EBEC8 /* CourseDetailNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE132D86797C007EBEC8 /* CourseDetailNotificationView.swift */; };
+		8FB7BE1C2D86797D007EBEC8 /* CourseDetailTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE162D86797C007EBEC8 /* CourseDetailTitleView.swift */; };
+		8FB7BE1D2D86797D007EBEC8 /* CourseDetailBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE112D86797C007EBEC8 /* CourseDetailBottomSheetView.swift */; };
+		8FB7BE1E2D86797D007EBEC8 /* CourseDetailWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE172D86797C007EBEC8 /* CourseDetailWeatherView.swift */; };
+		8FB7BE1F2D86797D007EBEC8 /* CourseDetailCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE122D86797C007EBEC8 /* CourseDetailCourseView.swift */; };
+		8FB7BE232D86798F007EBEC8 /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE212D86798F007EBEC8 /* SegmentControl.swift */; };
+		8FB7BE242D86798F007EBEC8 /* CustomCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE202D86798F007EBEC8 /* CustomCorner.swift */; };
+		8FB7BE272D8679B0007EBEC8 /* SavePlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE262D8679B0007EBEC8 /* SavePlaceView.swift */; };
+		8FB7BE282D8679B0007EBEC8 /* SaveCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE252D8679B0007EBEC8 /* SaveCourseView.swift */; };
+		8FB7BE2A2D8679CE007EBEC8 /* accessibilityIconsSection 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7BE292D8679CE007EBEC8 /* accessibilityIconsSection 2.swift */; };
 		8FBAC3EE2CAFAE03007AD4CB /* ResponsePlaceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAC3ED2CAFAE03007AD4CB /* ResponsePlaceDTO.swift */; };
 		8FBAC3F22CAFF156007AD4CB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAC3F12CAFF156007AD4CB /* MainView.swift */; };
 		8FBAC3F42CAFF18E007AD4CB /* WebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAC3F32CAFF18E007AD4CB /* WebKit.swift */; };
@@ -123,6 +135,18 @@
 		8FB05FA42CB6DF96005698FE /* PlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 		8FB05FA62CB6E318005698FE /* ResponseSaveDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseSaveDTO.swift; sourceTree = "<group>"; };
 		8FB559EA2CB3CD3F00046E4C /* BF_TRIPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BF_TRIPApp.swift; sourceTree = "<group>"; };
+		8FB7BE112D86797C007EBEC8 /* CourseDetailBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailBottomSheetView.swift; sourceTree = "<group>"; };
+		8FB7BE122D86797C007EBEC8 /* CourseDetailCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailCourseView.swift; sourceTree = "<group>"; };
+		8FB7BE132D86797C007EBEC8 /* CourseDetailNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailNotificationView.swift; sourceTree = "<group>"; };
+		8FB7BE142D86797C007EBEC8 /* CourseDetailResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailResultView.swift; sourceTree = "<group>"; };
+		8FB7BE152D86797C007EBEC8 /* CourseDetailSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailSegmentView.swift; sourceTree = "<group>"; };
+		8FB7BE162D86797C007EBEC8 /* CourseDetailTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailTitleView.swift; sourceTree = "<group>"; };
+		8FB7BE172D86797C007EBEC8 /* CourseDetailWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailWeatherView.swift; sourceTree = "<group>"; };
+		8FB7BE202D86798F007EBEC8 /* CustomCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorner.swift; sourceTree = "<group>"; };
+		8FB7BE212D86798F007EBEC8 /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
+		8FB7BE252D8679B0007EBEC8 /* SaveCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCourseView.swift; sourceTree = "<group>"; };
+		8FB7BE262D8679B0007EBEC8 /* SavePlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePlaceView.swift; sourceTree = "<group>"; };
+		8FB7BE292D8679CE007EBEC8 /* accessibilityIconsSection 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "accessibilityIconsSection 2.swift"; sourceTree = "<group>"; };
 		8FBAC3ED2CAFAE03007AD4CB /* ResponsePlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePlaceDTO.swift; sourceTree = "<group>"; };
 		8FBAC3F12CAFF156007AD4CB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8FBAC3F32CAFF18E007AD4CB /* WebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKit.swift; sourceTree = "<group>"; };
@@ -166,6 +190,7 @@
 				8F69E3282D759FD000B90AAB /* CourseSaveView.swift */,
 				8F69E3222D759A4B00B90AAB /* CourseListView.swift */,
 				8F69E3242D759B3900B90AAB /* CourseView.swift */,
+				8FB7BE182D86797C007EBEC8 /* Detail */,
 				8F69E3172D7579F500B90AAB /* Onboarding */,
 			);
 			path = Course;
@@ -265,6 +290,8 @@
 			isa = PBXGroup;
 			children = (
 				8F96A72D2CB023BA009FC384 /* BookmarkView.swift */,
+				8FB7BE252D8679B0007EBEC8 /* SaveCourseView.swift */,
+				8FB7BE262D8679B0007EBEC8 /* SavePlaceView.swift */,
 			);
 			path = Bookmark;
 			sourceTree = "<group>";
@@ -322,6 +349,8 @@
 		8FB559EF2CB3CE7C00046E4C /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				8FB7BE222D86798F007EBEC8 /* BottomSheet */,
+				8FB7BE292D8679CE007EBEC8 /* accessibilityIconsSection 2.swift */,
 				8F71B4122CA954A300F1B782 /* Place.swift */,
 				8F4710B82CB598D200550E08 /* LocationMapAnnotation.swift */,
 				8F69E3202D75997400B90AAB /* DaysComponent.swift */,
@@ -379,6 +408,29 @@
 				8FA838302CAB115D003C9884 /* AudioRecorderManager.swift */,
 			);
 			path = AVFoundation;
+			sourceTree = "<group>";
+		};
+		8FB7BE182D86797C007EBEC8 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				8FB7BE112D86797C007EBEC8 /* CourseDetailBottomSheetView.swift */,
+				8FB7BE122D86797C007EBEC8 /* CourseDetailCourseView.swift */,
+				8FB7BE132D86797C007EBEC8 /* CourseDetailNotificationView.swift */,
+				8FB7BE142D86797C007EBEC8 /* CourseDetailResultView.swift */,
+				8FB7BE152D86797C007EBEC8 /* CourseDetailSegmentView.swift */,
+				8FB7BE162D86797C007EBEC8 /* CourseDetailTitleView.swift */,
+				8FB7BE172D86797C007EBEC8 /* CourseDetailWeatherView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		8FB7BE222D86798F007EBEC8 /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				8FB7BE202D86798F007EBEC8 /* CustomCorner.swift */,
+				8FB7BE212D86798F007EBEC8 /* SegmentControl.swift */,
+			);
+			path = BottomSheet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,6 +532,13 @@
 				8FB05FA52CB6DF96005698FE /* PlaceViewModel.swift in Sources */,
 				8F71B41A2CA954A300F1B782 /* MapViewModel.swift in Sources */,
 				8F69E3212D75997400B90AAB /* DaysComponent.swift in Sources */,
+				8FB7BE192D86797D007EBEC8 /* CourseDetailSegmentView.swift in Sources */,
+				8FB7BE1A2D86797D007EBEC8 /* CourseDetailResultView.swift in Sources */,
+				8FB7BE1B2D86797D007EBEC8 /* CourseDetailNotificationView.swift in Sources */,
+				8FB7BE1C2D86797D007EBEC8 /* CourseDetailTitleView.swift in Sources */,
+				8FB7BE1D2D86797D007EBEC8 /* CourseDetailBottomSheetView.swift in Sources */,
+				8FB7BE1E2D86797D007EBEC8 /* CourseDetailWeatherView.swift in Sources */,
+				8FB7BE1F2D86797D007EBEC8 /* CourseDetailCourseView.swift in Sources */,
 				8F69E31D2D75972100B90AAB /* CourseResultView.swift in Sources */,
 				8FBAC3EE2CAFAE03007AD4CB /* ResponsePlaceDTO.swift in Sources */,
 				8F69E31B2D757CCE00B90AAB /* CourseOnboardingFinalView.swift in Sources */,
@@ -490,11 +549,15 @@
 				8F71B4182CA954A300F1B782 /* MapView.swift in Sources */,
 				8FA838312CAB115D003C9884 /* AudioRecorderManager.swift in Sources */,
 				8F69E3292D759FD000B90AAB /* CourseSaveView.swift in Sources */,
+				8FB7BE232D86798F007EBEC8 /* SegmentControl.swift in Sources */,
+				8FB7BE242D86798F007EBEC8 /* CustomCorner.swift in Sources */,
 				8FBAC3F42CAFF18E007AD4CB /* WebKit.swift in Sources */,
 				8F71B4142CA954A300F1B782 /* SearchFilterView.swift in Sources */,
 				8FBAC3F22CAFF156007AD4CB /* MainView.swift in Sources */,
 				8F117AC12D69ABD5000DAE3F /* ResponseJoinModel.swift in Sources */,
 				8F71B4132CA954A300F1B782 /* PlaceListView.swift in Sources */,
+				8FB7BE272D8679B0007EBEC8 /* SavePlaceView.swift in Sources */,
+				8FB7BE282D8679B0007EBEC8 /* SaveCourseView.swift in Sources */,
 				8F69E3252D759B3900B90AAB /* CourseView.swift in Sources */,
 				8F117ACC2D6AC65E000DAE3F /* CourseOnboardingSecondView.swift in Sources */,
 				8F1D2C102D5A273A00126EFA /* OnboardingFifthView.swift in Sources */,
@@ -509,6 +572,7 @@
 				8F69E3272D759C7700B90AAB /* InsetRoundedButton.swift in Sources */,
 				8F69E3232D759A4B00B90AAB /* CourseListView.swift in Sources */,
 				8FB559EB2CB3CD3F00046E4C /* BF_TRIPApp.swift in Sources */,
+				8FB7BE2A2D8679CE007EBEC8 /* accessibilityIconsSection 2.swift in Sources */,
 				8FFA9ECA2D589C3500805840 /* OnboardingSecondView.swift in Sources */,
 				8F71B4162CA954A300F1B782 /* BFView.swift in Sources */,
 				8F9256032CB3D59E00801E86 /* FilterButtonGroup.swift in Sources */,
