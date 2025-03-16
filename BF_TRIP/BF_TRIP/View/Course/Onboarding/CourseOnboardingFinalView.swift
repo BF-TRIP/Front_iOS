@@ -83,7 +83,6 @@ struct CourseOnboardingFinalView: View {
                 if currentTextIndex != 0 {
                     isShowing = false
                     isResultViewShowing = true
-                    print(currentTextIndex)
                 }
                 currentTextIndex = (currentTextIndex + 1) % textSubMessages.count
             }

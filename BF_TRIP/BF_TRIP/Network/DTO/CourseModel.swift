@@ -8,27 +8,23 @@
 import Foundation
 
 struct CourseModel: Codable, Hashable {
-    
-    let courseNumber: Int
-    let courseName: String
-    let area: String
-    let startDate: String
-    let endDate: String
-    let period: Int
-    let mobility: Bool
-    let blind: Bool
-    let hear: Bool
-    let family: Bool
+
+    let courseInfo: CourseInfo
     let locationInfoResList: [ResponsePlaceDTO]
     
 }
 
-struct CourseDetailModel: Codable, Hashable {
+struct CourseInfo: Codable, Hashable {
     
     let courseNumber: Int
-    let courseName: String
-    let description: String?
-    let locationInfoResList: [ResponsePlaceDTO]
+    let courseName: String?
+    let area: String?
+    let startDate: String?
+    let endDate: String?
+    let mobility: Bool
+    let blind: Bool
+    let hear: Bool
+    let family: Bool
     
 }
 

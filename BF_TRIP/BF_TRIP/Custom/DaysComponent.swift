@@ -18,7 +18,7 @@ struct DaysComponent: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 4) {
-                ForEach(1...days, id: \.self) { index in
+                ForEach(1...days+1, id: \.self) { index in
                     dayButton(for: index)
                 }
             }

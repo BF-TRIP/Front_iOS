@@ -24,15 +24,15 @@ struct CourseDetailCourseView: View {
     var body: some View {
         NavigationStack {
             VStack {
-//                DaysComponent(
-//                    selectedDay: $selectedNumber,
-//                    days: 0,
-//                    backgroundColor: backgroundColor,
-//                    defalutColor: defalutColor,
-//                    fontColor: fontColor
-//                )
-//                .padding(.leading, 30)
-//                .padding(.top, 10)
+                DaysComponent(
+                    selectedDay: $selectedNumber,
+                    days: 0,
+                    backgroundColor: backgroundColor,
+                    defalutColor: defalutColor,
+                    fontColor: fontColor
+                )
+                .padding(.leading, 30)
+                .padding(.top, 10)
                 
                 CourseListView(
                     course: $course,

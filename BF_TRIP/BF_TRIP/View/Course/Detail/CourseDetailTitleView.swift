@@ -21,20 +21,20 @@ struct CourseDetailTitleView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 30)
-                Text(course.courseName)
+                Text(course.courseInfo.courseName ?? "")
                     .font(.system(size: titleFontSize, weight: .semibold))
                 HStack {
 //                    Image(uiImage: .mapPin)
 //                        .resizable()
 //                        .frame(width: 20, height: 20)
-                    Text(course.area)
+                    Text(course.courseInfo.area ?? "")
                         .font(.system(size: fontSize))
                 }
                 HStack {
 //                    Image(uiImage: .calendar)
 //                        .resizable()
 //                        .frame(width: 20, height: 20)
-                    Text("\(course.startDate) - \(course.endDate)")
+                    Text("\(String(describing: course.courseInfo.startDate)) - \(String(describing: course.courseInfo.endDate))")
                             .font(.system(size: fontSize))
                 }
                 

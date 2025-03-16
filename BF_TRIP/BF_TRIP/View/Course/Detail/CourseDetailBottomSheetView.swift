@@ -17,8 +17,12 @@ struct CourseDetailBottomSheetView: View {
     
     var body: some View {
         ZStack {
-            CourseDetailSegmentView(course: $course, selectedList: $selectedList, selectedNumber: $selectedNumber)
-                .clipShape(CustomCorner(corners: [.topLeft, .topRight], radius: 30))
+            CourseDetailSegmentView(
+                course: $course,
+                selectedList: $selectedList,
+                selectedNumber: $selectedNumber
+            )
+            .clipShape(CustomCorner(corners: [.topLeft, .topRight], radius: 30))
             
             VStack {
                 VStack {

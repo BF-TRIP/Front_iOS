@@ -20,16 +20,17 @@ struct CourseResultView: View {
     @State private var showAlert = false
     
     @State private var course: CourseModel = CourseModel(
-        courseNumber: 1,
-        courseName: "1",
-        area: "서울",
-        startDate: "2024/11/23",
-        endDate: "2024/11/24",
-        period: 0,
-        mobility: false,
-        blind: false,
-        hear: false,
-        family: false,
+        courseInfo: CourseInfo(
+            courseNumber: 0,
+            courseName: "",
+            area: "",
+            startDate: "",
+            endDate: "",
+            mobility: false,
+            blind: false,
+            hear: false,
+            family: false
+        ),
         locationInfoResList: []
     )
     
@@ -70,7 +71,7 @@ struct CourseResultView: View {
                 
                 DaysComponent(
                     selectedDay: $selectedDay,
-                    days: course.period,
+                    days: 0,
                     backgroundColor: Constants.backgroundColor,
                     defalutColor: Constants.defaultColor,
                     fontColor: Constants.fontColor
@@ -142,11 +143,11 @@ struct CourseInfoView: View {
     var body: some View {
         VStack(spacing: 3) {
             HStack(spacing: 8) {
-                Text(course.area)
+                Text(course.courseInfo.area ?? "")
                     .font(.system(size: Constants.semiboldFontSize, weight: .semibold))
                     .foregroundColor(.black)
                 
-                Text("\(course.period)박 \(course.period + 1)일")
+                Text("1박 2일")
                     .font(.system(size: Constants.semiboldFontSize, weight: .semibold))
                     .foregroundColor(.black)
             }

@@ -143,7 +143,6 @@ final class MoyaManager {
                     let decoder = JSONDecoder()
                     let jsonData = try decoder.decode([ResponseSaveDTO].self, from: response.data)
                     
-                    print(jsonData)
                     completion(.success(jsonData))
                 } catch {
                     print(error)
@@ -230,8 +229,6 @@ final class MoyaManager {
                         let decoder = JSONDecoder()
                         let jsonData = try decoder.decode([ResponsePlaceDTO].self, from: response.data)
                         
-//                        dump(response)
-                        
                         continuation.resume(returning: jsonData)
                     } catch {
                         continuation.resume(throwing: error)
@@ -251,8 +248,6 @@ final class MoyaManager {
                     do {
                         let decoder = JSONDecoder()
                         let jsonData = try decoder.decode([tmp].self, from: response.data)
-                        
-                        dump(response)
                         
                         continuation.resume(returning: jsonData)
                     } catch {
@@ -277,7 +272,6 @@ extension MoyaProvider {
             self.request(target) { result in
                 switch result {
                 case .success(let response):
-                    dump(response)
                     do {
                         let decoder = JSONDecoder()
                         let jsonData = try decoder.decode(T.self, from: response.data)

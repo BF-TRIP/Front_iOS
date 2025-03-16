@@ -10,16 +10,17 @@ import SwiftUI
 struct CourseDetailResultView: View {
     
     @State private var course: CourseModel = CourseModel(
-        courseNumber: 0,
-        courseName: "",
-        area: "",
-        startDate: "",
-        endDate: "",
-        period: 0,
-        mobility: false,
-        blind: false,
-        hear: false,
-        family: false,
+        courseInfo: CourseInfo(
+            courseNumber: 0,
+            courseName: "",
+            area: "",
+            startDate: "",
+            endDate: "",
+            mobility: false,
+            blind: false,
+            hear: false,
+            family: false
+        ),
         locationInfoResList: []
     )
     @State private var selectedList: [Course] = []
@@ -88,26 +89,26 @@ struct CourseDetailResultView: View {
                         selectedNumber: $selectedNumber,
                         height: height
                     )
-                        .offset(y: height)
-                        .offset(y: -offset > 0 ? -offset <= height ? offset : -height : 0)
-                        .gesture(DragGesture().updating($gestureOffset, body: { value, out, _ in
-                            out = value.translation.height
-                            onBottomSheetChange()
-                        }).onEnded({ value in
-                            withAnimation {
-                                if -offset < height / 2 {
-                                    offset = -(height / 3)
-                                } else {
-                                    offset = -height
-                                }
+                    .offset(y: height)
+                    .offset(y: -offset > 0 ? -offset <= height ? offset : -height : 0)
+                    .gesture(DragGesture().updating($gestureOffset, body: { value, out, _ in
+                        out = value.translation.height
+                        onBottomSheetChange()
+                    }).onEnded({ value in
+                        withAnimation {
+                            if -offset < height / 2 {
+                                offset = -(height / 3)
+                            } else {
+                                offset = -height
                             }
-                            lastOffset = offset
-                        }))
-                        .edgesIgnoringSafeArea(.bottom)
-                        .onAppear {
-                            self.offset = -height
-                            lastOffset = offset
                         }
+                        lastOffset = offset
+                    }))
+                    .edgesIgnoringSafeArea(.bottom)
+                    .onAppear {
+                        self.offset = -height
+                        lastOffset = offset
+                    }
                 )
             }
         }
@@ -133,7 +134,6 @@ private extension CourseDetailResultView {
     private func setCourse(number: Int) async {
         do {
             course = try await MoyaManager.shared.getCourseDetail(courseNumber: number)
-            print(course)
         } catch {
             print(error.localizedDescription)
         }
