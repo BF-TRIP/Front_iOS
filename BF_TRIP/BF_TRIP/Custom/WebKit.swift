@@ -54,7 +54,7 @@ struct WebKit: UIViewRepresentable {
                 isOnboarding: isOnboarding
             ), name: "serverEvent"
         )
-        webView.scrollView.isScrollEnabled = false
+        webView.scrollView.isScrollEnabled = true
         webView.isInspectable = true
     }
 
