@@ -29,14 +29,14 @@ struct CourseOnboardingSecondView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         
         LazyVGrid(columns: columns, spacing: 10) {
-            ForEach(buttonTitles, id: \.self) { button in
+            ForEach(Array(buttonTitles.enumerated()), id: \.offset) { index, button in
                 ButtonView(button: button, isSelected: selectedButton == button, action: {
                     if selectedButton == button {
                         selectedButton = nil
                         viewModel.updateDays(nil)
                     } else {
                         selectedButton = button
-                        viewModel.updateDays(button)
+                        viewModel.updateDays(index + 1)
                     }
                 })
             }

@@ -13,7 +13,7 @@ struct KakaoMapView: UIViewRepresentable {
     @Binding var draw: Bool
     @Binding var gpsY: Double
     @Binding var gpsX: Double
-    @Binding var list: [Course]
+    @Binding var list: [ResponsePlaceDTO]
     
     func makeUIView(context: Self.Context) -> KMViewContainer {
         let view: KMViewContainer = KMViewContainer()

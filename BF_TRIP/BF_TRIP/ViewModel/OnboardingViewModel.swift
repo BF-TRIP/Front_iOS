@@ -14,8 +14,8 @@ final class OnboardingViewModel: ObservableObject {
     @Published private(set) var gender: Int? = nil
     @Published private(set) var disabilityList: [Bool] = Array(repeating: false, count: 4)
     @Published private(set) var tripList: [Bool] = Array(repeating: false, count: 4)
-    @Published private(set) var area: String? = nil
-    @Published private(set) var days: String? = nil
+    @Published private(set) var area: Int? = nil
+    @Published private(set) var days: Int? = nil
     
     private var selectedDisabilities: [Int] {
         disabilityList.enumerated()
@@ -38,6 +38,26 @@ final class OnboardingViewModel: ObservableObject {
             name: name,
             gender: selectedGender,
             birth: birth.toDateString(),
+            disability: selectedDisabilities,
+            tripType: selectedTripTypes
+        )
+    }
+    
+    func postAIQuickRecomnent() async throws -> CourseModel {
+        return try await MoyaManager.shared.postAIQuickRecomnent(
+            userNumber: 138,
+            area: area ?? 1,
+            period: days ?? 1
+        )
+    }
+    
+    func postAIRecomnent() async throws -> CourseModel {
+        dump(selectedDisabilities)
+        dump(selectedTripTypes)
+        return try await MoyaManager.shared.postAIRecomnent(
+            userNumber: 138,
+            area: area ?? 1,
+            period: days ?? 1,
             disability: selectedDisabilities,
             tripType: selectedTripTypes
         )
@@ -69,11 +89,11 @@ final class OnboardingViewModel: ObservableObject {
         tripList[index].toggle()
     }
     
-    func updateArea(_ newArea: String?) {
+    func updateArea(_ newArea: Int?) {
         area = newArea
     }
     
-    func updateDays(_ newDays: String?) {
+    func updateDays(_ newDays: Int?) {
         days = newDays
     }
     

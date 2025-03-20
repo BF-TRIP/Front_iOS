@@ -16,8 +16,8 @@ struct CourseListView: View {
 //    @Binding var dayTwoList: [Course]
 //    @Binding var dayThreeList: [Course]
     
-    @State private var selectedList: [ResponsePlaceDTO] = []
-    @State private var selectedNumber: Int = 0
+    @Binding var selectedList: [ResponsePlaceDTO]
+//    @Binding var selectedNumber: Int
     
     @State private var isWebViewShowing = false
     @State private var isOnboarding = false
@@ -32,7 +32,7 @@ struct CourseListView: View {
             .onTapGesture {
                 isOnboarding.toggle()
             }
-            .onChange(of: selectedNumber) { _, newValue in
+            .onChange(of: selectedDay) { _, newValue in
                 updateSelectedList(for: newValue)
             }
             .fullScreenCover(isPresented: $isOnboarding) {
@@ -54,11 +54,11 @@ private extension CourseListView {
     func updateSelectedList(for dayNumber: Int) {
         switch dayNumber {
         case 1:
-            selectedList = Array(course.locationInfoResList[0...2])
+            selectedList = Array(course.locationInfoResList[0])
         case 2:
-            selectedList = Array(course.locationInfoResList[3...5])
+            selectedList = Array(course.locationInfoResList[1])
         case 3:
-            selectedList = Array(course.locationInfoResList[6...8])
+            selectedList = Array(course.locationInfoResList[2])
         default:
             break
         }

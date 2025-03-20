@@ -12,6 +12,8 @@ struct CourseOnboardingFinalView: View {
     @ObservedObject var viewModel: OnboardingViewModel
     @Binding var isShowing: Bool
     @Binding var isResultViewShowing: Bool
+    @Binding var onboardingState: Bool
+    @Binding var result: CourseModel
     
     @State private var timer: Timer?
     
@@ -75,15 +77,37 @@ struct CourseOnboardingFinalView: View {
         .onDisappear {
             stopTextRotation()
         }
+        .task {
+            await fetchData()
+        }
+    }
+    
+    private func fetchData() async {
+        if onboardingState {
+            do {
+                result = try await viewModel.postAIQuickRecomnent()
+                isShowing = false
+                isResultViewShowing = true
+                dump(result)
+            } catch {
+                print(error.localizedDescription)
+                isShowing = false
+            }
+        } else {
+            do {
+                result = try await viewModel.postAIRecomnent()
+                isShowing = false
+                isResultViewShowing = true
+            } catch {
+                print(error.localizedDescription)
+                isShowing = false
+            }
+        }
     }
     
     private func startTextRotation() {
         timer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: true) { _ in
             withAnimation {
-                if currentTextIndex != 0 {
-                    isShowing = false
-                    isResultViewShowing = true
-                }
                 currentTextIndex = (currentTextIndex + 1) % textSubMessages.count
             }
         }

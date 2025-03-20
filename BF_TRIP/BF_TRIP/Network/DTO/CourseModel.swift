@@ -10,7 +10,7 @@ import Foundation
 struct CourseModel: Codable, Hashable {
 
     let courseInfo: CourseInfo
-    let locationInfoResList: [ResponsePlaceDTO]
+    let locationInfoResList: [[ResponsePlaceDTO]]
     
 }
 
@@ -43,4 +43,5 @@ struct Course: Codable, Hashable {
 struct tmp: Codable, Hashable {
     var courseNumber: Int
     var courseName: String
+    var contentIdList: [Course]
 }

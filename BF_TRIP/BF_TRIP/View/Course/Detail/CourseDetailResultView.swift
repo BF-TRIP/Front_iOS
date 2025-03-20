@@ -23,7 +23,7 @@ struct CourseDetailResultView: View {
         ),
         locationInfoResList: []
     )
-    @State private var selectedList: [Course] = []
+    @State private var selectedList: [ResponsePlaceDTO] = []
     @State private var selectedNumber: Int = 1
     
     @Binding var courseNumber: Int?

@@ -10,7 +10,7 @@ import SwiftUI
 struct CourseDetailCourseView: View {
     
     @Binding var course: CourseModel
-    @Binding var selectedList: [Course]
+    @Binding var selectedList: [ResponsePlaceDTO]
     @Binding var selectedNumber: Int
     
     private let backgroundColor = "0A70C9"
@@ -25,8 +25,8 @@ struct CourseDetailCourseView: View {
         NavigationStack {
             VStack {
                 DaysComponent(
+                    course: $course,
                     selectedDay: $selectedNumber,
-                    days: 0,
                     backgroundColor: backgroundColor,
                     defalutColor: defalutColor,
                     fontColor: fontColor
@@ -36,12 +36,8 @@ struct CourseDetailCourseView: View {
                 
                 CourseListView(
                     course: $course,
-                    selectedDay: $selectedNumber
-//                    dayOneList: $course.day1,
-//                    dayTwoList: $course.day2,
-//                    dayThreeList: $course.day3,
-//                    selectedList: $selectedList,
-//                    selectedNumber: $selectedNumber
+                    selectedDay: $selectedNumber,
+                    selectedList: $selectedList
                 )
                 .padding(.top, 10)
                 .padding(.trailing)

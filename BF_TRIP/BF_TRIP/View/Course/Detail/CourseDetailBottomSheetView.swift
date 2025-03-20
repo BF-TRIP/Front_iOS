@@ -11,7 +11,7 @@ struct CourseDetailBottomSheetView: View {
     
     @Binding var offset: CGFloat
     @Binding var course: CourseModel
-    @Binding var selectedList: [Course]
+    @Binding var selectedList: [ResponsePlaceDTO]
     @Binding var selectedNumber: Int
     let height: CGFloat
     

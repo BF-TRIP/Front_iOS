@@ -11,7 +11,7 @@ struct CourseDetailSegmentView: View {
     
     @State private var activeTab: SegmentedTab = .course
     @Binding var course: CourseModel
-    @Binding var selectedList: [Course]
+    @Binding var selectedList: [ResponsePlaceDTO]
     @Binding var selectedNumber: Int
     
     var body: some View {

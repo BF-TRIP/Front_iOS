@@ -8,31 +8,16 @@
 import SwiftUI
 
 struct CourseResultView: View {
-    @State private var dayList: [[Course]] = [[]]
+    @State private var dayList: [[ResponsePlaceDTO]] = [[]]
     @State private var draw = true
     @State private var isSaving = false
     @State private var selectedDay = 0
-    @State private var selectedList: [Course] = []
+    @State private var selectedList: [ResponsePlaceDTO] = []
     
     @Binding var isResultShowing: Bool
-    @Binding var courseNumber: Int
+    @Binding var result: CourseModel
     
     @State private var showAlert = false
-    
-    @State private var course: CourseModel = CourseModel(
-        courseInfo: CourseInfo(
-            courseNumber: 0,
-            courseName: "",
-            area: "",
-            startDate: "",
-            endDate: "",
-            mobility: false,
-            blind: false,
-            hear: false,
-            family: false
-        ),
-        locationInfoResList: []
-    )
     
     @State private var gpsX: Double = 128
     @State private var gpsY: Double = 37
@@ -61,7 +46,7 @@ struct CourseResultView: View {
                 }
                 .padding()
                 
-                CourseInfoView(course: course)
+                CourseInfoView(course: $result)
                     .padding(.top)
                 
                 KakaoMapView(draw: $draw, gpsY: $gpsY, gpsX: $gpsX, list: $dayList[0])
@@ -70,8 +55,8 @@ struct CourseResultView: View {
                     .onDisappear { draw = false }
                 
                 DaysComponent(
+                    course: $result,
                     selectedDay: $selectedDay,
-                    days: 0,
                     backgroundColor: Constants.backgroundColor,
                     defalutColor: Constants.defaultColor,
                     fontColor: Constants.fontColor
@@ -80,8 +65,9 @@ struct CourseResultView: View {
                 .padding(.top, 10)
                 
                 CourseListView(
-                    course: $course,
-                    selectedDay: $selectedDay
+                    course: $result,
+                    selectedDay: $selectedDay,
+                    selectedList: $selectedList
                 )
                 
                 Spacer()
@@ -95,24 +81,12 @@ struct CourseResultView: View {
             .fullScreenCover(isPresented: $isSaving) {
                 CourseSaveView(isSaving: $isSaving, isResultShowing: $isResultShowing)
             }
-            .onAppear { setResult() }
+            .onAppear {
+                selectedDay = 1
+                selectedList = result.locationInfoResList[0]
+            }
             .background(Color.white)
         }
-    }
-}
-
-private extension CourseResultView {
-    func setResult() {
-//        MoyaManager.shared.idToCourse(number: courseNumber) { result in
-//            switch result {
-//            case .success(let data):
-//                course = data
-//                selectedDay = 1
-//                selectedList = data.day1
-//            case .failure(let error):
-//                print("Error loading course:", error.localizedDescription)
-//            }
-//        }
     }
 }
 
@@ -138,7 +112,7 @@ struct HeaderView: View {
 }
 
 struct CourseInfoView: View {
-    let course: CourseModel
+    @Binding var course: CourseModel
     
     var body: some View {
         VStack(spacing: 3) {
@@ -147,9 +121,15 @@ struct CourseInfoView: View {
                     .font(.system(size: Constants.semiboldFontSize, weight: .semibold))
                     .foregroundColor(.black)
                 
-                Text("1박 2일")
-                    .font(.system(size: Constants.semiboldFontSize, weight: .semibold))
-                    .foregroundColor(.black)
+                if course.locationInfoResList.count == 1 {
+                    Text("당일치기")
+                        .font(.system(size: Constants.semiboldFontSize, weight: .semibold))
+                        .foregroundColor(.black)
+                } else {
+                    Text("\(course.locationInfoResList.count - 1)박 \(course.locationInfoResList.count)일")
+                        .font(.system(size: Constants.semiboldFontSize, weight: .semibold))
+                        .foregroundColor(.black)
+                }
             }
             
             Text(Constants.mention)

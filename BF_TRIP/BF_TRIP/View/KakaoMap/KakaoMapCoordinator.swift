@@ -14,7 +14,7 @@ final class KakaoMapCoordinator: NSObject, MapControllerDelegate {
     var first: Bool = true
     
     var userMapPoint: MapPoint? = MapPoint(longitude: 127.10, latitude: 37.34)
-    var placeList: [Course] = []
+    var placeList: [ResponsePlaceDTO] = []
     
     override init() {
         super.init()
@@ -100,7 +100,7 @@ extension KakaoMapCoordinator {
         manager.addPoiStyle(defaultPoiStyle)
     }
     
-    func updatePois(placeList: [Course], gpsY: Double?, gpsX: Double?) {
+    func updatePois(placeList: [ResponsePlaceDTO], gpsY: Double?, gpsX: Double?) {
         
         guard let view = controller?.getView("mapview") as? KakaoMap else { return }
         guard let gpsY = gpsY else { return }
@@ -123,7 +123,7 @@ extension KakaoMapCoordinator {
         }
         
         let poiOptions = placeList.map { list in
-            let poiOption = PoiOptions(styleID: "defaultStyle", poiID: String(list.name))
+            let poiOption = PoiOptions(styleID: "defaultStyle", poiID: String(list.contentTitle))
             poiOption.rank = 0
             poiOption.clickable = true
             return poiOption
@@ -138,7 +138,7 @@ extension KakaoMapCoordinator {
 //                let pokemonIconStyle = PoiIconStyle(symbol: UIImage(data: data))
                 
                 let placePoiStyle = PoiStyle(
-                    styleID: "\(list.name)Style",
+                    styleID: "\(list.contentTitle)Style",
                     styles: [
                     PerLevelPoiStyle(iconStyle: placeIconStyle, level: 5),
                     PerLevelPoiStyle(iconStyle: placeIconStyle, level: 12)
@@ -146,8 +146,8 @@ extension KakaoMapCoordinator {
                 
                 manager.addPoiStyle(placePoiStyle)
                 
-                let poi = layer?.getPoi(poiID: "\(list.name)")
-                poi?.changeStyle(styleID: "\(list.name)Style")
+                let poi = layer?.getPoi(poiID: "\(list.contentTitle)")
+                poi?.changeStyle(styleID: "\(list.contentTitle)Style")
             }
         }
         

@@ -9,8 +9,9 @@ import SwiftUI
 
 struct DaysComponent: View {
     
+    @Binding var course: CourseModel
     @Binding var selectedDay: Int
-    let days: Int
+    
     let backgroundColor: String
     let defalutColor: String
     let fontColor: String
@@ -18,7 +19,7 @@ struct DaysComponent: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 4) {
-                ForEach(1...days+1, id: \.self) { index in
+                ForEach(1...course.locationInfoResList.count, id: \.self) { index in
                     dayButton(for: index)
                 }
             }

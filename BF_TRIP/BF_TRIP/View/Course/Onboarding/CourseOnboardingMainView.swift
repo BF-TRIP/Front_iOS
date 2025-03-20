@@ -14,6 +14,7 @@ struct CourseOnboardingMainView: View {
     @State private var currentStartPage: Int = 1
     @State private var currentRestartPage: Int = 1
     
+    @Binding var result: CourseModel
     @Binding var onboardingState: Bool
     @Binding var isShowing: Bool
     @Binding var isResultViewShowing: Bool
@@ -142,7 +143,9 @@ struct CourseOnboardingMainView: View {
             CourseOnboardingFinalView(
                 viewModel: viewModel,
                 isShowing: $isShowing,
-                isResultViewShowing: $isResultViewShowing
+                isResultViewShowing: $isResultViewShowing,
+                onboardingState: $onboardingState,
+                result: $result
             )
         default:
             EmptyView()
@@ -164,7 +167,9 @@ struct CourseOnboardingMainView: View {
             CourseOnboardingFinalView(
                 viewModel: viewModel,
                 isShowing: $isShowing,
-                isResultViewShowing: $isResultViewShowing
+                isResultViewShowing: $isResultViewShowing,
+                onboardingState: $onboardingState,
+                result: $result
             )
         default:
             EmptyView()

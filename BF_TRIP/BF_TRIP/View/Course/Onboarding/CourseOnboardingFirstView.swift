@@ -20,6 +20,16 @@ struct CourseOnboardingFirstView: View {
         "경남", "부산", "대구",
         "울산", "제주"
     ]
+    
+    let buttonsArea = [
+        1, 2, 31,
+        32, 8, 33,
+        34, 3, 37,
+        38, 5, 35,
+        36, 6, 4,
+        7, 39
+    ]
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -40,14 +50,14 @@ struct CourseOnboardingFirstView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         
         LazyVGrid(columns: columns, spacing: 10) {
-            ForEach(buttons, id: \.self) { button in
+            ForEach(Array(buttons.enumerated()), id: \.offset) { index, button in
                 ButtonView(button: button, isSelected: selectedButton == button, action: {
                     if selectedButton == button {
                         selectedButton = nil
                         viewModel.updateArea(nil)
                     } else {
                         selectedButton = button
-                        viewModel.updateArea(button)
+                        viewModel.updateArea(buttonsArea[index])
                     }
                 })
             }

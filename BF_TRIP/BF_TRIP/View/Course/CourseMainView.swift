@@ -16,7 +16,21 @@ struct CourseMainView: View {
     @State private var isResultViewShowing = false
     @State private var isOnboardingState = false
     
-    @State private var number: Int = 25
+    @State private var result: CourseModel = CourseModel(
+        courseInfo: CourseInfo(
+            courseNumber: 0,
+            courseName: "",
+            area: "",
+            startDate: "",
+            endDate: "",
+            mobility: false,
+            blind: false,
+            hear: false,
+            family: false
+        ),
+        locationInfoResList: []
+    )
+//    @State private var number: Int = 25
     
     var body: some View {
         GeometryReader { geometry in
@@ -48,6 +62,7 @@ struct CourseMainView: View {
                     .fullScreenCover(isPresented: $isCreateViewShowing) {
                         CourseOnboardingMainView(
                             viewModel: onboardingViewModel,
+                            result: $result,
                             onboardingState: $isOnboardingState,
                             isShowing: $isCreateViewShowing,
                             isResultViewShowing: $isResultViewShowing
@@ -74,6 +89,7 @@ struct CourseMainView: View {
                     .fullScreenCover(isPresented: $isCreateViewShowing) {
                         CourseOnboardingMainView(
                             viewModel: onboardingViewModel,
+                            result: $result,
                             onboardingState: $isOnboardingState,
                             isShowing: $isCreateViewShowing,
                             isResultViewShowing: $isResultViewShowing
@@ -88,7 +104,7 @@ struct CourseMainView: View {
         .background(Color(hex: "FFFCE7"))
         .ignoresSafeArea()
         .fullScreenCover(isPresented: $isResultViewShowing) {
-            CourseResultView(isResultShowing: $isResultViewShowing, courseNumber: $number)
+            CourseResultView(isResultShowing: $isResultViewShowing, result: $result)
         }
     }
 

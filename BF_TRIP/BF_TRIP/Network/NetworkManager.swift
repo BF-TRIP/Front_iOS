@@ -57,9 +57,9 @@ extension NetworkManager: TargetType {
             return "api/user/exist"
             
         case .postAIQuickRecomnent(userNumber: _, area: _, period: _):
-            return "api/course/ai-rec"
-        case .postAIRecomnent(userNumber: _, area: _, period: _, disability: _, tripType: _):
             return "api/course/ai-rec-quick"
+        case .postAIRecomnent(userNumber: _, area: _, period: _, disability: _, tripType: _):
+            return "api/course/ai-rec"
         case .getSavePlaceList(userNumber: let userNumber):
             return "api/course/save/\(userNumber)"
         case .getSaveCourseList(userNumber: let userNumber):
