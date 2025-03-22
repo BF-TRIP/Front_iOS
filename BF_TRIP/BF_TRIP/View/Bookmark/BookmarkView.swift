@@ -12,7 +12,24 @@ struct BookmarkView: View {
     @State private var selectedSegment = 0
     
     @State private var places: [ResponsePlaceDTO] = []
-    @State private var courses: [tmp] = []
+    @State private var courses: [CourseInfo] = []
+    @State private var course: CourseModel = CourseModel(
+        courseInfo: CourseInfo(
+            courseNumber: 0,
+            courseName: "",
+            area: "",
+            image: "",
+            gpsX: 0.0,
+            gpsY: 0.0,
+            startDate: "",
+            endDate: "",
+            mobility: false,
+            blind: false,
+            hear: false,
+            family: false
+        ),
+        locationInfoResList: []
+    )
     
     @State private var selectedCourseNumber: Int?
     @State var isDetailShowing: Bool = false
@@ -35,37 +52,46 @@ struct BookmarkView: View {
             .padding()
             .pickerStyle(SegmentedPickerStyle())
             
-            if selectedSegment == 0 {
-                List(0..<places.count, id: \.self) { index in
-                    SavePlaceView(place: $places[index])
-                        .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+            ScrollView {
+                if selectedSegment == 0 {
+                    ForEach($places, id: \.self) { $place in
+                        Button {
+                            selectedCourseNumber = Int(place.contentId)
+                        } label: {
+                            SavePlaceView(place: $place)
+                        }
+                        .padding()
                         .listRowSeparator(.hidden)
-                }
-                .scrollIndicators(.hidden)
-                .listStyle(PlainListStyle())
-            } else if selectedSegment == 1 {
-                ForEach($courses, id: \.self) { $course in
-                    Button {
-                        self.isDetailShowing.toggle()
-                        self.selectedCourseNumber = course.courseNumber
-                    } label: {
-                        SaveCourseView(course: $course)
-                            .background(.white)
-                            .cornerRadius(15)
-                            .shadow(radius: 0.5)
                     }
-                    .listRowSeparator(.hidden)
+                    .scrollIndicators(.hidden)
+                    .listStyle(PlainListStyle())
+                } else if selectedSegment == 1 {
+                    ForEach($courses, id: \.self) { $course in
+                        Button {
+                            selectedCourseNumber = course.courseNumber
+                            Task {
+                                await fetchCourse()
+                            }
+                        } label: {
+                            SaveCourseView(course: $course)
+                                .background(.white)
+                                .cornerRadius(15)
+                                .shadow(radius: 0.5)
+                        }
+                        .listRowSeparator(.hidden)
+                    }
+                    .onDelete(perform: { indexSet in
+                        courses.remove(atOffsets: indexSet)
+                    })
+                    .onMove(perform: { indices, newOffset in
+                        courses.move(fromOffsets: indices, toOffset: newOffset)
+                    })
+                    .padding(.top, 10)
+                    .padding(.leading)
+                    .padding(.trailing)
                 }
-                .onDelete(perform: { indexSet in
-                    courses.remove(atOffsets: indexSet)
-                })
-                .onMove(perform: { indices, newOffset in
-                    courses.move(fromOffsets: indices, toOffset: newOffset)
-                })
-                .padding(.top, 10)
-                .padding(.leading)
-                .padding(.trailing)
             }
+            .padding(.bottom, 10)
             
             Spacer()
         }
@@ -76,7 +102,7 @@ struct BookmarkView: View {
         }
         .fullScreenCover(isPresented: $isDetailShowing, content: {
             CourseDetailResultView(
-                courseNumber: $selectedCourseNumber,
+                course: $course,
                 isDetailShowing: $isDetailShowing
             )
         })
@@ -93,6 +119,15 @@ struct BookmarkView: View {
     private func fetchSaveCourseList() async {
         do {
             courses = try await MoyaManager.shared.getSaveCourseList(userNumber: userId ?? 0)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    private func fetchCourse() async {
+        do {
+            course = try await MoyaManager.shared.getCourseDetail(courseNumber: selectedCourseNumber ?? 0)
+            self.isDetailShowing.toggle()
         } catch {
             print(error.localizedDescription)
         }

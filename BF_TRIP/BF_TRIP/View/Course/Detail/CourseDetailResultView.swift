@@ -9,40 +9,20 @@ import SwiftUI
 
 struct CourseDetailResultView: View {
     
-    @State private var course: CourseModel = CourseModel(
-        courseInfo: CourseInfo(
-            courseNumber: 0,
-            courseName: "",
-            area: "",
-            startDate: "",
-            endDate: "",
-            mobility: false,
-            blind: false,
-            hear: false,
-            family: false
-        ),
-        locationInfoResList: []
-    )
     @State private var selectedList: [ResponsePlaceDTO] = []
     @State private var selectedNumber: Int = 1
     
-    @Binding var courseNumber: Int?
-    
-    @State private var draw: Bool = true
-    
+    @Binding var course: CourseModel
     @Binding var isDetailShowing: Bool
+
+    @State private var draw: Bool = true
     
     @State private var offset: CGFloat = 0
     @State private var lastOffset: CGFloat = 0
     @GestureState var gestureOffset: CGFloat = 0
-    
-    @State var gpsX: Double = 127
-    @State var gpsY: Double = 38
-    
-    init(courseNumber: Binding<Int?>, isDetailShowing: Binding<Bool>) {
-        self._courseNumber = courseNumber
-        self._isDetailShowing = isDetailShowing
-    }
+
+    @State private var gpsX: Double = 127
+    @State private var gpsY: Double = 38
     
     var body: some View {
         ZStack {
@@ -112,11 +92,6 @@ struct CourseDetailResultView: View {
                 )
             }
         }
-        .task {
-            if let number = self.courseNumber {
-                await setCourse(number: number)
-            }
-        }
     }
     
 }
@@ -131,12 +106,4 @@ private extension CourseDetailResultView {
         }
     }
     
-    private func setCourse(number: Int) async {
-        do {
-            course = try await MoyaManager.shared.getCourseDetail(courseNumber: number)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
- 
 }

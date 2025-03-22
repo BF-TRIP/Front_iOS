@@ -19,6 +19,9 @@ struct CourseInfo: Codable, Hashable {
     let courseNumber: Int
     let courseName: String?
     let area: String?
+    let image: String?
+    let gpsX: Double?
+    let gpsY: Double?
     let startDate: String?
     let endDate: String?
     let mobility: Bool

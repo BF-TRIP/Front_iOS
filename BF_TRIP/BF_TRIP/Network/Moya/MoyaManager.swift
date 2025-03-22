@@ -186,24 +186,8 @@ final class MoyaManager {
         }
     }
     
-    func getSaveCourseList(userNumber: Int) async throws -> [tmp] {
-        return try await withCheckedThrowingContinuation { continuation in
-            provider.request(.getSaveCourseList(userNumber: userNumber)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let decoder = JSONDecoder()
-                        let jsonData = try decoder.decode([tmp].self, from: response.data)
-                        
-                        continuation.resume(returning: jsonData)
-                    } catch {
-                        continuation.resume(throwing: error)
-                    }
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                }
-            }
-        }
+    func getSaveCourseList(userNumber: Int) async throws -> [CourseInfo] {
+        return try await provider.requestDecoded(.getSaveCourseList(userNumber: userNumber), as: [CourseInfo].self)
     }
     
     func postSaveCourseList(

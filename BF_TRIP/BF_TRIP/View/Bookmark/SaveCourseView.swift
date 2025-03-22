@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SaveCourseView: View {
     
-    @Binding var course: tmp
+    @Binding var course: CourseInfo
     
     var body: some View {
         HStack {
@@ -31,22 +31,26 @@ struct SaveCourseView: View {
 //            }
             
             VStack(alignment: .leading, content: {
-                Text("\(course.courseName)")
+                Text(course.courseName ?? "")
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundColor(.black)
-//                Text("\(course.area)")
-                Text("지역")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(Color(hex: "#676767"))
-                    .padding(.top, 1)
                 HStack {
-//                    Text("\(course.startDate)~\(course.endDate)")
-                    Text("03.12-03.14")
+                    Text(course.startDate ?? "")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.black)
-                    Text("[2박3일]")
+                        .foregroundColor(Color(hex: "#676767"))
+                    Text("~")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color(hex: "#676767"))
+                    Text(course.endDate ?? "")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(Color(hex: "#676767"))
+                }
+                HStack {
+                    Image(systemName: "location.fill")
+                        .resizable()
+                        .frame(width: 12, height: 12)
+                    Text(course.area ?? "")
+                        .font(.system(size: 12, weight: .medium))
                 }
             })
             .padding(.leading, 10)
