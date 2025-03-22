@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CourseOnboardingFinalView: View {
     
+    @State private var userNumber = DataManager.shared.loadUserId()
+    
     @ObservedObject var viewModel: OnboardingViewModel
     @Binding var isShowing: Bool
     @Binding var isResultViewShowing: Bool
@@ -16,7 +18,6 @@ struct CourseOnboardingFinalView: View {
     @Binding var result: CourseModel
     
     @State private var timer: Timer?
-    @State private var userNumber: Int = 0
     
     @State private var currentTextIndex = 0
     private let textMessages = [
@@ -81,12 +82,12 @@ struct CourseOnboardingFinalView: View {
         .task {
             await fetchData()
         }
-        .environment(\.userId, userNumber)
     }
     
     private func fetchData() async {
         if onboardingState {
             do {
+                guard let userNumber = userNumber else { return }
                 result = try await viewModel.postAIQuickRecomnent(userNumber: userNumber)
                 isShowing = false
                 isResultViewShowing = true
@@ -97,6 +98,7 @@ struct CourseOnboardingFinalView: View {
             }
         } else {
             do {
+                guard let userNumber = userNumber else { return }
                 result = try await viewModel.postAIRecomnent(userNumber: userNumber)
                 isShowing = false
                 isResultViewShowing = true

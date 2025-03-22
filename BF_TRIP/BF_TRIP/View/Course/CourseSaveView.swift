@@ -10,11 +10,12 @@ import Combine
 
 struct CourseSaveView: View {
     
+    @State private var userNumber = DataManager.shared.loadUserId()
+    
     @Binding var isSaving: Bool
     @Binding var isResultShowing: Bool
     @Binding var courseNumber: Int
     
-    @State private var userNumber: Int = 0
     @State private var text: String = ""
     @State private var date = Date()
     
@@ -89,7 +90,6 @@ struct CourseSaveView: View {
                 .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
             }
             .padding()
-            .environment(\.userId, userNumber)
         }
     }
 }
@@ -97,6 +97,7 @@ struct CourseSaveView: View {
 private extension CourseSaveView {
     func saveCourse() async {
         do {
+            guard let userNumber = userNumber else { return }
             let _ = try await MoyaManager.shared.postSaveCourseList(
                 courseNumber: courseNumber,
                 userNumber: userNumber,

@@ -29,4 +29,12 @@ final class DataManager {
         return UserDefaults.standard.object(forKey: userNameKey) as? String
     }
     
+    func deleteUserId() {
+        UserDefaults.standard.removeObject(forKey: userIdKey)
+    }
+    
+    func deleteUserName() {
+        UserDefaults.standard.removeObject(forKey: userNameKey)
+    }
+    
 }

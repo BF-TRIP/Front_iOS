@@ -13,10 +13,12 @@ class ContentController: NSObject, WKScriptMessageHandler {
     
     var isVoiceViewShowing: Binding<Bool>
     var isOnboarding: Binding<Bool>
+    var showOnboarding: Binding<Bool?>
     
-    init(isVoiceViewShowing: Binding<Bool>, isOnboarding: Binding<Bool>) {
+    init(isVoiceViewShowing: Binding<Bool>, isOnboarding: Binding<Bool>, showOnboarding: Binding<Bool?>) {
         self.isVoiceViewShowing = isVoiceViewShowing
         self.isOnboarding = isOnboarding
+        self.showOnboarding = showOnboarding
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -27,9 +29,12 @@ class ContentController: NSObject, WKScriptMessageHandler {
                 isVoiceViewShowing.wrappedValue = true
             } else if message.body as? String == "confirm" {
                 isOnboarding.wrappedValue = true
+            } else if message.body as? String == "quit" {
+                showOnboarding.wrappedValue = nil
+                DataManager.shared.deleteUserId()
+                DataManager.shared.deleteUserName()
             } else {
-                dump("message name : \(message.name)")
-                dump("post Message : \(message.body)")
+                dump("그런 메시지가 없습니다.")
             }
         }
     }
@@ -43,7 +48,12 @@ struct WebKit: UIViewRepresentable {
     @Binding var isVoiceViewShowing: Bool
     @Binding var isOnboarding: Bool
 
-    init(request: URLRequest, isVoiceViewShowing: Binding<Bool>, isOnboarding: Binding<Bool>) {
+    init(
+        request: URLRequest,
+        isVoiceViewShowing: Binding<Bool>,
+        isOnboarding: Binding<Bool>,
+        showOnboarding: Binding<Bool?>
+    ) {
         self.webView = WKWebView()
         self.request = request
         self._isVoiceViewShowing = isVoiceViewShowing
@@ -51,7 +61,8 @@ struct WebKit: UIViewRepresentable {
         self.webView.configuration.userContentController.add(
             ContentController(
                 isVoiceViewShowing: isVoiceViewShowing,
-                isOnboarding: isOnboarding
+                isOnboarding: isOnboarding,
+                showOnboarding: showOnboarding
             ), name: "serverEvent"
         )
         webView.scrollView.isScrollEnabled = true

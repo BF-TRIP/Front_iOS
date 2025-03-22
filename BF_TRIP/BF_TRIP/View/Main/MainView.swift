@@ -12,21 +12,25 @@ struct MainView: View {
     @State var isVoiceViewShowing: Bool = false
     @State var isOnboarding: Bool = false
     
-    @State private var userNumber: Int = 0
-    @State private var userName: String = ""
+    @State private var userName = DataManager.shared.loadUserName()
+    @State private var userNumber = DataManager.shared.loadUserId()
     private var gpsX: Double
     private var gpsY: Double
     
-    init(gpsX: Double, gpsY: Double) {
+    @Binding var showOnboarding: Bool?
+    
+    init(gpsX: Double, gpsY: Double, showOnboarding: Binding<Bool?>) {
         self.gpsX = gpsX
         self.gpsY = gpsY
+        _showOnboarding = showOnboarding
     }
     
     var body: some View {
         let webView = WebKit(
-            request: URLRequest(url: URL(string: "https://mo-haeng.netlify.app/?userNumber=\(userNumber)&userName=\(userName)&gpsX=\(gpsX)&gpsY=\(gpsY)")!),
+            request: createURLRequest(userNumber: userNumber, userName: userName, gpsX: gpsX, gpsY: gpsY),
             isVoiceViewShowing: $isVoiceViewShowing,
-            isOnboarding: $isOnboarding
+            isOnboarding: $isOnboarding,
+            showOnboarding: $showOnboarding
             )
 
         VStack {
@@ -42,7 +46,17 @@ struct MainView: View {
         .background(Color(hex: "#FFE54A"))
         .background(ignoresSafeAreaEdges: .top)
         .scrollIndicators(.hidden)
-        .environment(\.userId, userNumber)
-        .environment(\.userName, userName)
+    }
+    
+    func createURLRequest(userNumber: Int?, userName: String?, gpsX: Double, gpsY: Double) -> URLRequest {
+        let baseURLString = "https://mo-haeng.netlify.app/?"
+        if let userNumber = userNumber,
+           let userName = userName {
+            let URLString = "userNumber=\(userNumber)&userName=\(userName)&gpsX=\(gpsX)&gpsY=\(gpsY)"
+            
+            return URLRequest(url: URL(string: "\(baseURLString)\(URLString)")!)
+        } else {
+            return URLRequest(url: URL(string: "\(baseURLString)")!)
+        }
     }
 }

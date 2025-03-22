@@ -11,12 +11,14 @@ struct OnboardingView: View {
     
     @State var isVoiceViewShowing: Bool = false
     @Binding var isOnboarding: Bool
+    @State private var showOnboarding: Bool? = true
     
     var body: some View {
         let webView = WebKit(
                 request: URLRequest(url: URL(string: "http://localhost:5173/onboarding-step1")!),
                 isVoiceViewShowing: $isVoiceViewShowing,
-                isOnboarding: $isOnboarding
+                isOnboarding: $isOnboarding,
+                showOnboarding: $showOnboarding
             )
         
         VStack {

@@ -18,17 +18,19 @@ struct BFView: View {
     @State var loading: Bool = false
     
     @Binding var userId: Int?
+    @Binding var showOnboarding: Bool?
     
-    init(userId: Binding<Int?>) {
+    init(userId: Binding<Int?>, showOnboarding: Binding<Bool?>) {
         UITabBar.appearance().backgroundColor = UIColor(.white)
         UIScrollView.appearance().bounces = false
         
         _userId = userId
+        _showOnboarding = showOnboarding
     }
     
     var body: some View {
         TabView {
-            MainView(gpsX: mapViewModel.gpsX, gpsY: mapViewModel.gpsY)
+            MainView(gpsX: mapViewModel.gpsX, gpsY: mapViewModel.gpsY, showOnboarding: $showOnboarding)
                 .tabItem {
                     Image(systemName: "house")
                     Text("홈")
