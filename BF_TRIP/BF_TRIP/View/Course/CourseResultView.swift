@@ -19,6 +19,7 @@ struct CourseResultView: View {
     
     @State private var showAlert = false
     
+    @State private var courseNumber: Int = 0
     @State private var gpsX: Double = 128
     @State private var gpsY: Double = 37
     
@@ -79,11 +80,16 @@ struct CourseResultView: View {
                 .buttonStyle(InsetRoundButton())
             }
             .fullScreenCover(isPresented: $isSaving) {
-                CourseSaveView(isSaving: $isSaving, isResultShowing: $isResultShowing)
+                CourseSaveView(
+                    isSaving: $isSaving,
+                    isResultShowing: $isResultShowing,
+                    courseNumber: $courseNumber
+                )
             }
             .onAppear {
                 selectedDay = 1
                 selectedList = result.locationInfoResList[0]
+                courseNumber = result.courseInfo.courseNumber
             }
             .background(Color.white)
         }

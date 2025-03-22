@@ -27,6 +27,8 @@ enum NetworkManager {
     case getSavePlaceList(userNumber: Int)
     case getSaveCourseList(userNumber: Int)
     
+    case postSaveCourseList(courseNumber: Int, userNumber: Int, courseName: String, startDate: String)
+    
     case getCourseDetail(courseNumber: Int)
     
 }
@@ -66,6 +68,8 @@ extension NetworkManager: TargetType {
             return "api/course/\(userNumber)"
         case .getCourseDetail(courseNumber: let courseNumber):
             return "api/course/\(courseNumber)/list"
+        case .postSaveCourseList(courseNumber: _, userNumber: _, courseName: _, startDate: _):
+            return "api/course/create"
         }
     }
     
@@ -76,7 +80,8 @@ extension NetworkManager: TargetType {
             .postAddSaveList(userNumber: _, contentId: _),
             .postJoin(name: _, gender: _, birth: _, disability: _, tripType: _),
             .postAIRecomnent(userNumber: _, area: _, period: _, disability: _, tripType: _),
-            .postAIQuickRecomnent(userNumber: _, area: _, period: _):
+            .postAIQuickRecomnent(userNumber: _, area: _, period: _),
+            .postSaveCourseList(courseNumber: _, userNumber: _, courseName: _, startDate: _):
             return .post
         default:
             return .get
@@ -194,6 +199,16 @@ extension NetworkManager: TargetType {
                 "period": period,
                 "disability": disability,
                 "tripType": typeType
+            ]
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case let .postSaveCourseList(courseNumber, userNumber, courseName, startDate):
+            let params: [String: Any] = [
+                "courseNumber": courseNumber,
+                "userNumber": userNumber,
+                "courseName": courseName,
+                "startDate": startDate
             ]
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)

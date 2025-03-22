@@ -206,6 +206,21 @@ final class MoyaManager {
         }
     }
     
+    func postSaveCourseList(
+        courseNumber: Int,
+        userNumber: Int,
+        courseName: String,
+        startDate: String
+    ) async throws -> CourseModel {
+        return try await provider.requestDecoded(
+            .postSaveCourseList(
+                courseNumber: courseNumber,
+                userNumber: userNumber,
+                courseName: courseName,
+                startDate: startDate
+            ), as: CourseModel.self)
+    }
+    
     func postAIQuickRecomnent(
         userNumber: Int,
         area: Int,

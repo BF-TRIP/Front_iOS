@@ -12,6 +12,7 @@ struct CourseSaveView: View {
     
     @Binding var isSaving: Bool
     @Binding var isResultShowing: Bool
+    @Binding var courseNumber: Int
     
     @State private var text: String = ""
     @State private var date = Date()
@@ -71,7 +72,9 @@ struct CourseSaveView: View {
                 
                 HStack {
                     Button {
-                        saveCourse()
+                        Task {
+                            await saveCourse()
+                        }
                     } label: {
                         Text("저장")
                             .font(.system(size: 20, weight: .bold))
@@ -90,21 +93,19 @@ struct CourseSaveView: View {
 }
 
 private extension CourseSaveView {
-    func saveCourse() {
-//        MoyaManager.shared.patchToCourse(
-//            number: 25,
-//            UUID: Bundle.main.UUID,
-//            name: text,
-//            date: "2024-12-24"
-//        ) { result in
-//            switch result {
-//            case .success(let data):
-//                dump(data)
-//            case .failure(let error):
-//                dump(error.localizedDescription)
-//            }
-//        }
-        isSaving.toggle()
-        isResultShowing.toggle()
+    func saveCourse() async {
+        do {
+            let _ = try await MoyaManager.shared.postSaveCourseList(
+                courseNumber: courseNumber,
+                userNumber: 138,
+                courseName: text,
+                startDate: date.toDateString()
+            )
+            isSaving.toggle()
+            isResultShowing.toggle()
+        } catch {
+            print("Error:", error)
+            isSaving.toggle()
+        }
     }
 }
