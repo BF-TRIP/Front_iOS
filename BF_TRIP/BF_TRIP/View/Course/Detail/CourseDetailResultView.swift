@@ -88,6 +88,8 @@ struct CourseDetailResultView: View {
                     .onAppear {
                         self.offset = -height
                         lastOffset = offset
+                        
+                        selectedList = course.locationInfoResList[0]    
                     }
                 )
             }

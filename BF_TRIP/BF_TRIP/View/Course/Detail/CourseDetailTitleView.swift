@@ -24,23 +24,27 @@ struct CourseDetailTitleView: View {
                 Text(course.courseInfo.courseName ?? "")
                     .font(.system(size: titleFontSize, weight: .semibold))
                 HStack {
-//                    Image(uiImage: .mapPin)
-//                        .resizable()
-//                        .frame(width: 20, height: 20)
+                    Image(systemName: "location.fill")
+                        .resizable()
+                        .frame(width: 16, height: 16)
                     Text(course.courseInfo.area ?? "")
-                        .font(.system(size: fontSize))
+                        .font(.system(size: 16, weight: .medium))
                 }
                 HStack {
-//                    Image(uiImage: .calendar)
-//                        .resizable()
-//                        .frame(width: 20, height: 20)
-                    Text("\(String(describing: course.courseInfo.startDate)) - \(String(describing: course.courseInfo.endDate))")
-                            .font(.system(size: fontSize))
+                    Image(systemName: "calendar")
+                        .resizable()
+                        .frame(width: 16, height: 16)
+                    Text(course.courseInfo.startDate ?? "")
+                        .font(.system(size: 16, weight: .medium))
+                    Text("-")
+                        .font(.system(size: 16, weight: .medium))
+                    Text(course.courseInfo.endDate ?? "")
+                        .font(.system(size: 16, weight: .medium))
                 }
+                .padding(.top, 1)
                 
 //                CourseDetailNotificationView(list: course.disability)
             })
-            .frame(maxWidth: .infinity)
             
             Spacer()
         }
