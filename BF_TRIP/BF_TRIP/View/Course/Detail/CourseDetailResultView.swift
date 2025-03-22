@@ -45,8 +45,7 @@ struct CourseDetailResultView: View {
                     Button {
                         self.isDetailShowing.toggle()
                     } label: {
-//                        Image(uiImage: .back)
-                        Image(systemName: "chevron.backward")
+                        Image(uiImage: .back)
                             .frame(width: 44, height: 44)
                             .contentShape(Rectangle())
                     }
