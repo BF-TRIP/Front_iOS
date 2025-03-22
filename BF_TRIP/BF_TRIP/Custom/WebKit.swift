@@ -70,11 +70,17 @@ struct WebKit: UIViewRepresentable {
         Coordinator(parent: self)
     }
 
-    class Coordinator: NSObject {
+    class Coordinator: NSObject, UIScrollViewDelegate {
         let parent: WebKit
 
         init(parent: WebKit) {
             self.parent = parent
+        }
+
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            if scrollView.contentOffset.y < 0 {
+                scrollView.contentOffset.y = 0
+            }
         }
     }
 }

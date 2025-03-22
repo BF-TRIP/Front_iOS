@@ -14,6 +14,7 @@ struct CourseSaveView: View {
     @Binding var isResultShowing: Bool
     @Binding var courseNumber: Int
     
+    @State private var userNumber: Int = 0
     @State private var text: String = ""
     @State private var date = Date()
     
@@ -88,6 +89,7 @@ struct CourseSaveView: View {
                 .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
             }
             .padding()
+            .environment(\.userId, userNumber)
         }
     }
 }
@@ -97,7 +99,7 @@ private extension CourseSaveView {
         do {
             let _ = try await MoyaManager.shared.postSaveCourseList(
                 courseNumber: courseNumber,
-                userNumber: 138,
+                userNumber: userNumber,
                 courseName: text,
                 startDate: date.toDateString()
             )

@@ -16,6 +16,7 @@ struct CourseOnboardingFinalView: View {
     @Binding var result: CourseModel
     
     @State private var timer: Timer?
+    @State private var userNumber: Int = 0
     
     @State private var currentTextIndex = 0
     private let textMessages = [
@@ -80,12 +81,13 @@ struct CourseOnboardingFinalView: View {
         .task {
             await fetchData()
         }
+        .environment(\.userId, userNumber)
     }
     
     private func fetchData() async {
         if onboardingState {
             do {
-                result = try await viewModel.postAIQuickRecomnent()
+                result = try await viewModel.postAIQuickRecomnent(userNumber: userNumber)
                 isShowing = false
                 isResultViewShowing = true
                 dump(result)
@@ -95,7 +97,7 @@ struct CourseOnboardingFinalView: View {
             }
         } else {
             do {
-                result = try await viewModel.postAIRecomnent()
+                result = try await viewModel.postAIRecomnent(userNumber: userNumber)
                 isShowing = false
                 isResultViewShowing = true
             } catch {

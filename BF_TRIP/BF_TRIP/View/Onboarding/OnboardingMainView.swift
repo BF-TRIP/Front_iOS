@@ -52,6 +52,7 @@ struct OnboardingMainView: View {
                         
                         await MainActor.run {
                             DataManager.shared.saveUserId(response.userNumber)
+                            DataManager.shared.saveUserName(response.userName)
                             print(response.userName)
                             print(response.userNumber)
                             showOnboarding = false

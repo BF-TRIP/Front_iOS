@@ -78,6 +78,7 @@
 		8FBAC3EE2CAFAE03007AD4CB /* ResponsePlaceDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAC3ED2CAFAE03007AD4CB /* ResponsePlaceDTO.swift */; };
 		8FBAC3F22CAFF156007AD4CB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAC3F12CAFF156007AD4CB /* MainView.swift */; };
 		8FBAC3F42CAFF18E007AD4CB /* WebKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAC3F32CAFF18E007AD4CB /* WebKit.swift */; };
+		8FEC41282D8EA56B001249F3 /* UserNameEnviroment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEC41272D8EA56A001249F3 /* UserNameEnviroment.swift */; };
 		8FF462452CAF07A90044DA8E /* MoyaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF462442CAF07A90044DA8E /* MoyaManager.swift */; };
 		8FFA9EC82D5893C700805840 /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFA9EC72D5893C700805840 /* CustomButtonStyle.swift */; };
 		8FFA9ECA2D589C3500805840 /* OnboardingSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFA9EC92D589C3500805840 /* OnboardingSecondView.swift */; };
@@ -150,6 +151,7 @@
 		8FBAC3ED2CAFAE03007AD4CB /* ResponsePlaceDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePlaceDTO.swift; sourceTree = "<group>"; };
 		8FBAC3F12CAFF156007AD4CB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8FBAC3F32CAFF18E007AD4CB /* WebKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKit.swift; sourceTree = "<group>"; };
+		8FEC41272D8EA56A001249F3 /* UserNameEnviroment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameEnviroment.swift; sourceTree = "<group>"; };
 		8FF462442CAF07A90044DA8E /* MoyaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaManager.swift; sourceTree = "<group>"; };
 		8FFA9EC72D5893C700805840 /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		8FFA9EC92D589C3500805840 /* OnboardingSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSecondView.swift; sourceTree = "<group>"; };
@@ -236,7 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				8FB559EA2CB3CD3F00046E4C /* BF_TRIPApp.swift */,
-				8F117AC52D69EF8F000DAE3F /* UserIdEnvironment.swift */,
+				8FEC41292D8EA599001249F3 /* Enviroment */,
 				8F117AC22D69D44B000DAE3F /* Data */,
 				8F8FFE3A2D5CC92A0061F23E /* Lottie */,
 				8FB559F42CB3CED300046E4C /* AVFoundation */,
@@ -433,6 +435,15 @@
 			path = BottomSheet;
 			sourceTree = "<group>";
 		};
+		8FEC41292D8EA599001249F3 /* Enviroment */ = {
+			isa = PBXGroup;
+			children = (
+				8FEC41272D8EA56A001249F3 /* UserNameEnviroment.swift */,
+				8F117AC52D69EF8F000DAE3F /* UserIdEnvironment.swift */,
+			);
+			path = Enviroment;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -553,6 +564,7 @@
 				8FB7BE242D86798F007EBEC8 /* CustomCorner.swift in Sources */,
 				8FBAC3F42CAFF18E007AD4CB /* WebKit.swift in Sources */,
 				8F71B4142CA954A300F1B782 /* SearchFilterView.swift in Sources */,
+				8FEC41282D8EA56B001249F3 /* UserNameEnviroment.swift in Sources */,
 				8FBAC3F22CAFF156007AD4CB /* MainView.swift in Sources */,
 				8F117AC12D69ABD5000DAE3F /* ResponseJoinModel.swift in Sources */,
 				8F71B4132CA954A300F1B782 /* PlaceListView.swift in Sources */,

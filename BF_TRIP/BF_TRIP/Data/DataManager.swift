@@ -11,13 +11,22 @@ final class DataManager {
     
     static let shared = DataManager()
     private let userIdKey = "userId"
+    private let userNameKey = "userName"
     
     func saveUserId(_ userId: Int) {
         UserDefaults.standard.set(userId, forKey: userIdKey)
     }
     
+    func saveUserName(_ userName: String) {
+        UserDefaults.standard.set(userName, forKey: userNameKey)
+    }
+    
     func loadUserId() -> Int? {
         return UserDefaults.standard.object(forKey: userIdKey) as? Int
+    }
+    
+    func loadUserName() -> String? {
+        return UserDefaults.standard.object(forKey: userNameKey) as? String
     }
     
 }

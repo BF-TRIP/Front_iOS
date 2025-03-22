@@ -43,19 +43,19 @@ final class OnboardingViewModel: ObservableObject {
         )
     }
     
-    func postAIQuickRecomnent() async throws -> CourseModel {
+    func postAIQuickRecomnent(userNumber: Int) async throws -> CourseModel {
         return try await MoyaManager.shared.postAIQuickRecomnent(
-            userNumber: 138,
+            userNumber: userNumber,
             area: area ?? 1,
             period: days ?? 1
         )
     }
     
-    func postAIRecomnent() async throws -> CourseModel {
+    func postAIRecomnent(userNumber: Int) async throws -> CourseModel {
         dump(selectedDisabilities)
         dump(selectedTripTypes)
         return try await MoyaManager.shared.postAIRecomnent(
-            userNumber: 138,
+            userNumber: userNumber,
             area: area ?? 1,
             period: days ?? 1,
             disability: selectedDisabilities,

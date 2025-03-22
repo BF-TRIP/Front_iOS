@@ -11,6 +11,9 @@ struct MainView: View {
     
     @State var isVoiceViewShowing: Bool = false
     @State var isOnboarding: Bool = false
+    
+    @State private var userNumber: Int = 0
+    @State private var userName: String = ""
     private var gpsX: Double
     private var gpsY: Double
     
@@ -21,26 +24,25 @@ struct MainView: View {
     
     var body: some View {
         let webView = WebKit(
-                request: URLRequest(url: URL(string: "https://bf-trip.netlify.app/home")!),
-                isVoiceViewShowing: $isVoiceViewShowing,
-                isOnboarding: $isOnboarding
+            request: URLRequest(url: URL(string: "https://mo-haeng.netlify.app/?userNumber=\(userNumber)&userName=\(userName)&gpsX=\(gpsX)&gpsY=\(gpsY)")!),
+            isVoiceViewShowing: $isVoiceViewShowing,
+            isOnboarding: $isOnboarding
             )
-        
-        VStack { webView
-            .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
-                VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
-            })
-            .transaction { transaction in
-                transaction.disablesAnimations = true
-            }
-            .task {
-                try? await Task.sleep(for: .seconds(2))
-                webView.sendUUID()
-                webView.callJS(gpsX: gpsX, gpsY: gpsY)
-            }
-            .background(Color(hex: "#FFE023"))
-            .background(ignoresSafeAreaEdges: .top)
-            .scrollIndicators(.hidden)
+
+        VStack {
+            webView
+                .fullScreenCover(isPresented: $isVoiceViewShowing, content: {
+                    VoiceView(isVoiceViewShowing: $isVoiceViewShowing)
+                })
+                .transaction { transaction in
+                    transaction.disablesAnimations = true
+                }
+                .scrollIndicators(.hidden)
         }
+        .background(Color(hex: "#FFE54A"))
+        .background(ignoresSafeAreaEdges: .top)
+        .scrollIndicators(.hidden)
+        .environment(\.userId, userNumber)
+        .environment(\.userName, userName)
     }
 }
