@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SavePlaceView: View {
     
+    @Binding var userNumber: Int
+    @Binding var places: [ResponsePlaceDTO]
     @Binding var place: ResponsePlaceDTO
     
     var body: some View {
@@ -30,7 +32,9 @@ struct SavePlaceView: View {
                         .cornerRadius(15)
                 }
                 Button {
-                    print("delete")
+                    Task {
+                        await deletePlace(userNumber: userNumber, contentId: place.contentId)
+                    }
                 } label: {
                     Image(uiImage: .bFbookmark2)
                         .foregroundColor(Color(.label))
@@ -58,4 +62,21 @@ struct SavePlaceView: View {
             accessibilityIconsSection(place: $place)
         }
     }
+    
+    private func deletePlace(userNumber: Int, contentId: Int) async {
+        do {
+            let _ = try await MoyaManager.shared.deletePlace(userNumber: userNumber, contentId: contentId)
+            
+            // 로컬에서 해당 관광지를 즉시 제거
+            if let index = places.firstIndex(where: { $0.contentId == contentId }) {
+                places.remove(at: index)
+            }
+        } catch {
+            print(error.localizedDescription)
+            if let index = places.firstIndex(where: { $0.contentId == contentId }) {
+                places.remove(at: index)
+            }
+        }
+    }
+    
 }

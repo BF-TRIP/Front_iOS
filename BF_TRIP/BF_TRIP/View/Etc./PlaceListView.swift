@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlaceListView: View {
     
+    private let userNumber = DataManager.shared.loadUserId() ?? 0
     
     var title: String = ""
     var searching: Bool = false
@@ -19,7 +20,8 @@ struct PlaceListView: View {
     @Binding var isPlaceListViewShowing: Bool
     
     @ObservedObject var viewModel: MapViewModel
-    @StateObject var saveViewModel: PlaceViewModel = PlaceViewModel()
+    @StateObject private var saveViewModel: PlaceViewModel = PlaceViewModel()
+//    @StateObject var saveViewModel: PlaceViewModel = PlaceViewModel()
     
     var body: some View {
         VStack {
@@ -76,9 +78,9 @@ struct PlaceListView: View {
         .transaction { transaction in
             transaction.disablesAnimations = true
         }
-        .onAppear(perform: {
-            self.saveViewModel.requestList()
-        })
+        .task {
+            await saveViewModel.requestList(userNumber: userNumber)
+        }
         
     }
     

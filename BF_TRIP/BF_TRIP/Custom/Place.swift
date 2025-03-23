@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct Place: View {
+    
+    private let userNumber = DataManager.shared.loadUserId() ?? 0
     private let place: ResponsePlaceDTO
     
     @ObservedObject var viewModel: PlaceViewModel
-    @State private var tmpcheck = false;
     
     init(place: ResponsePlaceDTO, viewModel: PlaceViewModel) {
         self.place = place
@@ -37,15 +38,17 @@ struct Place: View {
                         .cornerRadius(15)
                 }
                 Button {
-                    viewModel.addPlace(contentId: place.contentId)
-                    if tmpcheck == true {
-                        self.tmpcheck = false
-                    } else {
-                        self.tmpcheck = true
+                    let check = viewModel.saveList.contains { $0.contentTitle == place.contentTitle }
+                    Task {
+                        if !check {
+                            await viewModel.addPlace(userNumber: userNumber, contentId: place.contentId)
+                        } else {
+                            await viewModel.deletePlace(userNumber: userNumber, contentId: place.contentId)
+                        }
                     }
                 } label: {
-                    let check = viewModel.saveList.contains { $0.courseName == place.contentTitle }
-                    if !tmpcheck {
+                    let check = viewModel.saveList.contains { $0.contentTitle == place.contentTitle }
+                    if !check {
                         Image(uiImage: .bFbookmark1)
                             .foregroundColor(Color(.label))
                             .frame(width: 50, height: 50)

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BookmarkView: View {
     
+    @State private var userNumber: Int = DataManager.shared.loadUserId() ?? 0
+    
     @State private var selectedSegment = 0
     
     @State private var places: [ResponsePlaceDTO] = []
@@ -34,8 +36,6 @@ struct BookmarkView: View {
     @State private var selectedCourseNumber: Int?
     @State var isDetailShowing: Bool = false
     
-    @Binding var userId: Int?
-    
     var body: some View {
         VStack {
             Text("저장")
@@ -56,9 +56,9 @@ struct BookmarkView: View {
                 if selectedSegment == 0 {
                     ForEach($places, id: \.self) { $place in
                         Button {
-                            selectedCourseNumber = Int(place.contentId)
+                            selectedCourseNumber = place.contentId
                         } label: {
-                            SavePlaceView(place: $place)
+                            SavePlaceView(userNumber: $userNumber, places: $places, place: $place)
                         }
                         .padding()
                         .listRowSeparator(.hidden)
@@ -110,7 +110,7 @@ struct BookmarkView: View {
     
     private func fetchSavePlaceList() async {
         do {
-            places = try await MoyaManager.shared.getSavePlaceList(userNumber: userId ?? 0)
+            places = try await MoyaManager.shared.getSavePlaceList(userNumber: userNumber)
         } catch {
             print(error.localizedDescription)
         }
@@ -118,7 +118,7 @@ struct BookmarkView: View {
     
     private func fetchSaveCourseList() async {
         do {
-            courses = try await MoyaManager.shared.getSaveCourseList(userNumber: userId ?? 0)
+            courses = try await MoyaManager.shared.getSaveCourseList(userNumber: userNumber)
         } catch {
             print(error.localizedDescription)
         }

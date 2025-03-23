@@ -59,7 +59,7 @@ struct BFView: View {
                 }
                 .background(Color(hex: "#000000"))
                 .background(ignoresSafeAreaEdges: .all)
-            BookmarkView(userId: $userId)
+            BookmarkView()
                 .tabItem {
                     Image(systemName: "bookmark")
                     Text("저장")

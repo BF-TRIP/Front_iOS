@@ -45,6 +45,10 @@ final class MoyaManager {
         }
     }
     
+    func getUserExist(userNumber: Int) async throws -> Bool {
+        return try await provider.requestDecoded(.getUserExist(userNumber: userNumber), as: Bool.self)
+    }
+    
     func coordinateToList(gpsX: Double, gpsY: Double, completion: @escaping (Result<[ResponsePlaceDTO], Error>) -> Void) {
         provider.request(.getCoordinateToList(gpsX: gpsX, gpsY: gpsY)) { result in
             switch result {
@@ -117,53 +121,12 @@ final class MoyaManager {
         }
     }
     
-    func IdToList(userNumber: String, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
-        provider.request(.getIdToList(userNumber: userNumber)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let decoder = JSONDecoder()
-                    let jsonData = try decoder.decode([ResponseSaveDTO].self, from: response.data)
-                    
-                    completion(.success(jsonData))
-                } catch {
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+    func AddSaveList(userNumber: Int, contentId: Int) async throws -> String {
+        return try await provider.requestDecoded(.postAddSaveList(userNumber: userNumber, contentId: contentId), as: String.self)
     }
     
-    func AddSaveList(userNumber: String, contentId: UInt64, completion: @escaping (Result<[ResponseSaveDTO], Error>) -> Void) {
-        provider.request(.postAddSaveList(userNumber: userNumber, contentId: contentId)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let decoder = JSONDecoder()
-                    let jsonData = try decoder.decode([ResponseSaveDTO].self, from: response.data)
-                    
-                    completion(.success(jsonData))
-                } catch {
-                    print(error)
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                print(error)
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    func checkToID(uuid: String, completion: @escaping (Result<Bool, Error>) -> Void) {
-        provider.request(.getUserExist(uuid: uuid)) { result in
-            switch result {
-            case .success(let response):
-                completion(.success((response.response != nil)))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+    func deletePlace(userNumber: Int, contentId: Int) async throws -> String {
+        return try await provider.requestDecoded(.deletePlace(userNumber: userNumber, contentId: contentId), as: String.self)
     }
     
     func getSavePlaceList(userNumber: Int) async throws -> [ResponsePlaceDTO] {
