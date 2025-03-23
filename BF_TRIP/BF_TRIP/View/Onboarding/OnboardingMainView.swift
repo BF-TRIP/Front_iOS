@@ -13,6 +13,7 @@ struct OnboardingMainView: View {
     @State private var currentPage: Int = 1
     
     @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel()
+    @Binding var showOnboarding: Bool?
     
     @State private var keyboardHeight: CGFloat = 0
     @FocusState private var isNameFocused: Bool
@@ -45,7 +46,24 @@ struct OnboardingMainView: View {
         Button(action: {
             if currentPage < 6 { currentPage += 1 }
             else if currentPage == 6 {
-                onboardingViewModel.postJoin()
+                Task {
+                    do {
+                        let response = try await onboardingViewModel.postJoin()
+                        
+                        await MainActor.run {
+                            DataManager.shared.saveUserId(response.userNumber)
+                            DataManager.shared.saveUserName(response.userName)
+                            print(response.userName)
+                            print(response.userNumber)
+                            showOnboarding = false
+                        }
+                    } catch {
+                        await MainActor.run {
+                            onboardingViewModel.reset()
+                            currentPage = 1
+                        }
+                    }
+                }
             }
             isNameFocused = false
         }) {

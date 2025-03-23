@@ -14,6 +14,8 @@ final class OnboardingViewModel: ObservableObject {
     @Published private(set) var gender: Int? = nil
     @Published private(set) var disabilityList: [Bool] = Array(repeating: false, count: 4)
     @Published private(set) var tripList: [Bool] = Array(repeating: false, count: 4)
+    @Published private(set) var area: Int? = nil
+    @Published private(set) var days: Int? = nil
     
     private var selectedDisabilities: [Int] {
         disabilityList.enumerated()
@@ -31,20 +33,34 @@ final class OnboardingViewModel: ObservableObject {
         gender == 0 ? "man" : "woman"
     }
     
-    func postJoin() {
-        MoyaManager.shared.postJoin(
+    func postJoin() async throws -> ResponseJoinModel {
+        return try await MoyaManager.shared.postJoin(
             name: name,
             gender: selectedGender,
             birth: birth.toDateString(),
             disability: selectedDisabilities,
-            tripType: selectedTripTypes) { result in
-                switch result {
-                case .success(let success):
-                    print(success)
-                case .failure(let error):
-                    dump(error.localizedDescription)
-                }
-            }
+            tripType: selectedTripTypes
+        )
+    }
+    
+    func postAIQuickRecomnent(userNumber: Int) async throws -> CourseModel {
+        return try await MoyaManager.shared.postAIQuickRecomnent(
+            userNumber: userNumber,
+            area: area ?? 1,
+            period: days ?? 1
+        )
+    }
+    
+    func postAIRecomnent(userNumber: Int) async throws -> CourseModel {
+        dump(selectedDisabilities)
+        dump(selectedTripTypes)
+        return try await MoyaManager.shared.postAIRecomnent(
+            userNumber: userNumber,
+            area: area ?? 1,
+            period: days ?? 1,
+            disability: selectedDisabilities,
+            tripType: selectedTripTypes
+        )
     }
     
     func updateName(_ newValue: String) {
@@ -71,6 +87,22 @@ final class OnboardingViewModel: ObservableObject {
     func toggleTrip(at index: Int) {
         guard index >= 0 && index < tripList.count else { return }
         tripList[index].toggle()
+    }
+    
+    func updateArea(_ newArea: Int?) {
+        area = newArea
+    }
+    
+    func updateDays(_ newDays: Int?) {
+        days = newDays
+    }
+    
+    func reset() {
+        name = ""
+        gender = nil
+        birth = Date.now
+        disabilityList = Array(repeating: false, count: 4)
+        tripList = Array(repeating: false, count: 4)
     }
     
 }

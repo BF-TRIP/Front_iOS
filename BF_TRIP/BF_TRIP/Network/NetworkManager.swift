@@ -13,14 +13,23 @@ import AVFoundation
 enum NetworkManager {
     
     case postJoin(name: String, gender: String, birth: String, disability: [Int], tripType: [Int])
+    case getUserExist(userNumber: Int)
     
     case getCoordinateToList(gpsX: Double, gpsY: Double)
     case getFileToList(file: URL)
     case getTextToList(text: String)
     case getStateToList(state: String, city: String)
-    case getIdToList(userNumber: String)
-    case postAddSaveList(userNumber: String, contentId: UInt64)
-    case getUserExist(uuid: String)
+    case postAddSaveList(userNumber: Int, contentId: Int)
+    case deletePlace(userNumber: Int, contentId: Int)
+    
+    case postAIQuickRecomnent(userNumber: Int, area: Int, period: Int)
+    case postAIRecomnent(userNumber: Int, area: Int, period: Int, disability: [Int], tripType: [Int])
+    case getSavePlaceList(userNumber: Int)
+    case getSaveCourseList(userNumber: Int)
+    
+    case postSaveCourseList(courseNumber: Int, userNumber: Int, courseName: String, startDate: String)
+    
+    case getCourseDetail(courseNumber: Int)
     
 }
 
@@ -34,6 +43,9 @@ extension NetworkManager: TargetType {
         switch self {
         case .postJoin(name: _, gender: _, birth: _, disability: _, tripType: _):
             return "api/user/join"
+        case .getUserExist(userNumber: _):
+            return "api/user/exist"
+            
         case .getCoordinateToList(gpsX: _, gpsY: _):
             return "api/search/map"
         case .getFileToList(file: _):
@@ -42,12 +54,23 @@ extension NetworkManager: TargetType {
             return "api/search/keyword"
         case .getStateToList(state: _, city: _):
             return "api/location/district"
-        case .getIdToList(userNumber: let userNumber):
-            return "api/course/\(userNumber)"
         case .postAddSaveList(userNumber: _, contentId: _):
-            return "api/course"
-        case .getUserExist(uuid: _):
-            return "api/user/exist"
+            return "api/course/save"
+        case .deletePlace(userNumber: let userNumber, contentId: let contentId):
+            return "api/course/save/\(userNumber)/\(contentId)"
+            
+        case .postAIQuickRecomnent(userNumber: _, area: _, period: _):
+            return "api/course/ai-rec-quick"
+        case .postAIRecomnent(userNumber: _, area: _, period: _, disability: _, tripType: _):
+            return "api/course/ai-rec"
+        case .getSavePlaceList(userNumber: let userNumber):
+            return "api/course/save/\(userNumber)"
+        case .getSaveCourseList(userNumber: let userNumber):
+            return "api/course/\(userNumber)"
+        case .getCourseDetail(courseNumber: let courseNumber):
+            return "api/course/\(courseNumber)/list"
+        case .postSaveCourseList(courseNumber: _, userNumber: _, courseName: _, startDate: _):
+            return "api/course/create"
         }
     }
     
@@ -56,8 +79,13 @@ extension NetworkManager: TargetType {
         case
             .getFileToList(file: _),
             .postAddSaveList(userNumber: _, contentId: _),
-            .postJoin(name: _, gender: _, birth: _, disability: _, tripType: _):
+            .postJoin(name: _, gender: _, birth: _, disability: _, tripType: _),
+            .postAIRecomnent(userNumber: _, area: _, period: _, disability: _, tripType: _),
+            .postAIQuickRecomnent(userNumber: _, area: _, period: _),
+            .postSaveCourseList(courseNumber: _, userNumber: _, courseName: _, startDate: _):
             return .post
+        case .deletePlace(userNumber: _, contentId: _):
+            return .delete
         default:
             return .get
         }
@@ -75,6 +103,13 @@ extension NetworkManager: TargetType {
             ]
             
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case .getUserExist(userNumber: let userNumber):
+            let params: [String: Int] = [
+                "userNumber": userNumber
+            ]
+            
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
             
         case let .getCoordinateToList(gpsX, gpsY):
             let params: [String: Double] = [
@@ -128,14 +163,7 @@ extension NetworkManager: TargetType {
                 "city": city
             ]
             
-            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
-            
-        case .getIdToList(userNumber: let userNumber):
-            let params: [String: String] = [
-                "userName": userNumber
-            ]
-            
-            return .requestPlain
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
         case .postAddSaveList(userNumber: let userNumber, contentId: let contentId):
             let params: [String: Any] = [
@@ -143,14 +171,51 @@ extension NetworkManager: TargetType {
                 "contentId": contentId
             ]
             
-            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
-        case .getUserExist(uuid: let uuid):
-            let params: [String: String] = [
-                "uuid": uuid
+        case .postAIQuickRecomnent(userNumber: let userNumber, area: let area, period: let period):
+            let params: [String: Any] = [
+                "userNumber": userNumber,
+                "area": area,
+                "period": period
             ]
             
-            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case .postAIRecomnent(
+            userNumber: let userNumber,
+            area: let area,
+            period: let period,
+            disability: let disability,
+            tripType: let typeType
+        ):
+            let params: [String: Any] = [
+                "userNumber": userNumber,
+                "area": area,
+                "period": period,
+                "disability": disability,
+                "tripType": typeType
+            ]
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+            
+        case let .postSaveCourseList(courseNumber, userNumber, courseName, startDate):
+            let params: [String: Any] = [
+                "courseNumber": courseNumber,
+                "userNumber": userNumber,
+                "courseName": courseName,
+                "startDate": startDate
+            ]
+            
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .deletePlace(userNumber: _, contentId: _):
+            return .requestPlain
+        case .getSavePlaceList(userNumber: _):
+            return .requestPlain
+        case .getSaveCourseList(userNumber: _):
+            return .requestPlain
+        case .getCourseDetail(courseNumber: _):
+            return .requestPlain
         }
         
     }

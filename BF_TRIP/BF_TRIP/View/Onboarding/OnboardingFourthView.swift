@@ -15,17 +15,17 @@ struct OnboardingFourthView: View {
         VStack(alignment: .leading) {
             Text("특별히 고려해야 할")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("점이 있나요?")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("중복 선택이 가능해요.")
-                .font(.system(size: 20))
+                .font(.system(size: 18))
                 .foregroundColor(Color(hex: "6E6E6E"))
                 .padding(.top, 5)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        
-        Spacer()
         
         HStack(spacing: 10) {
             toggleButton(title1: "휠체어 사용자 및", title2: "고령자 지원", image: Image(uiImage: .wheelchair), index: 0)

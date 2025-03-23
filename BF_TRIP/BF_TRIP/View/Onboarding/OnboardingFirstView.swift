@@ -16,8 +16,10 @@ struct OnboardingFirstView: View {
         VStack(alignment: .leading) {
             Text("가입을 축하드려요🎉")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
             Text("어떻게 불러드리면 될까요?")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundStyle(Color.black)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)

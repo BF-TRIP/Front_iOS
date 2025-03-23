@@ -6,31 +6,38 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class PlaceViewModel: ObservableObject {
     
-    private let userNumber: String = "test-uuid-1234"
-    @Published var saveList: [ResponseSaveDTO] = []
+    @Published var saveList: [ResponsePlaceDTO] = []
     
-    func requestList() {
-        MoyaManager.shared.IdToList(userNumber: self.userNumber) { result in
-            switch result {
-            case .success(let data):
-                self.saveList = data
-            case .failure(let error):
-                dump(error.localizedDescription)
-            }
+    @MainActor
+    func requestList(userNumber: Int) async {
+        do {
+            saveList = try await MoyaManager.shared.getSavePlaceList(userNumber: userNumber)
+        } catch {
+            print(error.localizedDescription)
         }
     }
     
-    func addPlace(contentId: UInt64) {
-        MoyaManager.shared.AddSaveList(userNumber: self.userNumber, contentId: contentId) { result in
-            switch result {
-            case .success(let data):
-                self.saveList.append(contentsOf: data)
-            case .failure(let error):
-                dump(error.localizedDescription)
-            }
+    func addPlace(userNumber: Int, contentId: Int) async {
+        do {
+            let _ = try await MoyaManager.shared.AddSaveList(userNumber: userNumber, contentId: contentId)
+            await requestList(userNumber: userNumber)
+        } catch {
+            print(error.localizedDescription)
+            await requestList(userNumber: userNumber)
+        }
+    }
+    
+    func deletePlace(userNumber: Int, contentId: Int) async {
+        do {
+            let _ = try await MoyaManager.shared.deletePlace(userNumber: userNumber, contentId: contentId)
+            await requestList(userNumber: userNumber)
+        } catch {
+            print(error.localizedDescription)
+            await requestList(userNumber: userNumber)
         }
     }
     
