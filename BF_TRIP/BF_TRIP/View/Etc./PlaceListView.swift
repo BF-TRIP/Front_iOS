@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlaceListView: View {
     
+    private let userNumber = DataManager.shared.loadUserId() ?? 0
     
     var title: String = ""
     var searching: Bool = false
@@ -19,7 +20,8 @@ struct PlaceListView: View {
     @Binding var isPlaceListViewShowing: Bool
     
     @ObservedObject var viewModel: MapViewModel
-    @StateObject var saveViewModel: PlaceViewModel = PlaceViewModel()
+    @StateObject private var saveViewModel: PlaceViewModel = PlaceViewModel()
+//    @StateObject var saveViewModel: PlaceViewModel = PlaceViewModel()
     
     var body: some View {
         VStack {
@@ -61,9 +63,9 @@ struct PlaceListView: View {
             let list = viewModel.seperateList(selectedStates: self.selectedStates)
             List(0..<list.count, id: \.self) { index in
                 Place(place: list[index], viewModel: saveViewModel)
-                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+                    .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
                     .listRowSeparator(.hidden)
-                    .shadow(radius: 2)
+//                    .shadow(radius: 2)
             }
             .scrollIndicators(.hidden)
             .listStyle(PlainListStyle())
@@ -76,9 +78,9 @@ struct PlaceListView: View {
         .transaction { transaction in
             transaction.disablesAnimations = true
         }
-        .onAppear(perform: {
-            self.saveViewModel.requestList()
-        })
+        .task {
+            await saveViewModel.requestList(userNumber: userNumber)
+        }
         
     }
     

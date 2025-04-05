@@ -1,5 +1,5 @@
 {
-  "originHash" : "9e10172d33bc21b71123e00dcc468eb5f89ce3d4c9ccbe8db9cef8620ef31ebe",
+  "originHash" : "08d8caf3e0035fff04b94158d44e3dff3452455fb922f63edfb8e98490118460",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -17,6 +17,24 @@
       "state" : {
         "revision" : "720ddbd1371fef2a09cc1ab65fc503df37767f9c",
         "version" : "3.1.1"
+      }
+    },
+    {
+      "identity" : "kakaomapssdk-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kakao-mapsSDK/KakaoMapsSDK-SPM.git",
+      "state" : {
+        "revision" : "d44bc7365bee88f66964a14168a42910ac092d38",
+        "version" : "2.12.5"
+      }
+    },
+    {
+      "identity" : "lottie-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-spm",
+      "state" : {
+        "revision" : "8c6edf4f0fa84fe9c058600a4295eb0c01661c69",
+        "version" : "4.5.1"
       }
     },
     {
