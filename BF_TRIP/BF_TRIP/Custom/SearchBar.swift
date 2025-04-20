@@ -18,26 +18,26 @@ struct SearchBar: View {
             Button {
                 isSearchViewShowing = true
             } label: {
-                Text("검색어를 입력해주세요.")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(15)
-                    .padding(.horizontal, 15)
-                    .foregroundColor(Color(.placeholderText))
-                    .background(Color(.systemGray6))
-                    .cornerRadius(15)
-                    .overlay(
-                        HStack {
-                            Spacer()
-                            Button {
-                                self.isVoiceViewShowing.toggle()
-                            } label: {
-                                Image(systemName: "mic")
-                                    .foregroundColor(Color(.label))
-                                    .padding()
-                            }
-
+                HStack {
+                    Text("검색어를 입력해주세요.")
+                        .foregroundColor(Color(.placeholderText))
+                    Spacer()
+                }
+                .padding(15)
+                .background(Color(.systemGray6))
+                .cornerRadius(15)
+                .overlay(
+                    HStack {
+                        Spacer()
+                        Button {
+                            self.isVoiceViewShowing.toggle()
+                        } label: {
+                            Image(systemName: "mic")
+                                .foregroundColor(Color(.label))
+                                .padding()
                         }
-                    )
+                    }
+                )
             }
             .fullScreenCover(isPresented: $isSearchViewShowing, content: {
                 SearchView(isSearchViewShowing: $isSearchViewShowing, text: self.$text)

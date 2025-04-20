@@ -27,10 +27,9 @@ struct MapView: View {
                     self.isFilterViewShowing = true
                 } label: {
                     Image(systemName: "line.3.horizontal")
+                        .font(.system(size: 18))
                         .foregroundColor(Color(.label))
                 }
-                
-                Spacer()
                 
                 SearchBar()
             }
