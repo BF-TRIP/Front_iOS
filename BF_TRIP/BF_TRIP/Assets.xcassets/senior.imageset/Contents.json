@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "senior.png",
+      "filename" : "senior.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "senior 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "senior 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -108,7 +108,7 @@ struct SearchView: View {
     
     private var voiceButton: some View {
         Button(action: { isVoiceViewShowing.toggle() }) {
-            Image(systemName: "mic")
+            Image(uiImage: .mic)
                 .foregroundColor(Color.Black)
                 .padding()
         }

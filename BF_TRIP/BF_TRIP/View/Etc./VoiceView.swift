@@ -51,7 +51,7 @@ struct VoiceView: View {
                         self.isPlaceListViewShowing = true
                     }
                 } label: {
-                    Image(uiImage: .mic)
+                    Image(uiImage: .voiceMic)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 200, height: 200)

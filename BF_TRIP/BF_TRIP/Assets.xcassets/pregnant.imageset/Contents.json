@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "pregnant.png",
+      "filename" : "pregnant.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "pregnant 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "pregnant 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

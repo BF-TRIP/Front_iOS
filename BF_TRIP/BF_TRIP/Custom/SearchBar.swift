@@ -32,7 +32,7 @@ struct SearchBar: View {
                         Button {
                             self.isVoiceViewShowing.toggle()
                         } label: {
-                            Image(systemName: "mic")
+                            Image(uiImage: .mic)
                                 .foregroundColor(Color(.label))
                                 .padding()
                         }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ears.svg",
+      "filename" : "mic.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ears 1.svg",
+      "filename" : "mic 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ears 2.svg",
+      "filename" : "mic 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
