@@ -55,9 +55,9 @@ struct PlaceListView: View {
             FilterButtonGroup(
                 selectedComponents: $selectedStates,
                 list: stateList,
-                backgroundColor: "#393939",
-                fontColor: "#FFE023",
-                radiusColor: "#000000"
+                backgroundColor: Color.Gray800,
+                fontColor: Color.Yellow,
+                radiusColor: Color.Black
             )
             
             let list = viewModel.seperateList(selectedStates: self.selectedStates)

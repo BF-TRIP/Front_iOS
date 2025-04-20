@@ -53,9 +53,10 @@ struct PlaceFilterView: View {
                 FilterButtonGroup(
                     selectedComponents: $selectedStates[index],
                     list: detailfilters[index],
-                    backgroundColor: "#FFFCE7",
-                    fontColor: "000000",
-                    radiusColor: "#FFE838")
+                    backgroundColor: Color.Yellow100,
+                    fontColor: Color.Black,
+                    radiusColor: Color.Yellow
+                )
                 
                 Spacer()
             }
@@ -73,11 +74,11 @@ struct PlaceFilterView: View {
                 }
                 .disabled(self.selectedStates.allSatisfy { $0.isEmpty })
                 .buttonStyle(.plain)
-                .background(self.selectedStates.allSatisfy { $0.isEmpty } ? Color(.white) : Color(hex: "#FFE023"))
+                .background(self.selectedStates.allSatisfy { $0.isEmpty } ? Color.White : Color.Yellow)
                 .overlay(RoundedRectangle(cornerRadius: 10)
                     .stroke(lineWidth: 1)
                     .foregroundColor(
-                        self.selectedStates.allSatisfy { $0.isEmpty } ? Color(hex: "#AAAAAA") : Color(hex: "#FFE023")
+                        self.selectedStates.allSatisfy { $0.isEmpty } ? Color(hex: "#AAAAAA") : Color.Yellow
                     )
                 )
                 .cornerRadius(10)
@@ -93,7 +94,7 @@ struct PlaceFilterView: View {
                         .foregroundColor(Color(.label))
                 }
                 .buttonStyle(.plain)
-                .background(Color(hex: "#FFE023"))
+                .background(Color.Black)
                 .cornerRadius(10)
                 .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 20))
             }

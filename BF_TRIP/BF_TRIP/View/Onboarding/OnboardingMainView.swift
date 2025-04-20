@@ -80,7 +80,7 @@ struct OnboardingMainView: View {
             if (2...5).contains(currentPage) {
                 Button(action: { currentPage -= 1 }) {
                     Image(systemName: "arrow.left")
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.Black)
                 }
             }
         }

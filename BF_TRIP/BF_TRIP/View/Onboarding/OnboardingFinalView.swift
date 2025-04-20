@@ -14,7 +14,7 @@ struct OnboardingFinalView: View {
         
         Text("여행 갈 준비가 끝났어요.")
             .font(.system(size: 24, weight: .semibold))
-            .foregroundStyle(Color.black)
+            .foregroundStyle(Color.Black)
         LottieView(fileName: "check", loopMode: .playOnce)
             .frame(width: 180, height: 180)
         

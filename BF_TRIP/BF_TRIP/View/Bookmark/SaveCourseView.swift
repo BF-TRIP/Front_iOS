@@ -26,7 +26,7 @@ struct SaveCourseView: View {
                     .resizable()
                     .cornerRadius(4)
                     .frame(maxWidth: 70, maxHeight: 80)
-                    .background(Color(hex: "#F6F5FA"))
+                    .background(Color.Gray400)
                     .clipped()
 //            }
             
@@ -37,13 +37,13 @@ struct SaveCourseView: View {
                 HStack {
                     Text(course.startDate ?? "")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(Color(hex: "#676767"))
+                        .foregroundColor(Color.Gray600)
                     Text("~")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(Color(hex: "#676767"))
+                        .foregroundColor(Color.Gray600)
                     Text(course.endDate ?? "")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(Color(hex: "#676767"))
+                        .foregroundColor(Color.Gray600)
                 }
                 HStack {
                     Image(systemName: "location.fill")
@@ -56,9 +56,6 @@ struct SaveCourseView: View {
             .padding(.leading, 10)
             
             Spacer()
-            
-            Image(systemName: "line.3.horizontal")
-                .foregroundColor(.gray)
         }
         .padding()
     }

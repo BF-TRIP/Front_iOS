@@ -28,7 +28,7 @@ struct MapView: View {
                 } label: {
                     Image(systemName: "line.3.horizontal")
                         .font(.system(size: 18))
-                        .foregroundColor(Color(.label))
+                        .foregroundColor(Color.Black)
                 }
                 
                 SearchBar()

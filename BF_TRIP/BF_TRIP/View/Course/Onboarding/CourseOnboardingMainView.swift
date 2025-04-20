@@ -120,7 +120,7 @@ struct CourseOnboardingMainView: View {
             if let indicatorText = getIndicatorText() {
                 Text(indicatorText)
                     .fontWeight(.semibold)
-                    .foregroundStyle(Color.black)
+                    .foregroundStyle(Color.Black)
             }
         }
     }

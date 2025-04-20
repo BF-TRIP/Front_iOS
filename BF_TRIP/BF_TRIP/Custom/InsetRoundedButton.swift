@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct InsetRoundButton: ButtonStyle {
-  var labelColor = Color.white
-  var backgroundColor = Color.black
   
   func makeBody(configuration: Configuration) -> some View {
     configuration.label
-      .foregroundColor(labelColor)
+          .foregroundColor(Color.White)
       .padding(.horizontal, 35)
       .padding(.vertical, 15)
-      .background(Capsule().fill(backgroundColor))
+      .background(Capsule().fill(Color.Black))
       .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
   }
 }

@@ -48,8 +48,8 @@ struct CourseMainView: View {
                     
                     VStack(spacing: 20) {
                         CourseCustomButton(
-                            color: Color(hex: "#FF8C00"),
-                            descriptionColor: Color.black,
+                            color: Color.Orange,
+                            descriptionColor: Color.Black,
                             title: "빠르게 생성하기",
                             description1: "입력한 정보를 바탕으로",
                             description2: "맞춤형 코스를 만들어드려요.",
@@ -120,7 +120,7 @@ struct CourseMainView: View {
                 }
             }
         }
-        .background(Color(hex: "FFFCE7"))
+        .background(Color.Yellow100)
         .ignoresSafeArea()
         .fullScreenCover(isPresented: $isResultViewShowing) {
             CourseResultView(isResultShowing: $isResultViewShowing, result: $result)

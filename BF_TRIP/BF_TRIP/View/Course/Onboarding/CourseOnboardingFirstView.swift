@@ -40,10 +40,10 @@ struct CourseOnboardingFirstView: View {
         VStack(alignment: .leading) {
             Text("어디로 떠날까요?")
                 .font(.system(size: 24, weight: .semibold))
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.Black)
             Text("지역 한 곳을 선택해주세요.")
                 .font(.system(size: 16))
-                .foregroundColor(Color(hex: "6E6E6E"))
+                .foregroundColor(Color.Gray600)
                 .padding(.top, 5)
         }
         .padding()
@@ -76,13 +76,13 @@ struct ButtonView: View {
             Text(button)
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(height: 48)
-                .background(isSelected ? Color(hex: "FFFCE7") : Color.white)
+                .background(isSelected ? Color.Yellow100 : Color.white)
                 .foregroundColor(.black)
                 .font(.system(size: 18, weight: isSelected ? .semibold : .medium))
                 .cornerRadius(40)
                 .overlay(
                     RoundedRectangle(cornerRadius: 40)
-                        .stroke((isSelected ? Color(hex: "FFE54A") : Color(hex: "676767")), lineWidth: 1)
+                        .stroke((isSelected ? Color.Yellow : Color.Gray600), lineWidth: 1)
                 )
         }
     }

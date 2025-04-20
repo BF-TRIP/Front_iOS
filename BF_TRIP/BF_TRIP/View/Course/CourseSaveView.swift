@@ -53,7 +53,7 @@ struct CourseSaveView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)
                             .stroke(lineWidth: 1)
-                            .foregroundColor(Color(hex: "#F2F2F2"))
+                            .foregroundColor(Color.Gray100)
                     )
                 
                 Spacer()

@@ -34,7 +34,7 @@ struct Place: View {
                     Image(uiImage: .placeholder)
                         .resizable()
                         .frame(maxWidth: .infinity, minHeight: 160, maxHeight: 160)
-                        .background(Color(hex: "#F6F5FA"))
+                        .background(Color.Gray400)
                         .cornerRadius(15)
                 }
                 Button {

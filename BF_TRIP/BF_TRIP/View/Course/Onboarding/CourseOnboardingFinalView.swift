@@ -39,13 +39,13 @@ struct CourseOnboardingFinalView: View {
                     VStack(spacing: 8) {
                         Text(textMessages[currentTextIndex])
                             .font(.system(size: 24, weight: .semibold))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.Black)
                         Text(" ")
                             .font(.system(size: 24, weight: .semibold))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.Black)
                         Text(textSubMessages[currentTextIndex])
                             .font(.system(size: 18, weight: .semibold))
-                            .foregroundColor(Color(hex: "6E6E6E"))
+                            .foregroundColor(Color.Gray600)
                             .padding(.top, 15)
                     }
                     .padding()
@@ -54,13 +54,13 @@ struct CourseOnboardingFinalView: View {
                     VStack(spacing: 8) {
                         Text(textMessages[currentTextIndex])
                             .font(.system(size: 24, weight: .semibold))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.Black)
                         Text(textMessages[(currentTextIndex + 1) % textMessages.count])
                             .font(.system(size: 24, weight: .semibold))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.Black)
                         Text(textSubMessages[currentTextIndex])
                             .font(.system(size: 18, weight: .semibold))
-                            .foregroundColor(Color(hex: "6E6E6E"))
+                            .foregroundColor(Color.Gray600)
                             .padding(.top, 15)
                     }
                     .padding()

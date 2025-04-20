@@ -15,13 +15,13 @@ struct OnboardingFourthView: View {
         VStack(alignment: .leading) {
             Text("특별히 고려해야 할")
                 .font(.system(size: 24, weight: .semibold))
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.Black)
             Text("점이 있나요?")
                 .font(.system(size: 24, weight: .semibold))
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.Black)
             Text("중복 선택이 가능해요.")
                 .font(.system(size: 18))
-                .foregroundColor(Color(hex: "6E6E6E"))
+                .foregroundColor(Color.Gray600)
                 .padding(.top, 5)
         }
         .padding()
@@ -74,12 +74,12 @@ struct OnboardingFourthView: View {
         }
         .frame(width: UIScreen.main.bounds.width * 0.37, height: UIScreen.main.bounds.height * 0.1)
         .padding()
-        .background(viewModel.disabilityList[index] ? Color(hex: "FFFCE7") : .white.opacity(0))
-        .foregroundColor(.black)
+        .background(viewModel.disabilityList[index] ? Color.Yellow100 : Color.White.opacity(0))
+        .foregroundColor(Color.Black)
         .cornerRadius(15)
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(viewModel.disabilityList[index] ? Color(hex: "FFE54A") : Color(hex: "DFDFDF"))
+                .stroke(viewModel.disabilityList[index] ? Color.Yellow : Color.Gray300)
         }
     }
     

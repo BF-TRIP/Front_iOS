@@ -43,7 +43,7 @@ struct MainView: View {
                 }
                 .scrollIndicators(.hidden)
         }
-        .background(Color(hex: "#FFE54A"))
+        .background(Color.Yellow)
         .background(ignoresSafeAreaEdges: .top)
         .scrollIndicators(.hidden)
     }

@@ -34,14 +34,14 @@ struct VoiceView: View {
                 Spacer()
                 
                 Text("듣고 있어요!")
-                    .foregroundColor(Color(.label))
+                    .foregroundColor(Color.Black)
                     .font(.system(size: 28))
                     .padding()
                 Text("공원, 바다, 박물관과 같은")
-                    .foregroundColor(Color(hex: "#A1A5AC"))
+                    .foregroundColor(Color.Gray600)
                     .font(.system(size: 20))
                 Text("장소 키워드를 말해주세요.")
-                    .foregroundColor(Color(hex: "#A1A5AC"))
+                    .foregroundColor(Color.Gray600)
                     .font(.system(size: 20))
                 
                 Button {
@@ -55,18 +55,18 @@ struct VoiceView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 200, height: 200)
-                        .tint(Color(hex: "#FFE023"))
+                        .tint(Color.Yellow)
                 }
                 
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: 500)
-            .background(Color(hex: "#F6F5FA"))
+            .background(Color.White)
             
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.black).opacity(0.4))
+        .background(Color.Black.opacity(0.5))
         .background(ClearBackground())
         .onAppear(perform: {
             audioRecorderManager.startRecording()

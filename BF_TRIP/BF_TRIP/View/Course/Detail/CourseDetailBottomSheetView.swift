@@ -27,7 +27,7 @@ struct CourseDetailBottomSheetView: View {
             VStack {
                 VStack {
                     Capsule()
-                        .fill(Color.black)
+                        .fill(Color.Black)
                         .frame(width: 120, height: 4)
                 }
                 .frame(height: 40)

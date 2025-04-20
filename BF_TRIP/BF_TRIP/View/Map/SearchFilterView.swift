@@ -49,7 +49,7 @@ struct SearchFilterView: View {
                     self.isFilterViewShowing = false
                 } label: {
                     Image(systemName: "chevron.backward")
-                        .foregroundColor(Color(.label))
+                        .foregroundColor(Color.Black)
                 }
                 .padding()
                 
@@ -74,8 +74,8 @@ struct SearchFilterView: View {
                     Text("\(stateList[index])")
                         .frame(maxWidth: .infinity, alignment: .center)
                         .font(.system(size: 16))
-                        .foregroundColor(self.selectedState == stateList[index] ? Color(.label) : Color(hex: "#949494"))
-                        .listRowBackground(self.selectedState == stateList[index] ? Color(hex: "#FFE023") : Color(hex: "#E2E2E2"))
+                        .foregroundColor(self.selectedState == stateList[index] ? Color.Black : Color.Gray400)
+                        .listRowBackground(self.selectedState == stateList[index] ? Color.Yellow : Color.Gray300)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
                             self.selectedState = stateList[index]
@@ -89,7 +89,7 @@ struct SearchFilterView: View {
                 if let stateIndex = selectedStateIndex {
                     List(0..<cityList[stateIndex].count, id: \.self) { index in
                         Text("\(cityList[stateIndex][index])")
-                            .listRowBackground(self.selectedCity == cityList[stateIndex][index] ? Color(hex: "#FFFCE7") : Color(.white))
+                            .listRowBackground(self.selectedCity == cityList[stateIndex][index] ? Color.Yellow100 : Color.White)
                             .onTapGesture {
                                 self.selectedCity = cityList[stateIndex][index]
                             }
@@ -118,11 +118,11 @@ struct SearchFilterView: View {
                 } label: {
                     Text("적용하기")
                         .frame(maxWidth: .infinity, maxHeight: 53)
-                        .foregroundColor(Color(.label))
+                        .foregroundColor(Color.Black)
                         .fontWeight(.bold)
                 }
                 .buttonStyle(.plain)
-                .background(Color(hex: "#FFE023"))
+                .background(Color.Yellow)
                 .cornerRadius(10)
                 .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 30))
             }

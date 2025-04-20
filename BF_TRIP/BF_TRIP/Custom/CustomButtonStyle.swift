@@ -11,10 +11,9 @@ struct CustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .background(Color(hex: "FFE54A"))
-            .foregroundColor(.black)
+            .background(Color.Yellow)
+            .foregroundColor(Color.Black)
             .opacity(configuration.isPressed ? 0.5 : 1.0)
-            .foregroundColor(.white)
             .cornerRadius(10)
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
             .animation(.easeInOut, value: configuration.isPressed)

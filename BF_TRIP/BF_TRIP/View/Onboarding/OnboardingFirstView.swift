@@ -16,10 +16,10 @@ struct OnboardingFirstView: View {
         VStack(alignment: .leading) {
             Text("가입을 축하드려요🎉")
                 .font(.system(size: 24, weight: .semibold))
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.Black)
             Text("어떻게 불러드리면 될까요?")
                 .font(.system(size: 24, weight: .semibold))
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.Black)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -34,7 +34,7 @@ struct OnboardingFirstView: View {
             HStack {
                 Spacer()
                 Text("\(viewModel.name.count)/5")
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color.gray)
                     .padding(.trailing, 8)
             }
         )

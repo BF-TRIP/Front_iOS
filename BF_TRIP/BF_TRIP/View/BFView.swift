@@ -21,7 +21,7 @@ struct BFView: View {
     @Binding var showOnboarding: Bool?
     
     init(userId: Binding<Int?>, showOnboarding: Binding<Bool?>) {
-        UITabBar.appearance().backgroundColor = UIColor(.white)
+        UITabBar.appearance().backgroundColor = UIColor(Color.White)
         UIScrollView.appearance().bounces = false
         
         _userId = userId
@@ -57,14 +57,14 @@ struct BFView: View {
                     Image(systemName: "book")
                     Text("코스")
                 }
-                .background(Color(hex: "#000000"))
+                .background(Color.Black)
                 .background(ignoresSafeAreaEdges: .all)
             BookmarkView()
                 .tabItem {
                     Image(systemName: "bookmark")
                     Text("저장")
                 }
-                .background(Color(hex: "#000000"))
+                .background(Color.Black)
                 .background(ignoresSafeAreaEdges: .all)
         }
         .accentColor(Color(.label))

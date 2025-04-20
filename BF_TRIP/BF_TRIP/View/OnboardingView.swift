@@ -34,7 +34,7 @@ struct OnboardingView: View {
                     webView.sendUUID()
                 }
                 .scrollDisabled(true)
-                .background(Color(.white))
+                .background(Color.White)
                 .background(ignoresSafeAreaEdges: .all)
         }
         .edgesIgnoringSafeArea(.bottom)

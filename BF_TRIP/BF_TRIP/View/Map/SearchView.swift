@@ -57,7 +57,7 @@ struct SearchView: View {
         Button(action: { isSearchViewShowing = false }) {
             Image(systemName: "chevron.backward")
                 .font(.system(size: 18))
-                .foregroundColor(.primary)
+                .foregroundColor(Color.Black)
                 .padding(5)
         }
     }
@@ -66,7 +66,7 @@ struct SearchView: View {
         TextField("검색어를 입력해주세요.", text: $text)
             .autocorrectionDisabled()
             .padding(15)
-            .background(Color(.systemGray6))
+            .background(Color.Gray400)
             .cornerRadius(15)
             .overlay(searchOverlay)
             .onSubmit {
@@ -94,14 +94,14 @@ struct SearchView: View {
     private var searchButton: some View {
         Button(action: performSearch) {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(.primary)
+                .foregroundColor(Color.Black)
         }
     }
 
     private var clearButton: some View {
         Button(action: clearSearch) {
             Image(systemName: "multiply.circle.fill")
-                .foregroundColor(.primary)
+                .foregroundColor(Color.Black)
                 .padding()
         }
     }
@@ -109,7 +109,7 @@ struct SearchView: View {
     private var voiceButton: some View {
         Button(action: { isVoiceViewShowing.toggle() }) {
             Image(systemName: "mic")
-                .foregroundColor(.primary)
+                .foregroundColor(Color.Black)
                 .padding()
         }
     }

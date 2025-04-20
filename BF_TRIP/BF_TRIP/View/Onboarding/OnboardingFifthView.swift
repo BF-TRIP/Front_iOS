@@ -15,13 +15,13 @@ struct OnboardingFifthView: View {
         VStack(alignment: .leading) {
             Text("추구하는 여행 스타일을")
                 .font(.system(size: 24, weight: .semibold))
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.Black)
             Text("선택해주세요.")
                 .font(.system(size: 24, weight: .semibold))
-                .foregroundStyle(Color.black)
+                .foregroundStyle(Color.Black)
             Text("중복 선택이 가능해요.")
                 .font(.system(size: 18))
-                .foregroundColor(Color(hex: "6E6E6E"))
+                .foregroundColor(Color.Gray600)
                 .padding(.top, 5)
         }
         .padding()
@@ -56,7 +56,7 @@ struct OnboardingFifthView: View {
                         Text(title2)
                             .font(.system(size: 10, weight: .medium))
                             .contentTransition(.identity)
-                            .foregroundColor(Color(hex: "858585"))
+                            .foregroundColor(Color.Gray600)
                         Spacer()
                     }
                     .padding(.top, 3)
@@ -64,7 +64,7 @@ struct OnboardingFifthView: View {
                         Text(title3)
                             .font(.system(size: 10, weight: .medium))
                             .contentTransition(.identity)
-                            .foregroundColor(Color(hex: "858585"))
+                            .foregroundColor(Color.Gray600)
                         Spacer()
                     }
                     Spacer()
@@ -83,12 +83,12 @@ struct OnboardingFifthView: View {
         }
         .frame(width: UIScreen.main.bounds.width * 0.37, height: UIScreen.main.bounds.height * 0.1)
         .padding()
-        .background(viewModel.tripList[index] ? Color(hex: "FFFCE7") : .white.opacity(0))
-        .foregroundColor(.black)
+        .background(viewModel.tripList[index] ? Color.Yellow100 : Color.White.opacity(0))
+        .foregroundColor(Color.Black)
         .cornerRadius(15)
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(viewModel.tripList[index] ? Color(hex: "FFE54A") : Color(hex: "DFDFDF"))
+                .stroke(viewModel.tripList[index] ? Color.Yellow : Color.Gray300)
         }
     }
     

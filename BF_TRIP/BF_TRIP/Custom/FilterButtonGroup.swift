@@ -11,9 +11,9 @@ struct FilterButtonGroup: View {
     
     @Binding var selectedComponents: [Int]
     let list: [String]
-    let backgroundColor: String
-    let fontColor: String
-    let radiusColor: String
+    let backgroundColor: Color
+    let fontColor: Color
+    let radiusColor: Color
         
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -33,14 +33,14 @@ struct FilterButtonGroup: View {
                     } label: {
                         Text("\(self.list[index])")
                             .font(.system(size: 14))
-                            .foregroundStyle(self.selectedComponents.contains(index) == true ? Color(hex: "\(fontColor)") : Color(.label))
+                            .foregroundStyle(self.selectedComponents.contains(index) == true ? fontColor : Color(.label))
                             .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
                     }
-                    .background(self.selectedComponents.contains(index) ? Color(hex: "\(backgroundColor)") : Color(.clear))
+                    .background(self.selectedComponents.contains(index) ? backgroundColor : Color(.clear))
                     .cornerRadius(100)
                     .overlay(RoundedRectangle(cornerRadius: 100)
                         .stroke(lineWidth: 1)
-                        .foregroundColor(self.selectedComponents.contains(index) ? Color(hex: "\(radiusColor)") : Color(.black))
+                        .foregroundColor(self.selectedComponents.contains(index) ? radiusColor : Color(.black))
                     )
                     .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
                 }
