@@ -11,6 +11,7 @@ struct CourseMainView: View {
     
     @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel()
     
+    @State private var showErrorMessage = false
     @State private var isButtonEnabled = true
     @State private var isCreateViewShowing = false
     @State private var isResultViewShowing = false
@@ -37,71 +38,86 @@ struct CourseMainView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: 0) {
-                Image(uiImage: .aiCourse)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: geometry.size.height * 0.4)
-                    .padding(.top, geometry.size.height * 0.05)
-                
-                VStack(spacing: 20) {
-                    CourseCustomButton(
-                        color: Color(hex: "#FF8C00"),
-                        descriptionColor: Color.black,
-                        title: "빠르게 생성하기",
-                        description1: "입력한 정보를 바탕으로",
-                        description2: "맞춤형 코스를 만들어드려요.",
-                        image: Image(uiImage: .clock)
-                    ) {
-                        isButtonEnabled = false
-                        isOnboardingState = true
-                        isCreateViewShowing = true
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            isButtonEnabled = true
-                        }
-                    }
-                    .disabled(!isButtonEnabled)
-                    .fullScreenCover(isPresented: $isCreateViewShowing) {
-                        CourseOnboardingMainView(
-                            viewModel: onboardingViewModel,
-                            result: $result,
-                            onboardingState: $isOnboardingState,
-                            isShowing: $isCreateViewShowing,
-                            isResultViewShowing: $isResultViewShowing
-                        )
-                    }
+            ZStack {
+                VStack(spacing: 0) {
+                    Image(uiImage: .aiCourse)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: geometry.size.height * 0.4)
+                        .padding(.top, geometry.size.height * 0.05)
                     
-                    CourseCustomButton(
-                        color: Color(hex: "#323232"),
-                        descriptionColor: Color.white,
-                        title: "세부 조건 다시 고르기",
-                        description1: "원하는 조건을 다시 선택하여",
-                        description2: "나만의 코스를 만들어드려요.",
-                        image: Image(uiImage: .target)
-                    ) {
-                        isButtonEnabled = false
-                        isOnboardingState = false
-                        isCreateViewShowing = true
+                    VStack(spacing: 20) {
+                        CourseCustomButton(
+                            color: Color(hex: "#FF8C00"),
+                            descriptionColor: Color.black,
+                            title: "빠르게 생성하기",
+                            description1: "입력한 정보를 바탕으로",
+                            description2: "맞춤형 코스를 만들어드려요.",
+                            image: Image(uiImage: .clock)
+                        ) {
+                            isButtonEnabled = false
+                            isOnboardingState = true
+                            isCreateViewShowing = true
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                isButtonEnabled = true
+                            }
+                        }
+                        .disabled(!isButtonEnabled)
+                        .fullScreenCover(isPresented: $isCreateViewShowing) {
+                            CourseOnboardingMainView(
+                                viewModel: onboardingViewModel,
+                                showErrorMessage: $showErrorMessage,
+                                result: $result,
+                                onboardingState: $isOnboardingState,
+                                isShowing: $isCreateViewShowing,
+                                isResultViewShowing: $isResultViewShowing
+                            )
+                        }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            isButtonEnabled = true
+                        CourseCustomButton(
+                            color: Color(hex: "#323232"),
+                            descriptionColor: Color.white,
+                            title: "세부 조건 다시 고르기",
+                            description1: "원하는 조건을 다시 선택하여",
+                            description2: "나만의 코스를 만들어드려요.",
+                            image: Image(uiImage: .target)
+                        ) {
+                            isButtonEnabled = false
+                            isOnboardingState = false
+                            isCreateViewShowing = true
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                isButtonEnabled = true
+                            }
+                        }
+                        .disabled(!isButtonEnabled)
+                        .fullScreenCover(isPresented: $isCreateViewShowing) {
+                            CourseOnboardingMainView(
+                                viewModel: onboardingViewModel,
+                                showErrorMessage: $showErrorMessage,
+                                result: $result,
+                                onboardingState: $isOnboardingState,
+                                isShowing: $isCreateViewShowing,
+                                isResultViewShowing: $isResultViewShowing
+                            )
                         }
                     }
-                    .disabled(!isButtonEnabled)
-                    .fullScreenCover(isPresented: $isCreateViewShowing) {
-                        CourseOnboardingMainView(
-                            viewModel: onboardingViewModel,
-                            result: $result,
-                            onboardingState: $isOnboardingState,
-                            isShowing: $isCreateViewShowing,
-                            isResultViewShowing: $isResultViewShowing
-                        )
-                    }
+                    .padding(.leading)
+                    .padding(.trailing)
+                    .padding(.bottom)
                 }
-                .padding(.leading)
-                .padding(.trailing)
-                .padding(.bottom)
+                
+                if showErrorMessage {
+                    Text("코스 생성에 실패했어요 다시한번 만들어주세요")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.red)
+                        .cornerRadius(10)
+                        .transition(.opacity)
+                        .zIndex(1)
+                }
             }
         }
         .background(Color(hex: "FFFCE7"))

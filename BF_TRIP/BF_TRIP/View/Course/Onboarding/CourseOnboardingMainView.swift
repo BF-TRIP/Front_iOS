@@ -14,6 +14,8 @@ struct CourseOnboardingMainView: View {
     @State private var currentStartPage: Int = 1
     @State private var currentRestartPage: Int = 1
     
+    @Binding var showErrorMessage: Bool
+    
     @Binding var result: CourseModel
     @Binding var onboardingState: Bool
     @Binding var isShowing: Bool
@@ -142,6 +144,7 @@ struct CourseOnboardingMainView: View {
         case 3:
             CourseOnboardingFinalView(
                 viewModel: viewModel,
+                showErrorMessage: $showErrorMessage,
                 isShowing: $isShowing,
                 isResultViewShowing: $isResultViewShowing,
                 onboardingState: $onboardingState,
@@ -166,6 +169,7 @@ struct CourseOnboardingMainView: View {
         case 5:
             CourseOnboardingFinalView(
                 viewModel: viewModel,
+                showErrorMessage: $showErrorMessage,
                 isShowing: $isShowing,
                 isResultViewShowing: $isResultViewShowing,
                 onboardingState: $onboardingState,

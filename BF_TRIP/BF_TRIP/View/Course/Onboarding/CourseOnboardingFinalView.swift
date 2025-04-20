@@ -12,6 +12,7 @@ struct CourseOnboardingFinalView: View {
     @State private var userNumber = DataManager.shared.loadUserId()
     
     @ObservedObject var viewModel: OnboardingViewModel
+    @Binding var showErrorMessage: Bool
     @Binding var isShowing: Bool
     @Binding var isResultViewShowing: Bool
     @Binding var onboardingState: Bool
@@ -91,9 +92,8 @@ struct CourseOnboardingFinalView: View {
                 result = try await viewModel.postAIQuickRecomnent(userNumber: userNumber)
                 isShowing = false
                 isResultViewShowing = true
-                dump(result)
             } catch {
-                print(error.localizedDescription)
+                showTemporaryErrorMessage()
                 isShowing = false
             }
         } else {
@@ -103,9 +103,16 @@ struct CourseOnboardingFinalView: View {
                 isShowing = false
                 isResultViewShowing = true
             } catch {
-                print(error.localizedDescription)
+                showTemporaryErrorMessage()
                 isShowing = false
             }
+        }
+    }
+    
+    private func showTemporaryErrorMessage() {
+        showErrorMessage = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            showErrorMessage = false
         }
     }
     
