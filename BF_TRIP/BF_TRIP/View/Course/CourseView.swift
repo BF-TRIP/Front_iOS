@@ -18,10 +18,10 @@ struct CourseView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(day.contentTitle)
                     .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.Black)
                 Text(day.addr)
                     .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.Black)
             }
             
             Spacer()

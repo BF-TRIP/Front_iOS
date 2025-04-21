@@ -13,10 +13,6 @@ struct CourseDetailCourseView: View {
     @Binding var selectedList: [ResponsePlaceDTO]
     @Binding var selectedNumber: Int
     
-    private let backgroundColor = "0A70C9"
-    private let defalutColor = "E2E2E2"
-    private let fontColor = "FFFFFF"
-    
     private let semiboldFontSize: CGFloat = 20
     private let mediumFontSize: CGFloat = 18
     private let floatingFontSize: CGFloat = 16
@@ -26,10 +22,7 @@ struct CourseDetailCourseView: View {
             VStack {
                 DaysComponent(
                     course: $course,
-                    selectedDay: $selectedNumber,
-                    backgroundColor: backgroundColor,
-                    defalutColor: defalutColor,
-                    fontColor: fontColor
+                    selectedDay: $selectedNumber
                 )
                 .padding(.leading, 30)
                 .padding(.top, 10)

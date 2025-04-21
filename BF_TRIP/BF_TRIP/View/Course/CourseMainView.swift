@@ -111,7 +111,7 @@ struct CourseMainView: View {
                 if showErrorMessage {
                     Text("코스 생성에 실패했어요 다시한번 만들어주세요")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.White)
                         .padding()
                         .background(Color.red)
                         .cornerRadius(10)
@@ -147,7 +147,7 @@ struct CourseCustomButton: View {
                     Spacer()
                     Text(title)
                         .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.White)
                     
                     Spacer().frame(height: 20)
                     

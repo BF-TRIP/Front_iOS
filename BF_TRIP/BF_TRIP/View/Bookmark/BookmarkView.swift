@@ -40,7 +40,7 @@ struct BookmarkView: View {
         VStack {
             Text("저장")
                 .font(.system(size: 22, weight: .bold))
-                .foregroundColor(.black)
+                .foregroundColor(Color.Black)
                 .padding(.top)
                 .padding(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -74,7 +74,7 @@ struct BookmarkView: View {
                             }
                         } label: {
                             SaveCourseView(course: $course)
-                                .background(.white)
+                                .background(Color.White)
                                 .cornerRadius(15)
                                 .shadow(radius: 0.5)
                         }
@@ -95,7 +95,7 @@ struct BookmarkView: View {
             
             Spacer()
         }
-        .background(Color.white.edgesIgnoringSafeArea(.all))
+        .background(Color.White.edgesIgnoringSafeArea(.all))
         .task {
             await fetchSavePlaceList()
             await fetchSaveCourseList()

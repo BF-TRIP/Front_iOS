@@ -77,7 +77,7 @@ struct CourseRow: View {
                         .scaledToFit()
                     Text(" ")
                         .font(.system(size: 12))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color.White)
                         .padding(.bottom, 3)
                 }
                 .frame(height: 28)

@@ -25,12 +25,12 @@ struct CourseDetailSegmentView: View {
                     activeTab: $activeTab,
                     height: 35,
                     font: .body,
-                    activeTint: .black,
+                    activeTint: Color.Black,
                     inactiveTint: .gray.opacity(0.7)
                 ) {
                     size in
                     Rectangle()
-                        .fill(.black)
+                        .fill(Color.Black)
                         .frame(height: 2)
                         .padding(.horizontal, 10)
                         .frame(maxHeight: .infinity, alignment: .bottom)

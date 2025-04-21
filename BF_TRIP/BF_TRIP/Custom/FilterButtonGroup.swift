@@ -40,7 +40,7 @@ struct FilterButtonGroup: View {
                     .cornerRadius(100)
                     .overlay(RoundedRectangle(cornerRadius: 100)
                         .stroke(lineWidth: 1)
-                        .foregroundColor(self.selectedComponents.contains(index) ? radiusColor : Color(.black))
+                        .foregroundColor(self.selectedComponents.contains(index) ? radiusColor : Color.Black)
                     )
                     .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
                 }

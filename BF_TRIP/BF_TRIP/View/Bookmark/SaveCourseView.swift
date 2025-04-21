@@ -33,7 +33,7 @@ struct SaveCourseView: View {
             VStack(alignment: .leading, content: {
                 Text(course.courseName ?? "")
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.Black)
                 HStack {
                     Text(course.startDate ?? "")
                         .font(.system(size: 12, weight: .medium))

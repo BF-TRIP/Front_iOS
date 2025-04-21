@@ -22,7 +22,7 @@ struct SavePlaceView: View {
                         image.image?.resizable()
                     }
                     .frame(maxWidth: .infinity, minHeight: 160, maxHeight: 160)
-                    .background(Color(.white))
+                    .background(Color.White)
                     .cornerRadius(15)
                 } else {
                     Image(uiImage: .placeholder)
@@ -47,7 +47,7 @@ struct SavePlaceView: View {
             HStack {
                 Text("\(place.contentTitle)")
                     .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.Black)
                 
                 Spacer()
             }
@@ -55,7 +55,7 @@ struct SavePlaceView: View {
             HStack {
                 Text("\(place.addr)")
                     .font(.system(size: 12, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.Black)
                 
                 Spacer()
             }

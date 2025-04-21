@@ -11,10 +11,6 @@ struct DaysComponent: View {
     
     @Binding var course: CourseModel
     @Binding var selectedDay: Int
-    
-    let backgroundColor: String
-    let defalutColor: String
-    let fontColor: String
         
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -33,11 +29,19 @@ struct DaysComponent: View {
         }) {
             Text("\(index)일차")
                 .font(.system(size: 14))
-                .foregroundColor(Color(hex: fontColor))
+                .foregroundColor(
+                    selectedDay == index
+                    ? Color.Black
+                    : Color.Gray600
+                )
                 .padding(.vertical, 5)
                 .padding(.horizontal, 15)
         }
-        .background(selectedDay == index ? Color(hex: backgroundColor) : Color(hex: defalutColor))
+        .background(
+            selectedDay == index
+            ? Color.Yellow
+            : Color.Gray300
+        )
         .cornerRadius(50)
         .padding(.vertical, 5)
     }

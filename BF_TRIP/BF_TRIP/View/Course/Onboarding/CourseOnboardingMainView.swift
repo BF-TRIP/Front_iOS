@@ -58,7 +58,7 @@ struct CourseOnboardingMainView: View {
                 }
                 .buttonStyle(CustomButtonStyle())
             } else {
-                Color.white
+                Color.White
             }
         }
     }
@@ -94,7 +94,7 @@ struct CourseOnboardingMainView: View {
                 : (1...4).contains(currentRestartPage) {
                 Button(action: decrementPage) {
                     Image(systemName: "arrow.left")
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.Black)
                 }
             }
         }

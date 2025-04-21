@@ -30,7 +30,7 @@ struct CourseResultView: View {
                     HStack {
                         Button(action: { showAlert = true }) {
                             Image(systemName: "xmark")
-                                .foregroundColor(.black)
+                                .foregroundColor(Color.Black)
                         }
                         .alert("코스 생성을 취소할까요?", isPresented: $showAlert) {
                             Button("아니요", role: .cancel) { }
@@ -43,7 +43,7 @@ struct CourseResultView: View {
                     
                     Text("완성된 코스를 확인해보세요")
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.Black)
                 }
                 .padding()
                 
@@ -57,10 +57,7 @@ struct CourseResultView: View {
                 
                 DaysComponent(
                     course: $result,
-                    selectedDay: $selectedDay,
-                    backgroundColor: Constants.backgroundColor,
-                    defalutColor: Constants.defaultColor,
-                    fontColor: Constants.fontColor
+                    selectedDay: $selectedDay
                 )
                 .padding(.leading, 30)
                 .padding(.top, 10)
@@ -104,14 +101,14 @@ struct HeaderView: View {
             HStack {
                 Button(action: { isResultShowing.toggle() }) {
                     Image(systemName: "xmark")
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.Black)
                 }
                 Spacer()
             }
             
             Text("완성된 코스를 확인해보세요")
                 .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(.black)
+                .foregroundColor(Color.Black)
         }
         .padding()
     }
@@ -125,32 +122,28 @@ struct CourseInfoView: View {
             HStack(spacing: 8) {
                 Text(course.courseInfo.area ?? "")
                     .font(.system(size: Constants.semiboldFontSize, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.Black)
                 
                 if course.locationInfoResList.count == 1 {
                     Text("당일치기")
                         .font(.system(size: Constants.semiboldFontSize, weight: .semibold))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.Black)
                 } else {
                     Text("\(course.locationInfoResList.count - 1)박 \(course.locationInfoResList.count)일")
                         .font(.system(size: Constants.semiboldFontSize, weight: .semibold))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color.Black)
                 }
             }
             
             Text(Constants.mention)
                 .font(.system(size: Constants.mediumFontSize, weight: .medium))
-                .foregroundColor(.black)
+                .foregroundColor(Color.Black)
         }
     }
 }
 
 struct Constants {
     static let mention = "더욱 쉽게 접근할 수 있는 코스로 준비했어요"
-    
-    static let backgroundColor = "0A70C9"
-    static let defaultColor = "E2E2E2"
-    static let fontColor = "FFFFFF"
     
     static let semiboldFontSize: CGFloat = 24
     static let mediumFontSize: CGFloat = 18

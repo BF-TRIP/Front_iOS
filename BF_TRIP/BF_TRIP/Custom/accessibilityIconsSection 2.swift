@@ -59,7 +59,7 @@ struct accessibilityIconsSection: View {
                 || place.hearingHandicapEtc != "")
         }
         .frame(maxWidth: .infinity, maxHeight: 48)
-        .background(Color.white)
+        .background(Color.White)
         .padding(EdgeInsets(top: 0, leading: 5, bottom: 15, trailing: 5))
     }
     

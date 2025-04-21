@@ -76,8 +76,8 @@ struct ButtonView: View {
             Text(button)
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(height: 48)
-                .background(isSelected ? Color.Yellow100 : Color.white)
-                .foregroundColor(.black)
+                .background(isSelected ? Color.Yellow100 : Color.White)
+                .foregroundColor(Color.Black)
                 .font(.system(size: 18, weight: isSelected ? .semibold : .medium))
                 .cornerRadius(40)
                 .overlay(

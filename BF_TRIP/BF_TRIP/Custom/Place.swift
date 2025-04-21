@@ -28,7 +28,7 @@ struct Place: View {
                         image.image?.resizable()
                     }
                     .frame(maxWidth: .infinity, minHeight: 160, maxHeight: 160)
-                    .background(Color(.white))
+                    .background(Color.White)
                     .cornerRadius(15)
                 } else {
                     Image(uiImage: .placeholder)
@@ -68,7 +68,7 @@ struct Place: View {
             HStack {
                 Text("\(place.contentTitle)")
                     .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.Black)
                 
                 Spacer()
             }
@@ -76,7 +76,7 @@ struct Place: View {
             HStack {
                 Text("\(place.addr)")
                     .font(.system(size: 12, weight: .semibold))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.Black)
                 
                 Spacer()
             }
@@ -155,11 +155,11 @@ struct Place: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: 48)
-            .background(Color(.white))
+            .background(Color.White)
             .padding(EdgeInsets(top: 0, leading: 5, bottom: 15, trailing: 5))
             
         }
-        .background(.white)
+        .background(Color.White)
         .cornerRadius(20)
     }
 }
