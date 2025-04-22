@@ -14,6 +14,7 @@
 		8F117ACA2D6AC64C000DAE3F /* CourseOnboardingFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F117AC92D6AC64C000DAE3F /* CourseOnboardingFirstView.swift */; };
 		8F117ACC2D6AC65E000DAE3F /* CourseOnboardingSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F117ACB2D6AC65E000DAE3F /* CourseOnboardingSecondView.swift */; };
 		8F14D3E82DB4C1ED00C1A321 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F14D3E72DB4C1ED00C1A321 /* AppColor.swift */; };
+		8F14D3EA2DB66A0300C1A321 /* MapBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F14D3E92DB66A0300C1A321 /* MapBottomSheetView.swift */; };
 		8F1D2C0C2D5A19AC00126EFA /* OnboardingThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D2C0B2D5A19AC00126EFA /* OnboardingThirdView.swift */; };
 		8F1D2C0E2D5A272100126EFA /* OnboardingFourthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D2C0D2D5A272100126EFA /* OnboardingFourthView.swift */; };
 		8F1D2C102D5A273A00126EFA /* OnboardingFifthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1D2C0F2D5A273A00126EFA /* OnboardingFifthView.swift */; };
@@ -94,6 +95,7 @@
 		8F117AC92D6AC64C000DAE3F /* CourseOnboardingFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseOnboardingFirstView.swift; sourceTree = "<group>"; };
 		8F117ACB2D6AC65E000DAE3F /* CourseOnboardingSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseOnboardingSecondView.swift; sourceTree = "<group>"; };
 		8F14D3E72DB4C1ED00C1A321 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		8F14D3E92DB66A0300C1A321 /* MapBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBottomSheetView.swift; sourceTree = "<group>"; };
 		8F1D2C0B2D5A19AC00126EFA /* OnboardingThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingThirdView.swift; sourceTree = "<group>"; };
 		8F1D2C0D2D5A272100126EFA /* OnboardingFourthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFourthView.swift; sourceTree = "<group>"; };
 		8F1D2C0F2D5A273A00126EFA /* OnboardingFifthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFifthView.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				8F71B40F2CA954A300F1B782 /* MapView.swift */,
+				8F14D3E92DB66A0300C1A321 /* MapBottomSheetView.swift */,
 				8F832CAE2CADA10300DA5A40 /* SearchView.swift */,
 				8F71B40B2CA954A300F1B782 /* SearchFilterView.swift */,
 			);
@@ -578,6 +581,7 @@
 				8FEC41282D8EA56B001249F3 /* UserNameEnviroment.swift in Sources */,
 				8FBAC3F22CAFF156007AD4CB /* MainView.swift in Sources */,
 				8F117AC12D69ABD5000DAE3F /* ResponseJoinModel.swift in Sources */,
+				8F14D3EA2DB66A0300C1A321 /* MapBottomSheetView.swift in Sources */,
 				8F71B4132CA954A300F1B782 /* PlaceListView.swift in Sources */,
 				8FB7BE272D8679B0007EBEC8 /* SavePlaceView.swift in Sources */,
 				8FB7BE282D8679B0007EBEC8 /* SaveCourseView.swift in Sources */,
