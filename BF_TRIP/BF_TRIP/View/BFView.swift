@@ -36,18 +36,6 @@ struct BFView: View {
                     Text("홈")
                 }
             MapView(viewModel: mapViewModel)
-                .bottomSheet(
-                    bottomSheetPosition: self.$bottomSheetPosition,
-                    switchablePositions: [.relative(0.3), .relative(0.5), .relativeTop(0.95)],
-                    content: {
-                        PlaceListView(
-                            title: "관광지 목록",
-                            searching: false,
-                            isPlaceListViewShowing: $emtpyShowing,
-                            viewModel: self.mapViewModel
-                        )
-                        .padding(.bottom, 100)
-                    })
                 .tabItem {
                     Image(systemName: "map")
                     Text("지도")

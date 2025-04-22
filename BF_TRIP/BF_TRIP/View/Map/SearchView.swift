@@ -22,6 +22,11 @@ struct SearchView: View {
         NavigationStack {
             VStack {
                 searchBar
+                    .background(Color.White)
+                    .cornerRadius(10)
+                    .frame(height: 48)
+                    .padding(.horizontal)
+                    .padding(.top, 8)
                 
                 Spacer()
                 
@@ -46,27 +51,28 @@ struct SearchView: View {
     }
     
     private var searchBar: some View {
-        HStack {
+        HStack(spacing: 8) {
             backButton
             searchField
         }
-        .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
     }
     
     private var backButton: some View {
-        Button(action: { isSearchViewShowing = false }) {
+        Button { isSearchViewShowing = false
+        } label: {
             Image(systemName: "chevron.backward")
-                .font(.system(size: 18))
+                .font(.system(size: 14))
                 .foregroundColor(Color.Black)
-                .padding(5)
         }
+        .padding(.leading, 12)
     }
     
     private var searchField: some View {
-        TextField("검색어를 입력해주세요.", text: $text)
+        TextField("   검색어를 입력해주세요.", text: $text)
             .autocorrectionDisabled()
-            .padding(15)
-            .background(Color.Gray400)
+            .padding(.vertical, 10)
+            .background(Color.Gray100)
+            .frame(maxWidth: .infinity)
             .cornerRadius(15)
             .overlay(searchOverlay)
             .onSubmit {
@@ -94,6 +100,7 @@ struct SearchView: View {
     private var searchButton: some View {
         Button(action: performSearch) {
             Image(systemName: "magnifyingglass")
+                .font(.system(size: 14))
                 .foregroundColor(Color.Black)
         }
     }
@@ -101,6 +108,7 @@ struct SearchView: View {
     private var clearButton: some View {
         Button(action: clearSearch) {
             Image(systemName: "multiply.circle.fill")
+                .font(.system(size: 14))
                 .foregroundColor(Color.Black)
                 .padding()
         }
@@ -109,6 +117,7 @@ struct SearchView: View {
     private var voiceButton: some View {
         Button(action: { isVoiceViewShowing.toggle() }) {
             Image(uiImage: .mic)
+                .font(.system(size: 14))
                 .foregroundColor(Color.Black)
                 .padding()
         }
