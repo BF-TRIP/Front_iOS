@@ -21,6 +21,34 @@ struct CourseOnboardingMainView: View {
     @Binding var isShowing: Bool
     @Binding var isResultViewShowing: Bool
     
+    private var isCourseNextButtonDisabled: Bool {
+            if onboardingState {
+                switch currentStartPage {
+                case 1:
+                    return viewModel.area == nil
+                case 2:
+                    return viewModel.days == nil
+                default:
+                    return false
+                }
+            } else {
+                switch currentRestartPage {
+                case 1:
+                    let anyDisabilitySelected = viewModel.disabilityList.contains(true)
+                    return !anyDisabilitySelected && !viewModel.disabilityNoneApplySelected
+                case 2:
+                    return viewModel.area == nil
+                case 3:
+                    return viewModel.days == nil
+                case 4:
+                    let anyTripSelected = viewModel.tripList.contains(true)
+                    return !anyTripSelected && !viewModel.tripNoneApplySelected
+                default:
+                    return false
+                }
+            }
+        }
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -34,6 +62,7 @@ struct CourseOnboardingMainView: View {
                 Spacer()
                 
                 nextButton
+                    .disabled(isCourseNextButtonDisabled)
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -57,8 +86,9 @@ struct CourseOnboardingMainView: View {
                         .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.03)
                 }
                 .buttonStyle(CustomButtonStyle())
+                .disabled(isCourseNextButtonDisabled)
             } else {
-                Color.White
+                EmptyView()
             }
         }
     }

@@ -28,6 +28,7 @@ struct OnboardingMainView: View {
                 
                 nextButton
                     .padding(.bottom, keyboardHeight > 0 ? keyboardHeight - 300 : 20)
+                    .disabled(isNextButtonDisabled)
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -41,6 +42,27 @@ struct OnboardingMainView: View {
             .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
         }
     }
+    
+    private var isNextButtonDisabled: Bool {
+            switch currentPage {
+            case 1:
+                return onboardingViewModel.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            case 2:
+                return false
+            case 3:
+                return onboardingViewModel.gender == nil
+            case 4:
+                let anyDisabilitySelected = onboardingViewModel.disabilityList.contains(true)
+                return !anyDisabilitySelected && !onboardingViewModel.disabilityNoneApplySelected
+            case 5:
+                let anyTripSelected = onboardingViewModel.tripList.contains(true)
+                return !anyTripSelected && !onboardingViewModel.tripNoneApplySelected
+            case 6:
+                return false
+            default:
+                return true
+            }
+        }
     
     private var nextButton: some View {
         Button(action: {
