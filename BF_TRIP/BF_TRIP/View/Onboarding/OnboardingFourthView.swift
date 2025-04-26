@@ -38,6 +38,25 @@ struct OnboardingFourthView: View {
             toggleButton(title1: "임산부 및 영유아", title2: "동반자 지원", image: Image(uiImage: .pregnant), index: 3)
         }
         .padding(.horizontal, 10)
+        
+        Button {
+            viewModel.toggleNoneApply()
+        } label: {
+            Text("해당사항 없음")
+                .font(.system(size: 15, weight: viewModel.disabilityNoneApplySelected ? .semibold : .medium))
+                .frame(maxWidth: .infinity)
+                .contentTransition(.identity)
+        }
+        .frame(height: 50)
+        .padding(.vertical, 10)
+        .background(viewModel.disabilityNoneApplySelected ? Color.Yellow100 : Color.White.opacity(0))
+        .foregroundColor(Color.Black)
+        .cornerRadius(15)
+        .overlay {
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(viewModel.disabilityNoneApplySelected ? Color.Yellow : Color.Gray300)
+        }
+        .padding(.horizontal, 10)
     }
     
     func toggleButton(title1: String, title2: String, image: Image, index: Int) -> some View {

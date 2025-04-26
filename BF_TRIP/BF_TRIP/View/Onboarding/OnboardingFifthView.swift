@@ -38,6 +38,26 @@ struct OnboardingFifthView: View {
             toggleButton(title1: "함께하는 야외활동", title2: "가족, 어린이, 동반, 공원", title3: "레저, 테마파크", image: Image(uiImage: .amuse), index: 3)
         }
         .padding(.horizontal, 10)
+        
+        Button {
+            viewModel.toggleTripNoneApply()
+        } label: {
+            Text("해당사항 없음")
+                .font(.system(size: 15, weight: viewModel.tripNoneApplySelected ? .semibold : .medium))
+                .frame(maxWidth: .infinity)
+                .contentTransition(.identity)
+        }
+        .frame(height: 50)
+        .padding(.vertical, 10)
+        .background(viewModel.tripNoneApplySelected ? Color.Yellow100 : Color.White.opacity(0))
+        .foregroundColor(Color.Black)
+        .cornerRadius(15)
+        .overlay {
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(viewModel.tripNoneApplySelected ? Color.Yellow : Color.Gray300)
+        }
+        .padding(.horizontal, 10)
+        
     }
     
     func toggleButton(title1: String, title2: String, title3: String, image: Image, index: Int) -> some View {

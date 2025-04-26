@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class OnboardingViewModel: ObservableObject {
     
@@ -16,6 +17,55 @@ final class OnboardingViewModel: ObservableObject {
     @Published private(set) var tripList: [Bool] = Array(repeating: false, count: 4)
     @Published private(set) var area: Int? = nil
     @Published private(set) var days: Int? = nil
+    
+    @Published var disabilityNoneApplySelected: Bool = false
+    @Published var tripNoneApplySelected: Bool = false
+
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+            $disabilityList
+                .sink { [weak self] list in
+                    if list.contains(true) {
+                        if self?.disabilityNoneApplySelected == true {
+                             self?.disabilityNoneApplySelected = false
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+
+            $disabilityNoneApplySelected
+                .sink { [weak self] isSelected in
+                    if isSelected {
+                        let count = self?.disabilityList.count ?? 0
+                        if self?.disabilityList.contains(true) == true {
+                            self?.disabilityList = Array(repeating: false, count: count)
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+
+            $tripList
+                .sink { [weak self] list in
+                    if list.contains(true) {
+                        if self?.tripNoneApplySelected == true {
+                             self?.tripNoneApplySelected = false
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+
+            $tripNoneApplySelected
+                .sink { [weak self] isSelected in
+                    if isSelected {
+                        let count = self?.tripList.count ?? 0
+                        if self?.tripList.contains(true) == true {
+                            self?.tripList = Array(repeating: false, count: count)
+                        }
+                    }
+                }
+                .store(in: &cancellables)
+        }
     
     private var selectedDisabilities: [Int] {
         disabilityList.enumerated()
@@ -82,6 +132,14 @@ final class OnboardingViewModel: ObservableObject {
     func toggleDisability(at index: Int) {
         guard index >= 0 && index < disabilityList.count else { return }
         disabilityList[index].toggle()
+    }
+    
+    func toggleNoneApply() {
+        disabilityNoneApplySelected.toggle()
+    }
+    
+    func toggleTripNoneApply() {
+        tripNoneApplySelected.toggle()
     }
     
     func toggleTrip(at index: Int) {
