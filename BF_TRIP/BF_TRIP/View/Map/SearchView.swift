@@ -68,26 +68,27 @@ struct SearchView: View {
     }
     
     private var searchField: some View {
-        TextField("   검색어를 입력해주세요.", text: $text)
-            .autocorrectionDisabled()
-            .padding(.vertical, 10)
-            .background(Color.Gray100)
-            .frame(maxWidth: .infinity)
-            .cornerRadius(15)
-            .overlay(searchOverlay)
-            .onSubmit {
-                if(text != "") {
-                    viewModel.requestText(text: self.text)
-                    self.isPlaceListViewShowing = true
+        HStack(spacing: 0) {
+            TextField("검색어를 입력해주세요.", text: $text)
+                .autocorrectionDisabled()
+                .submitLabel(.search)
+                .onSubmit {
+                    if(text != "") {
+                        viewModel.requestText(text: self.text)
+                        self.isPlaceListViewShowing = true
+                    }
                 }
-            }
-            .submitLabel(.search)
+        }
+        .padding(.leading, 12)
+        .padding(.vertical, 10)
+        .background(Color.Gray100)
+        .cornerRadius(15)
+        .overlay(searchOverlay)
     }
-    
+
     private var searchOverlay: some View {
         HStack {
             Spacer()
-
             if !text.isEmpty {
                 searchButton
                 clearButton
@@ -95,8 +96,9 @@ struct SearchView: View {
                 voiceButton
             }
         }
+         .padding(.trailing, 8)
     }
-    
+
     private var searchButton: some View {
         Button(action: performSearch) {
             Image(systemName: "magnifyingglass")
