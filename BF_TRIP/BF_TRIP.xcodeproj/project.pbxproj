@@ -753,6 +753,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BF-TRIP-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "모행";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 기반 관광지를 위한 현재 위치를 알기 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 인식 기반 검색을 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -766,7 +767,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BF-TRIP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -792,6 +793,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BF-TRIP-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "모행";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 기반 관광지를 위한 현재 위치를 알기 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성 인식 기반 검색을 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -805,7 +807,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BF-TRIP";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
