@@ -43,7 +43,7 @@ struct OnboardingFourthView: View {
             viewModel.toggleNoneApply()
         } label: {
             Text("해당사항 없음")
-                .font(.system(size: 15, weight: viewModel.disabilityNoneApplySelected ? .semibold : .medium))
+                .font(.system(size: 15, weight: .semibold))
                 .frame(maxWidth: .infinity)
                 .contentTransition(.identity)
         }

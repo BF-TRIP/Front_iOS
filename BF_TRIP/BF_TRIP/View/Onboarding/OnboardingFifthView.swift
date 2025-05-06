@@ -28,14 +28,14 @@ struct OnboardingFifthView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         
         HStack(spacing: 10) {
-            toggleButton(title1: "숲 속 휴양 및 치유", title2: "울창한, 자연, 치유, 웰빙", title3: "숲속, 산림욕장, 휴양림", image: Image(uiImage: .camping), index: 0)
-            toggleButton(title1: "해양 및 수변활동", title2: "해수욕장, 백사장, 물놀이", title3: "댐, 호수", image: Image(uiImage: .beach), index: 1)
+            toggleButton(title1: "숲속 힐링", title2: "자연, 산림욕장, 휴양림", title3: "", image: Image(uiImage: .camping), index: 0)
+            toggleButton(title1: "해변 & 물놀이", title2: "해수욕장, 물놀이, 호수", title3: "", image: Image(uiImage: .beach), index: 1)
         }
         .padding(.horizontal, 10)
         
         HStack(spacing: 10) {
-            toggleButton(title1: "역사와 문화유산", title2: "박물관, 미술관, 유적, 역사", title3: "문화, 사찰, 조계종", image: Image(uiImage: .historical), index: 2)
-            toggleButton(title1: "함께하는 야외활동", title2: "가족, 어린이, 동반, 공원", title3: "레저, 테마파크", image: Image(uiImage: .amuse), index: 3)
+            toggleButton(title1: "문화유산 & 역사", title2: "박물관, 역사,", title3: "문화, 종교시설", image: Image(uiImage: .historical), index: 2)
+            toggleButton(title1: "엔터테인먼트", title2: "가족, 공원, 레저", title3: "테마파크", image: Image(uiImage: .amuse), index: 3)
         }
         .padding(.horizontal, 10)
         
@@ -68,7 +68,7 @@ struct OnboardingFifthView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Text(title1)
-                            .font(.system(size: 15, weight: viewModel.tripList[index] ? .semibold : .medium))
+                            .font(.system(size: 16, weight: .semibold))
                             .contentTransition(.identity)
                         Spacer()
                     }
