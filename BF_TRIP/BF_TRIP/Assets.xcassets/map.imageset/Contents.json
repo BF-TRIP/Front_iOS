@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "BFbookmark2.svg",
+      "filename" : "map.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "map 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "map 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

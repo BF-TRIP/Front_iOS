@@ -37,23 +37,19 @@ struct BFView: View {
                 }
             MapView(viewModel: mapViewModel)
                 .tabItem {
-                    Image(systemName: "map")
+                    Image(uiImage: .map)
                     Text("지도")
                 }
             CourseMainView()
                 .tabItem {
-                    Image(systemName: "book")
-                    Text("코스")
+                    Image(uiImage: .mohaeng)
+                    Text("AI코스")
                 }
-                .background(Color.Black)
-                .background(ignoresSafeAreaEdges: .all)
             BookmarkView()
                 .tabItem {
-                    Image(systemName: "bookmark")
+                    Image(uiImage: .bookmarkBlack)
                     Text("저장")
                 }
-                .background(Color.Black)
-                .background(ignoresSafeAreaEdges: .all)
         }
         .accentColor(Color(.label))
         .onAppear(perform: {

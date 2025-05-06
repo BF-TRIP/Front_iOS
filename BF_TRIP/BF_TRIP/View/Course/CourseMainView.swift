@@ -47,7 +47,7 @@ struct CourseMainView: View {
                     
                     VStack(spacing: 20) {
                         CourseCustomButton(
-                            color: Color.Orange,
+                            color: Color(hex: "#785AFF"),
                             descriptionColor: Color.Black,
                             title: "빠르게 생성하기",
                             description1: "입력한 정보를 바탕으로",
@@ -145,7 +145,7 @@ struct CourseCustomButton: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Spacer()
                     Text(title)
-                        .font(.system(size: 24, weight: .bold))
+                        .font(.system(size: 24, weight: .heavy))
                         .foregroundColor(Color.White)
                     
                     Spacer().frame(height: 20)

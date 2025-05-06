@@ -49,12 +49,12 @@ struct Place: View {
                 } label: {
                     let check = viewModel.saveList.contains { $0.contentTitle == place.contentTitle }
                     if !check {
-                        Image(uiImage: .bFbookmark1)
+                        Image(uiImage: .bookmarkEmpty)
                             .foregroundColor(Color(.label))
                             .frame(width: 50, height: 50)
                             .scaledToFill()
                     } else {
-                        Image(uiImage: .bFbookmark2)
+                        Image(uiImage: .bookmarkWhite)
                             .foregroundColor(Color(.label))
                             .frame(width: 50, height: 50)
                             .scaledToFill()

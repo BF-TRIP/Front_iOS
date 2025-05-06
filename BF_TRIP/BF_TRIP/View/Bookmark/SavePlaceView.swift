@@ -36,7 +36,7 @@ struct SavePlaceView: View {
                         await deletePlace(userNumber: userNumber, contentId: place.contentId)
                     }
                 } label: {
-                    Image(uiImage: .bFbookmark2)
+                    Image(uiImage: .bookmarkWhite)
                         .foregroundColor(Color(.label))
                         .frame(width: 50, height: 50)
                         .scaledToFill()
