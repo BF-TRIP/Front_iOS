@@ -49,12 +49,12 @@ struct OnboardingFifthView: View {
         }
         .frame(height: 50)
         .padding(.vertical, 10)
-        .background(viewModel.tripNoneApplySelected ? Color.Yellow100 : Color.White.opacity(0))
+        .background(viewModel.tripNoneApplySelected ? Color.SubColor : Color.White.opacity(0))
         .foregroundColor(Color.Black)
         .cornerRadius(15)
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(viewModel.tripNoneApplySelected ? Color.Yellow : Color.Gray300)
+                .stroke(viewModel.tripNoneApplySelected ? Color.MainColor : Color.Gray300)
         }
         .padding(.horizontal, 10)
         
@@ -103,12 +103,12 @@ struct OnboardingFifthView: View {
         }
         .frame(width: UIScreen.main.bounds.width * 0.37, height: UIScreen.main.bounds.height * 0.1)
         .padding()
-        .background(viewModel.tripList[index] ? Color.Yellow100 : Color.White.opacity(0))
+        .background(viewModel.tripList[index] ? Color.SubColor : Color.White.opacity(0))
         .foregroundColor(Color.Black)
         .cornerRadius(15)
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(viewModel.tripList[index] ? Color.Yellow : Color.Gray300)
+                .stroke(viewModel.tripList[index] ? Color.MainColor : Color.Gray300)
         }
     }
     

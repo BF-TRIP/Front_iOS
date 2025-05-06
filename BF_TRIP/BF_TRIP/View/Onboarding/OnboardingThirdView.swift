@@ -58,12 +58,12 @@ struct OnboardingThirdView: View {
         }
         .frame(width: UIScreen.main.bounds.width * 0.35, height: UIScreen.main.bounds.height * 0.12)
         .padding()
-        .background(isSelected ? Color.Yellow100 : Color.White)
+        .background(isSelected ? Color.SubColor : Color.White)
         .foregroundColor(Color.Black)
         .cornerRadius(15)
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(isSelected ? Color.Yellow : Color.Gray300)
+                .stroke(isSelected ? Color.MainColor : Color.Gray300)
         }
     }
     

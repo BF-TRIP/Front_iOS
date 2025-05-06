@@ -120,7 +120,7 @@ struct CourseMainView: View {
                 }
             }
         }
-        .background(Color.Yellow100)
+        .background(Color.SubColor)
         .ignoresSafeArea()
         .fullScreenCover(isPresented: $isResultViewShowing) {
             CourseResultView(isResultShowing: $isResultViewShowing, result: $result)

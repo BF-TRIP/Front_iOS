@@ -56,7 +56,7 @@ struct PlaceListView: View {
                 selectedComponents: $selectedStates,
                 list: stateList,
                 backgroundColor: Color.Gray800,
-                fontColor: Color.Yellow,
+                fontColor: Color.MainColor,
                 radiusColor: Color.Black
             )
             

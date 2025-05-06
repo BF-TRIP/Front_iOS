@@ -39,7 +39,7 @@ struct DaysComponent: View {
         }
         .background(
             selectedDay == index
-            ? Color.Yellow
+            ? Color.MainColor
             : Color.Gray300
         )
         .cornerRadius(50)

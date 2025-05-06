@@ -11,9 +11,8 @@ extension Color {
     
     static let Orange       = Color(hex: "FFAE00")
     
-    static let Yellow       = Color(hex: "FFE54A")
-    static let Yellow100    = Color(hex: "FFFCE7")
-    
+    static let MainColor    = Color(hex: "4FB0FF")
+    static let SubColor     = Color(hex: "D4ECFF")
     
     static let White        = Color(hex: "FFFFFF")
     static let Gray100      = Color(hex: "F2F2F2")

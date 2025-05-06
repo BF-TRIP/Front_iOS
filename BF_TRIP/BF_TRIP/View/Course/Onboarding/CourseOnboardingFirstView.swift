@@ -76,13 +76,13 @@ struct ButtonView: View {
             Text(button)
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .frame(height: 48)
-                .background(isSelected ? Color.Yellow100 : Color.White)
+                .background(isSelected ? Color.SubColor : Color.White)
                 .foregroundColor(Color.Black)
                 .font(.system(size: 18, weight: isSelected ? .semibold : .medium))
                 .cornerRadius(40)
                 .overlay(
                     RoundedRectangle(cornerRadius: 40)
-                        .stroke((isSelected ? Color.Yellow : Color.Gray600), lineWidth: 1)
+                        .stroke((isSelected ? Color.MainColor : Color.Gray600), lineWidth: 1)
                 )
         }
     }

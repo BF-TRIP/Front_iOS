@@ -75,7 +75,7 @@ struct SearchFilterView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .font(.system(size: 16))
                         .foregroundColor(self.selectedState == stateList[index] ? Color.Black : Color.Gray400)
-                        .listRowBackground(self.selectedState == stateList[index] ? Color.Yellow : Color.Gray300)
+                        .listRowBackground(self.selectedState == stateList[index] ? Color.MainColor : Color.Gray300)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
                             self.selectedState = stateList[index]
@@ -89,7 +89,7 @@ struct SearchFilterView: View {
                 if let stateIndex = selectedStateIndex {
                     List(0..<cityList[stateIndex].count, id: \.self) { index in
                         Text("\(cityList[stateIndex][index])")
-                            .listRowBackground(self.selectedCity == cityList[stateIndex][index] ? Color.Yellow100 : Color.White)
+                            .listRowBackground(self.selectedCity == cityList[stateIndex][index] ? Color.SubColor : Color.White)
                             .onTapGesture {
                                 self.selectedCity = cityList[stateIndex][index]
                             }
@@ -122,7 +122,7 @@ struct SearchFilterView: View {
                         .fontWeight(.bold)
                 }
                 .buttonStyle(.plain)
-                .background(Color.Yellow)
+                .background(Color.MainColor)
                 .cornerRadius(10)
                 .padding(EdgeInsets(top: 10, leading: 30, bottom: 10, trailing: 30))
             }

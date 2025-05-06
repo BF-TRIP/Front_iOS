@@ -49,12 +49,12 @@ struct OnboardingFourthView: View {
         }
         .frame(height: 50)
         .padding(.vertical, 10)
-        .background(viewModel.disabilityNoneApplySelected ? Color.Yellow100 : Color.White.opacity(0))
+        .background(viewModel.disabilityNoneApplySelected ? Color.SubColor : Color.White.opacity(0))
         .foregroundColor(Color.Black)
         .cornerRadius(15)
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(viewModel.disabilityNoneApplySelected ? Color.Yellow : Color.Gray300)
+                .stroke(viewModel.disabilityNoneApplySelected ? Color.MainColor : Color.Gray300)
         }
         .padding(.horizontal, 10)
     }
@@ -93,12 +93,12 @@ struct OnboardingFourthView: View {
         }
         .frame(width: UIScreen.main.bounds.width * 0.37, height: UIScreen.main.bounds.height * 0.1)
         .padding()
-        .background(viewModel.disabilityList[index] ? Color.Yellow100 : Color.White.opacity(0))
+        .background(viewModel.disabilityList[index] ? Color.SubColor : Color.White.opacity(0))
         .foregroundColor(Color.Black)
         .cornerRadius(15)
         .overlay {
             RoundedRectangle(cornerRadius: 15)
-                .stroke(viewModel.disabilityList[index] ? Color.Yellow : Color.Gray300)
+                .stroke(viewModel.disabilityList[index] ? Color.MainColor : Color.Gray300)
         }
     }
     

@@ -55,7 +55,7 @@ struct VoiceView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 200, height: 200)
-                        .tint(Color.Yellow)
+                        .tint(Color.MainColor)
                 }
                 
                 Spacer()

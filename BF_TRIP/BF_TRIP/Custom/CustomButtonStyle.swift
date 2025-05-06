@@ -11,7 +11,7 @@ struct CustomButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
 
     func makeBody(configuration: Configuration) -> some View {
-        let backgroundColor = isEnabled ? Color.Yellow : Color.Gray100
+        let backgroundColor = isEnabled ? Color.MainColor : Color.Gray100
         let foregroundColor = isEnabled ? Color.Black : Color.Gray400
 
         configuration.label
