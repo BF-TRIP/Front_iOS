@@ -34,7 +34,6 @@ struct CourseMainView: View {
         ),
         locationInfoResList: []
     )
-//    @State private var number: Int = 25
     
     var body: some View {
         GeometryReader { geometry in

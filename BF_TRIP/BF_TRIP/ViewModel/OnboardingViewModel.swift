@@ -102,8 +102,6 @@ final class OnboardingViewModel: ObservableObject {
     }
     
     func postAIRecomnent(userNumber: Int) async throws -> CourseModel {
-        dump(selectedDisabilities)
-        dump(selectedTripTypes)
         return try await MoyaManager.shared.postAIRecomnent(
             userNumber: userNumber,
             area: area ?? 1,
